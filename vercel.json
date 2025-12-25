@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://polarad.co.kr https://*.polarad.co.kr https://polaai.co.kr https://*.polaai.co.kr http://polarad.co.kr http://*.polarad.co.kr http://polaai.co.kr http://*.polaai.co.kr"
+        }
+      ]
+    }
+  ]
+}
