@@ -1,0 +1,494 @@
+<!-- 자금치유연구소 헤더 섹션 -->
+<style>
+/* Pretendard 폰트 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+/* 기본 스타일 초기화 */
+#s2025101755ff003c1e853 * {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* 아임웹 기본 배경 제거 */
+#s2025101755ff003c1e853,
+#s2025101755ff003c1e853 .section_body,
+#s2025101755ff003c1e853 .inside,
+#s2025101755ff003c1e853 .widget,
+#s2025101755ff003c1e853 .widget_inner,
+#s2025101755ff003c1e853 .section_bg_color {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* 헤더 전체 래퍼 (배경 담당) - 다크 블루 배경 */
+#s2025101755ff003c1e853 .gn-header-wrapper {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+    background: rgba(15, 23, 46, 0.95) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+#s2025101755ff003c1e853 .gn-header-wrapper.scrolled {
+    background: rgba(15, 23, 46, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom-color: rgba(212, 175, 55, 0.5) !important;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2),
+                0 4px 20px rgba(139, 111, 63, 0.1) !important;
+}
+
+/* 헤더 컨테이너 (콘텐츠 정렬 담당) */
+#s2025101755ff003c1e853 .gn-header-container {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 80px !important;
+}
+
+/* 로고 영역 */
+#s2025101755ff003c1e853 .gn-logo {
+    z-index: 10001 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    text-decoration: none !important;
+}
+
+#s2025101755ff003c1e853 .gn-logo-image {
+    height: 45px !important;
+    width: auto !important;
+    transition: all 0.3s ease !important;
+}
+
+#s2025101755ff003c1e853 .gn-logo-text {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px !important;
+    white-space: nowrap !important;
+    background: linear-gradient(to bottom,
+                                #f6eddc 0%,      /* 위: 가장 밝음 */
+                                #e8c689 35%,     /* 약간 밝음 */
+                                #d0a257 65%,     /* 다음 밝음 */
+                                #b6873f 100%);   /* 아래: 어두움 */
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-fill-color: transparent !important;
+}
+
+/* 햄버거 메뉴 버튼 */
+#s2025101755ff003c1e853 .gn-hamburger {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+    width: 44px !important;
+    height: 44px !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    z-index: 10001 !important;
+    transition: all 0.3s ease !important;
+}
+
+#s2025101755ff003c1e853 .gn-hamburger span {
+    display: block !important;
+    width: 24px !important;
+    height: 2px !important;
+    background: #FFFFFF !important;
+    border-radius: 3px !important;
+    transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1) !important;
+}
+
+#s2025101755ff003c1e853 .gn-hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px) !important;
+    background: #d4af37 !important;
+}
+
+#s2025101755ff003c1e853 .gn-hamburger.active span:nth-child(2) {
+    opacity: 0 !important;
+    transform: translateX(-20px) !important;
+}
+
+#s2025101755ff003c1e853 .gn-hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px) !important;
+    background: #d4af37 !important;
+}
+
+/* 풀스크린 메뉴 - 다크 블루 배경 */
+#s2025101755ff003c1e853 .gn-fullscreen-menu {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(135deg, #0f172e 0%, #1a2547 50%, #0f172e 100%) !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: translateY(-100%) !important;
+    transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1) !important;
+}
+
+#s2025101755ff003c1e853 .gn-fullscreen-menu.active {
+    transform: translateY(0) !important;
+}
+
+/* 메뉴 컨텐츠 */
+#s2025101755ff003c1e853 .gn-menu-content {
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 40px 20px !important;
+    text-align: left !important;
+}
+
+#s2025101755ff003c1e853 .gn-menu-list {
+    list-style: none !important;
+}
+
+#s2025101755ff003c1e853 .gn-menu-item {
+    overflow: hidden !important;
+    margin-bottom: 10px !important;
+}
+
+#s2025101755ff003c1e853 .gn-menu-link {
+    display: inline-block !important;
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    color: #e8d4a8 !important;
+    text-decoration: none !important;
+    padding: 8px 0 !important;
+    transform: translateY(100%) !important;
+    transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1), color 0.3s ease, text-shadow 0.3s ease !important;
+    position: relative !important;
+}
+
+#s2025101755ff003c1e853 .gn-menu-link:hover {
+    color: #d4af37 !important;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.8) !important;
+}
+
+#s2025101755ff003c1e853 .gn-menu-link::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 5px !important;
+    left: 0 !important;
+    width: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #8b6f3f 0%, #d4af37 100%) !important;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.6) !important;
+    transition: width 0.3s ease !important;
+}
+
+#s2025101755ff003c1e853 .gn-menu-link:hover::after {
+    width: 100% !important;
+}
+
+/* 상담신청 버튼 특별 스타일 - 네온 골드 컨셉 */
+#s2025101755ff003c1e853 .gn-menu-item.cta-item .gn-menu-link {
+    color: #faf8f3 !important;
+    background: linear-gradient(135deg, #8b6f3f 0%, #d4af37 100%) !important;
+    padding: 15px 40px !important;
+    border-radius: 50px !important;
+    display: inline-block !important;
+    margin-top: 20px !important;
+    font-size: 24px !important;
+    text-shadow: none !important;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4) !important;
+}
+
+#s2025101755ff003c1e853 .gn-menu-item.cta-item .gn-menu-link:hover {
+    transform: scale(1.08) !important;
+    background: linear-gradient(135deg, #a17c4a 0%, #e8c547 100%) !important;
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.8) !important;
+}
+
+#s2025101755ff003c1e853 .gn-menu-item.cta-item .gn-menu-link::after {
+    display: none !important;
+}
+
+/* 메뉴 애니메이션 */
+#s2025101755ff003c1e853 .gn-fullscreen-menu.active .gn-menu-link {
+    transform: translateY(0) !important;
+}
+
+#s2025101755ff003c1e853 .gn-fullscreen-menu.active .gn-menu-item:nth-child(1) .gn-menu-link { transition-delay: 0.1s !important; }
+#s2025101755ff003c1e853 .gn-fullscreen-menu.active .gn-menu-item:nth-child(2) .gn-menu-link { transition-delay: 0.15s !important; }
+#s2025101755ff003c1e853 .gn-fullscreen-menu.active .gn-menu-item:nth-child(3) .gn-menu-link { transition-delay: 0.2s !important; }
+#s2025101755ff003c1e853 .gn-fullscreen-menu.active .gn-menu-item:nth-child(4) .gn-menu-link { transition-delay: 0.25s !important; }
+#s2025101755ff003c1e853 .gn-fullscreen-menu.active .gn-menu-item:nth-child(5) .gn-menu-link { transition-delay: 0.3s !important; }
+#s2025101755ff003c1e853 .gn-fullscreen-menu.active .gn-menu-item:nth-child(6) .gn-menu-link { transition-delay: 0.35s !important; }
+#s2025101755ff003c1e853 .gn-fullscreen-menu.active .gn-menu-item:nth-child(7) .gn-menu-link { transition-delay: 0.4s !important; }
+
+/* 태블릿 반응형 */
+@media (min-width: 768px) {
+    #s2025101755ff003c1e853 .gn-header-container {
+        height: 90px !important;
+        padding: 0 40px !important;
+    }
+
+    #s2025101755ff003c1e853 .gn-logo-image {
+        height: 50px !important;
+    }
+
+    #s2025101755ff003c1e853 .gn-logo-text {
+        font-size: 24px !important;
+        background: linear-gradient(to bottom,
+                                    #f6eddc 0%,      /* 위: 가장 밝음 */
+                                    #e8c689 35%,     /* 약간 밝음 */
+                                    #d0a257 65%,     /* 다음 밝음 */
+                                    #b6873f 100%) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        text-fill-color: transparent !important;
+    }
+
+    #s2025101755ff003c1e853 .gn-menu-link {
+        font-size: 48px !important;
+    }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 767px) {
+    #s2025101755ff003c1e853 .gn-header-container {
+        height: 70px !important;
+    }
+
+    #s2025101755ff003c1e853 .gn-logo-image {
+        height: 40px !important;
+    }
+
+    #s2025101755ff003c1e853 .gn-logo-text {
+        font-size: 18px !important;
+        background: linear-gradient(to bottom,
+                                    #f6eddc 0%,      /* 위: 가장 밝음 */
+                                    #e8c689 35%,     /* 약간 밝음 */
+                                    #d0a257 65%,     /* 다음 밝음 */
+                                    #b6873f 100%) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        text-fill-color: transparent !important;
+    }
+
+    #s2025101755ff003c1e853 .gn-menu-link {
+        font-size: 32px !important;
+        padding: 6px 0 !important;
+    }
+
+    #s2025101755ff003c1e853 .gn-menu-item.cta-item .gn-menu-link {
+        font-size: 20px !important;
+        padding: 12px 30px !important;
+    }
+}
+</style>
+
+<div id="s2025101755ff003c1e853">
+    <div class="gn-header-wrapper">
+        <header class="gn-header-container">
+            <a href="#" class="gn-logo active">
+                <img src="https://cdn.imweb.me/upload/S2025101736be3dda11a3a/351cbf2cfa94a.png"
+                     alt="자금치유연구소 로고"
+                     class="gn-logo-image">
+                <span class="gn-logo-text">자금치유연구소</span>
+            </a>
+            <button class="gn-hamburger" id="gnHamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+    </div>
+
+    <div class="gn-fullscreen-menu" id="gnMenu">
+        <div class="gn-menu-content">
+            <ul class="gn-menu-list">
+                <li class="gn-menu-item"><a href="https://financialhealing.imweb.me/home" class="gn-menu-link active">홈</a></li>
+                <li class="gn-menu-item"><a href="https://financialhealing.imweb.me/company" class="gn-menu-link">회사소개</a></li>
+                <li class="gn-menu-item"><a href="https://financialhealing.imweb.me/process" class="gn-menu-link">진행과정</a></li>
+                <li class="gn-menu-item"><a href="https://financialhealing.imweb.me/fund" class="gn-menu-link">자금상담</a></li>
+                <li class="gn-menu-item"><a href="https://financialhealing.imweb.me/pro" class="gn-menu-link">전문서비스</a></li>
+                <li class="gn-menu-item"><a href="https://financialhealing.imweb.me/mkt" class="gn-menu-link">온라인마케팅</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+
+    // 네임스페이스 생성으로 충돌 방지
+    if (!window.PrimeRoadHeaderManager) {
+        window.PrimeRoadHeaderManager = {};
+    }
+
+    // 이전 인스턴스 정리
+    if (window.PrimeRoadHeaderManager.cleanup) {
+        window.PrimeRoadHeaderManager.cleanup();
+    }
+
+    // 초기화 함수
+    function initializePrimeRoadHeader() {
+        const section = document.getElementById('s2025101755ff003c1e853');
+        if (!section) {
+            console.warn('PrimeRoad Header: Section not found');
+            return false;
+        }
+
+        const hamburger = section.querySelector('#gnHamburger');
+        const fullscreenMenu = section.querySelector('#gnMenu');
+        const menuLinks = section.querySelectorAll('.gn-menu-link');
+        const header = section.querySelector('.gn-header-wrapper');
+
+        if (!hamburger || !fullscreenMenu) {
+            console.warn('PrimeRoad Header: Required elements not found');
+            return false;
+        }
+
+        // 메뉴 상태 관리
+        let isMenuOpen = false;
+
+        // 메뉴 토글 함수
+        function toggleMenu(forceClose = false) {
+            if (forceClose || isMenuOpen) {
+                // 메뉴 닫기
+                hamburger.classList.remove('active');
+                fullscreenMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                isMenuOpen = false;
+            } else {
+                // 메뉴 열기
+                hamburger.classList.add('active');
+                fullscreenMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                isMenuOpen = true;
+            }
+        }
+
+        // 이벤트 핸들러 함수들
+        function handleHamburgerClick(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+        }
+
+        function handleMenuLinkClick() {
+            setTimeout(() => toggleMenu(true), 100);
+        }
+
+        function handleOutsideClick(e) {
+            if (e.target === fullscreenMenu && isMenuOpen) {
+                toggleMenu(true);
+            }
+        }
+
+        function handleEscKey(e) {
+            if (e.key === 'Escape' && isMenuOpen) {
+                toggleMenu(true);
+            }
+        }
+
+        function handleScroll() {
+            if (header) {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+        }
+
+        // 이벤트 리스너 등록
+        hamburger.addEventListener('click', handleHamburgerClick);
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', handleMenuLinkClick);
+        });
+
+        fullscreenMenu.addEventListener('click', handleOutsideClick);
+        document.addEventListener('keydown', handleEscKey);
+        window.addEventListener('scroll', handleScroll);
+
+        // 초기 스크롤 상태 확인
+        handleScroll();
+
+        // cleanup 함수 정의
+        window.PrimeRoadHeaderManager.cleanup = function() {
+            try {
+                hamburger.removeEventListener('click', handleHamburgerClick);
+                menuLinks.forEach(link => {
+                    link.removeEventListener('click', handleMenuLinkClick);
+                });
+                fullscreenMenu.removeEventListener('click', handleOutsideClick);
+                document.removeEventListener('keydown', handleEscKey);
+                window.removeEventListener('scroll', handleScroll);
+
+                // 메뉴가 열려있으면 닫기
+                if (isMenuOpen) {
+                    toggleMenu(true);
+                }
+            } catch (e) {
+                console.warn('PrimeRoad Header cleanup error:', e);
+            }
+        };
+
+        console.log('PrimeRoad Header initialized successfully');
+        return true;
+    }
+
+    // 초기화 시도 함수
+    function tryInitialize() {
+        const success = initializePrimeRoadHeader();
+        if (success) {
+            window.PrimeRoadHeaderManager.initialized = true;
+        }
+        return success;
+    }
+
+    // DOM 준비 상태에 따른 초기화
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', tryInitialize);
+    } else {
+        tryInitialize();
+    }
+
+    // 아임웹 환경 대응 - 지연 초기화
+    setTimeout(tryInitialize, 100);
+    setTimeout(tryInitialize, 500);
+
+    // MutationObserver로 DOM 변경 감지
+    if (!window.PrimeRoadHeaderManager.observer) {
+        window.PrimeRoadHeaderManager.observer = new MutationObserver(function(mutations) {
+            const headerExists = document.getElementById('gnHamburger');
+            if (headerExists && !window.PrimeRoadHeaderManager.initialized) {
+                tryInitialize();
+            }
+        });
+
+        // body 관찰 시작
+        if (document.body) {
+            window.PrimeRoadHeaderManager.observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
+    }
+
+})();
+</script>

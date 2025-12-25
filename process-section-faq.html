@@ -1,0 +1,504 @@
+<!-- ================================================ -->
+<!-- KY 중소기업지원센터 자주 묻는 질문 섹션 - 다크 블루 테마 -->
+<!-- 섹션 ID: #kyProcessFaq -->
+<!-- ================================================ -->
+<style>
+/* 폰트 설정 */
+#kyProcessFaq {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* FAQ 섹션 배경 - 다크 블루 */
+#kyProcessFaq {
+  background: #0F172A !important;
+  padding: 40px 0 !important;
+  width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  position: relative !important;
+}
+
+#kyProcessFaq .section-container {
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* 섹션 헤더 - 간격 축소 */
+#kyProcessFaq .section-header {
+  text-align: center !important;
+  margin-bottom: 30px !important;
+}
+
+#kyProcessFaq .section-header h2 {
+  font-size: 38px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 15px !important;
+  position: relative !important;
+  display: inline-block !important;
+}
+
+/* 제목 블루 언더라인 효과 */
+#kyProcessFaq .section-header h2::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -8px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 80px !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, transparent, #3B82F6, transparent) !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6) !important;
+}
+
+#kyProcessFaq .section-header p {
+  font-size: 18px !important;
+  color: #93C5FD !important;
+  line-height: 1.5 !important;
+}
+
+/* FAQ 컨테이너 - 간격 축소 */
+#kyProcessFaq .faq-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px !important;
+}
+
+/* FAQ 아이템 */
+#kyProcessFaq .faq-item {
+  background: rgba(59, 130, 246, 0.15) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+  position: relative !important;
+}
+
+/* 블루 글로우 효과 추가 */
+#kyProcessFaq .faq-item::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, #3B82F6, transparent) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+#kyProcessFaq .faq-item:hover {
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+#kyProcessFaq .faq-item:hover::before {
+  opacity: 1 !important;
+}
+
+#kyProcessFaq .faq-item.active {
+  border-color: #3B82F6 !important;
+  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.25) !important;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 58, 95, 0.05) 100%) !important;
+}
+
+#kyProcessFaq .faq-item.active::before {
+  opacity: 1 !important;
+  height: 3px !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6) !important;
+}
+
+/* FAQ 질문 - 패딩 축소 */
+#kyProcessFaq .faq-question {
+  padding: 25px 30px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  position: relative !important;
+  transition: all 0.3s ease !important;
+}
+
+#kyProcessFaq .faq-item.active .faq-question {
+  background: rgba(59, 130, 246, 0.2) !important;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.3) !important;
+}
+
+/* FAQ 번호 - 블루 그라데이션 */
+#kyProcessFaq .faq-number {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%) !important;
+  color: #FFFFFF !important;
+  border-radius: 50% !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  margin-right: 18px !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4) !important;
+  transition: all 0.3s ease !important;
+}
+
+#kyProcessFaq .faq-item.active .faq-number {
+  background: linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%) !important;
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.6) !important;
+  transform: scale(1.1) !important;
+}
+
+/* FAQ 질문 텍스트 */
+#kyProcessFaq .faq-question-text {
+  flex: 1 !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #FFFFFF !important;
+  line-height: 1.4 !important;
+  padding-right: 20px !important;
+}
+
+/* FAQ 토글 아이콘 */
+#kyProcessFaq .faq-toggle {
+  width: 22px !important;
+  height: 22px !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+}
+
+#kyProcessFaq .faq-toggle::before,
+#kyProcessFaq .faq-toggle::after {
+  content: '' !important;
+  position: absolute !important;
+  background: #93C5FD !important;
+  transition: all 0.3s ease !important;
+  border-radius: 1px !important;
+}
+
+#kyProcessFaq .faq-toggle::before {
+  width: 22px !important;
+  height: 2px !important;
+  top: 50% !important;
+  left: 0 !important;
+  transform: translateY(-50%) !important;
+}
+
+#kyProcessFaq .faq-toggle::after {
+  width: 2px !important;
+  height: 22px !important;
+  left: 50% !important;
+  top: 0 !important;
+  transform: translateX(-50%) !important;
+}
+
+#kyProcessFaq .faq-item:hover .faq-toggle::before,
+#kyProcessFaq .faq-item:hover .faq-toggle::after {
+  background: #3B82F6 !important;
+}
+
+#kyProcessFaq .faq-item.active .faq-toggle::after {
+  opacity: 0 !important;
+}
+
+#kyProcessFaq .faq-item.active .faq-toggle::before {
+  background: #3B82F6 !important;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6) !important;
+}
+
+/* FAQ 답변 - 패딩 축소 */
+#kyProcessFaq .faq-answer {
+  max-height: 0 !important;
+  overflow: hidden !important;
+  transition: max-height 0.4s ease !important;
+}
+
+#kyProcessFaq .faq-answer-inner {
+  padding: 25px 30px 25px 90px !important;
+}
+
+#kyProcessFaq .faq-answer p {
+  font-size: 16px !important;
+  color: #93C5FD !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+}
+
+#kyProcessFaq .faq-answer p + p {
+  margin-top: 14px !important;
+}
+
+/* 강조 텍스트 */
+#kyProcessFaq .faq-answer strong {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 58, 95, 0.1) 100%) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  display: inline-block !important;
+}
+
+/* 성공 강조 */
+#kyProcessFaq .highlight-success {
+  color: #3B82F6 !important;
+  font-weight: 700 !important;
+  position: relative !important;
+  display: inline-block !important;
+}
+
+/* 성공 언더라인 효과 */
+#kyProcessFaq .highlight-success::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, #1E3A5F 0%, #3B82F6 100%) !important;
+  opacity: 0.6 !important;
+}
+
+#kyProcessFaq .faq-item.active .faq-answer {
+  max-height: 500px !important;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  #kyProcessFaq {
+      padding: 30px 0 !important;
+  }
+
+  #kyProcessFaq .section-header {
+      margin-bottom: 25px !important;
+  }
+
+  #kyProcessFaq .section-header h2 {
+      font-size: 30px !important;
+  }
+
+  #kyProcessFaq .section-header p {
+      font-size: 16px !important;
+  }
+
+  #kyProcessFaq .faq-container {
+      gap: 12px !important;
+  }
+
+  #kyProcessFaq .faq-question {
+      padding: 20px 18px !important;
+  }
+
+  #kyProcessFaq .faq-number {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 14px !important;
+      margin-right: 14px !important;
+  }
+
+  #kyProcessFaq .faq-question-text {
+      font-size: 16px !important;
+      padding-right: 15px !important;
+  }
+
+  #kyProcessFaq .faq-answer-inner {
+      padding: 20px 18px 20px 60px !important;
+  }
+
+  #kyProcessFaq .faq-answer p {
+      font-size: 15px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #kyProcessFaq {
+      padding: 25px 0 !important;
+  }
+
+  #kyProcessFaq .section-container {
+      padding: 0 15px !important;
+  }
+
+  #kyProcessFaq .section-header h2 {
+      font-size: 26px !important;
+  }
+
+  #kyProcessFaq .section-header p {
+      font-size: 15px !important;
+  }
+
+  #kyProcessFaq .faq-question {
+      padding: 18px 15px !important;
+  }
+
+  #kyProcessFaq .faq-number {
+      width: 28px !important;
+      height: 28px !important;
+      font-size: 13px !important;
+      margin-right: 12px !important;
+  }
+
+  #kyProcessFaq .faq-question-text {
+      font-size: 15px !important;
+  }
+
+  #kyProcessFaq .faq-toggle {
+      width: 18px !important;
+      height: 18px !important;
+  }
+
+  #kyProcessFaq .faq-toggle::before {
+      width: 18px !important;
+  }
+
+  #kyProcessFaq .faq-toggle::after {
+      height: 18px !important;
+  }
+
+  #kyProcessFaq .faq-answer-inner {
+      padding: 18px 15px 18px 15px !important;
+  }
+
+  #kyProcessFaq .faq-answer p {
+      font-size: 14px !important;
+  }
+}
+
+/* 모바일 줄바꿈 */
+.mobile-br {
+  display: none;
+}
+@media (max-width: 767px) {
+  .mobile-br {
+      display: inline;
+  }
+}
+</style>
+
+<section id="kyProcessFaq">
+  <div class="section-container">
+      <div class="section-header">
+          <h2>자주 묻는 질문</h2>
+          <p>KY 중소기업지원센터의 정책자금 컨설팅 서비스에 관한<br class="mobile-br"> 모든 궁금증을 풀어드립니다</p>
+          <p style="font-size: 13px; color: rgba(147, 197, 253, 0.6); margin-top: 16px; line-height: 1.6;">
+              ※ KY 중소기업지원센터는 정책자금 서류작성을 대행하지 않습니다. ※ 기업평가를 하지 않습니다.
+          </p>
+      </div>
+
+      <div class="faq-container">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQProcess(this)">
+                  <div style="display: flex; align-items: center;">
+                      <span class="faq-number">Q1</span>
+                      <span class="faq-question-text">KY 중소기업지원센터만의 차별화된 경쟁력은 무엇인가요?</span>
+                  </div>
+                  <div class="faq-toggle"></div>
+              </div>
+              <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                      <p>정책자금 심사 프로세스를 완벽히 이해한 전문 컨설턴트들이 <span class="highlight-success">대표님 맞춤형 솔루션</span>을 제공합니다. 단순 서류작업이 아닌, 대표님의 숨은 가치를 발굴하고 중소기업 성장 스토리를 설계하여 심사위원을 설득하는 전략적 접근법을 구사합니다. 대표님이 직접 진행하시기 전 사전 역량을 강화하여 96%의 높은 승인 성공률을 달성하고 있습니다.</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQProcess(this)">
+                  <div style="display: flex; align-items: center;">
+                      <span class="faq-number">Q2</span>
+                      <span class="faq-question-text">정책자금 사전 준비 과정은 어떻게 진행되나요?</span>
+                  </div>
+                  <div class="faq-toggle"></div>
+              </div>
+              <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                      <p><strong>단계별 맞춤 컨설팅 시스템</strong>을 운영합니다. 먼저 대표자 현황 분석으로 강점과 개선점을 파악합니다. 다음으로 최적의 정책자금을 설계하여 제안드립니다. 이후 서류 정보 제공부터 면접까지 세심한 코칭을 진행하며, 자금 확보 이후에도 연계 지원사업과 성장전략을 함께 고민합니다.</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQProcess(this)">
+                  <div style="display: flex; align-items: center;">
+                      <span class="faq-number">Q3</span>
+                      <span class="faq-question-text">지원 가능한 정부지원사업 범위가 어떻게 되나요?</span>
+                  </div>
+                  <div class="faq-toggle"></div>
+              </div>
+              <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                      <p>정부 및 지자체가 운영하는 전 분야 중소기업 지원사업을 커버합니다. <strong>창업지원금, 운영자금, 시설투자, 기술개발(R&D), 해외진출, 각종 인증취득</strong> 등 대표님의 라이프사이클 전반의 정책자금을 지원합니다. 특히 잘 알려지지 않은 틈새 지원사업까지 발굴하여 자금 확보 가능성을 극대화해드립니다.</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQProcess(this)">
+                  <div style="display: flex; align-items: center;">
+                      <span class="faq-number">Q4</span>
+                      <span class="faq-question-text">컨설팅 서비스 이용 비용 체계는 어떻게 구성되어 있나요?</span>
+                  </div>
+                  <div class="faq-toggle"></div>
+              </div>
+              <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                      <p>기초 상담과 역량 분석은 <strong>전액 무료</strong>로 진행됩니다. 본격적인 컨설팅 수수료는 지원 프로젝트의 성격과 난이도를 고려하여 산정되며, <strong>직접 방문상담을 통해 맞춤형 견적</strong>을 제공해드립니다. 명확하고 공정한 가격 정책으로 예산 계획을 수립하실 수 있도록 돕겠습니다.</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQProcess(this)">
+                  <div style="display: flex; align-items: center;">
+                      <span class="faq-number">Q5</span>
+                      <span class="faq-question-text">접수부터 최종 지급까지 소요 기간은 어느 정도인가요?</span>
+                  </div>
+                  <div class="faq-toggle"></div>
+              </div>
+              <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                      <p>사업 유형별로 차이가 있으나 <strong>긴급운전자금은 3-4주 내</strong>, 일반 정책자금은 <strong>2-3개월</strong> 수준입니다. KY 중소기업지원센터는 빠른 처리보다 <strong>최대 지원금액, 유리한 금리조건, 장기 상환조건</strong> 확보에 집중합니다. 철저한 준비를 통해 대표님에게 실질적 도움이 되는 최상의 결과를 만들어냅니다.</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQProcess(this)">
+                  <div style="display: flex; align-items: center;">
+                      <span class="faq-number">Q6</span>
+                      <span class="faq-question-text">자금 수령 이후에도 지속적인 관리를 받을 수 있나요?</span>
+                  </div>
+                  <div class="faq-toggle"></div>
+              </div>
+              <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                      <p>물론입니다. KY 중소기업지원센터는 <strong>장기적 성장 파트너</strong>를 지향합니다. 자금 활용 모니터링, 후속 지원사업 추천, 추가 자금 조달 지원 등을 종합 제공합니다. 단발성 컨설팅이 아닌 지속가능한 중소기업 성장 기반을 함께 구축해나가겠습니다.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<script>
+function toggleFAQProcess(element) {
+  const faqItem = element.parentElement;
+  const allItems = document.querySelectorAll('#kyProcessFaq .faq-item');
+
+  // 다른 모든 FAQ 닫기
+  allItems.forEach(item => {
+      if (item !== faqItem && item.classList.contains('active')) {
+          item.classList.remove('active');
+      }
+  });
+
+  // 현재 FAQ 토글
+  faqItem.classList.toggle('active');
+}
+</script>

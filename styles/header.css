@@ -1,0 +1,287 @@
+/* ========================================
+   KY 중소기업지원센터 - 헤더 스타일
+   ======================================== */
+
+.ky-header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ky-header-wrapper.scrolled {
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2),
+                0 4px 20px rgba(30, 58, 95, 0.1);
+}
+
+.ky-header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+/* 로고 영역 */
+.ky-logo {
+    z-index: 10001;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.ky-logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+    animation: logoImgGlow 3s ease-in-out infinite;
+}
+
+.ky-logo:hover .ky-logo-img {
+    filter: brightness(1.1) drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
+    transform: scale(1.02);
+}
+
+.ky-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    background: linear-gradient(to bottom,
+                                #DBEAFE 0%,
+                                #93C5FD 35%,
+                                #3B82F6 65%,
+                                #1E3A5F 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
+/* 데스크톱 네비게이션 */
+.ky-nav-desktop {
+    display: none;
+}
+
+.ky-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+}
+
+.ky-nav-link {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #93C5FD;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.ky-nav-link:hover {
+    color: #FFFFFF;
+    background: rgba(59, 130, 246, 0.15);
+}
+
+.ky-nav-link.active {
+    color: #3B82F6;
+}
+
+.ky-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #3B82F6;
+    transition: width 0.3s ease;
+}
+
+.ky-nav-link:hover::after {
+    width: 60%;
+}
+
+/* 헤더 CTA 버튼 */
+.ky-nav-cta {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+    margin-left: 12px;
+}
+
+.ky-nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+/* 햄버거 메뉴 버튼 (모바일) */
+.ky-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10001;
+    transition: all 0.3s ease;
+}
+
+.ky-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.ky-hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+    background: #3B82F6;
+}
+
+.ky-hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.ky-hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+    background: #3B82F6;
+}
+
+/* 모바일 메뉴 */
+.ky-mobile-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-120%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 9998;
+}
+
+.ky-mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.ky-mobile-nav-list {
+    list-style: none;
+    padding: 20px;
+}
+
+.ky-mobile-nav-item {
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.ky-mobile-nav-item:last-child {
+    border-bottom: none;
+}
+
+.ky-mobile-nav-link {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #93C5FD;
+    text-decoration: none;
+    padding: 16px 12px;
+    transition: all 0.3s ease;
+}
+
+.ky-mobile-nav-link:hover,
+.ky-mobile-nav-link.active {
+    color: #3B82F6;
+    background: rgba(59, 130, 246, 0.1);
+    padding-left: 20px;
+}
+
+.ky-mobile-nav-cta {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 24px;
+    margin: 16px 12px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* 헤더 반응형 - 태블릿 */
+@media (min-width: 768px) {
+    .ky-header-container {
+        height: 85px;
+    }
+
+    .ky-logo-text {
+        font-size: 20px;
+    }
+}
+
+/* 헤더 반응형 - 데스크톱 */
+@media (min-width: 1024px) {
+    .ky-header-container {
+        height: 90px;
+        padding: 0 40px;
+    }
+
+    .ky-hamburger {
+        display: none;
+    }
+
+    .ky-nav-desktop {
+        display: flex;
+        align-items: center;
+    }
+
+    .ky-logo-img {
+        height: 55px;
+    }
+
+    .ky-logo-text {
+        font-size: 22px;
+    }
+}

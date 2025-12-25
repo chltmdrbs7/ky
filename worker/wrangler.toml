@@ -1,0 +1,15 @@
+name = "ky-form"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# 환경변수 (Cloudflare Dashboard에서 설정)
+# [vars]
+# AIRTABLE_BASE_ID = "appVtpUDzH23zDUdu"
+# AIRTABLE_TABLE_NAME = "고객정보"
+# STAFF_EMAIL = "jmfood12@naver.com"
+
+# Secrets (wrangler secret put 명령어로 설정)
+# - AIRTABLE_TOKEN
+# - RESEND_API_KEY
+# - TELEGRAM_BOT_TOKEN
+# - TELEGRAM_CHAT_ID

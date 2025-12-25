@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대표 소개 섹션 - Frost</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 대표 소개 섹션 - Golden Sunset 테마 */
+        #s20250830e815f967366ab {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            background: #0f172e !important;
+            padding: 60px 0 !important;
+            width: 100vw !important;
+            position: relative !important;
+            overflow: hidden !important;
+            margin-left: calc(-50vw + 50%) !important;
+            left: 0 !important;
+        }
+
+        /* 배경 Golden Sunset 파티클 효과 */
+        #s20250830e815f967366ab::before {
+            content: '' !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.10) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 40%) !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+        }
+
+        #s20250830e815f967366ab .section-container {
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+            padding: 0 20px !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+
+        #s20250830e815f967366ab .section-title {
+            text-align: center !important;
+            margin-bottom: 40px !important;
+        }
+
+        #s20250830e815f967366ab .section-title h2 {
+            font-size: 36px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 16px !important;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3) !important;
+        }
+
+        #s20250830e815f967366ab .section-title p {
+            font-size: 18px !important;
+            color: rgba(224, 242, 241, 0.8) !important;
+        }
+
+        /* 대표 소개 컨테이너 - 가로 레이아웃 - Golden Sunset 글래스모피즘 */
+        #s20250830e815f967366ab .ceo-intro-container {
+            background: rgba(212, 175, 55, 0.12) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            padding: 40px !important;
+            border-radius: 20px !important;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15),
+                        0 0 60px rgba(212, 175, 55, 0.1),
+                        inset 0 0 40px rgba(212, 175, 55, 0.05) !important;
+            border: 1px solid rgba(212, 175, 55, 0.3) !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            gap: 50px !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        /* 프리미엄 스포트라이트 효과 - 데스크탑 전용 */
+        #s20250830e815f967366ab .ceo-intro-container::before {
+            content: '' !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: radial-gradient(
+                circle 200px at var(--mx, 50%) var(--my, 50%),
+                rgba(232, 212, 168, 0.4),
+                rgba(212, 175, 55, 0.3) 30%,
+                rgba(180, 135, 63, 0.15) 50%,
+                transparent 100%
+            ) !important;
+            opacity: 0 !important;
+            transition: opacity 0.4s ease !important;
+            pointer-events: none !important;
+            z-index: 1 !important;
+            filter: blur(10px) !important;
+        }
+
+        #s20250830e815f967366ab .ceo-intro-container:hover::before {
+            opacity: 1 !important;
+        }
+
+        /* 배경 네온 글로우 */
+        #s20250830e815f967366ab .ceo-intro-container::after {
+            content: '' !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: radial-gradient(
+                ellipse 600px 400px at 50% 50%,
+                rgba(212, 175, 55, 0.12),
+                rgba(212, 175, 55, 0.06) 40%,
+                transparent 70%
+            ) !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+            animation: pulseGlow 4s ease-in-out infinite !important;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        /* 왼쪽 사진 영역 */
+        #s20250830e815f967366ab .ceo-photo-section {
+            flex: 0 0 320px !important;
+            text-align: center !important;
+            position: relative !important;
+            z-index: 2 !important;
+        }
+
+        #s20250830e815f967366ab .ceo-card {
+            background: #ffffff !important;
+            padding: 20px !important;
+            border-radius: 16px !important;
+            border: 3px solid rgba(212, 175, 55, 0.5) !important;
+            box-shadow:
+                0 0 30px rgba(212, 175, 55, 0.3),
+                0 0 60px rgba(212, 175, 55, 0.15),
+                0 4px 20px rgba(0, 0, 0, 0.1) !important;
+            position: relative !important;
+            overflow: visible !important;
+            display: inline-block !important;
+            margin-bottom: 0 !important;
+            transition: all 0.4s ease !important;
+        }
+
+        #s20250830e815f967366ab .ceo-card:hover {
+            box-shadow:
+                0 0 40px rgba(212, 175, 55, 0.5),
+                0 0 80px rgba(212, 175, 55, 0.3),
+                0 8px 30px rgba(0, 0, 0, 0.15) !important;
+            transform: translateY(-4px) !important;
+        }
+
+        /* 대표 카드 리본 - Golden Sunset */
+        #s20250830e815f967366ab .ceo-card::before {
+            content: '대표' !important;
+            position: absolute !important;
+            top: 15px !important;
+            right: -25px !important;
+            background: linear-gradient(135deg, #8b6f3f 0%, #d4af37 100%) !important;
+            color: #ffffff !important;
+            padding: 5px 30px !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            transform: rotate(45deg) !important;
+            box-shadow: 0 2px 15px rgba(212, 175, 55, 0.5) !important;
+        }
+
+        #s20250830e815f967366ab .member-image {
+            width: 280px !important;
+            height: 360px !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            background: #f8fafc !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        #s20250830e815f967366ab .member-image img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center top !important;
+        }
+
+        /* 이름과 직함 - 박스 밖에 배치 */
+        #s20250830e815f967366ab .member-info {
+            text-align: center !important;
+            margin-top: 20px !important;
+        }
+
+        #s20250830e815f967366ab .member-name {
+            font-size: 28px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 8px !important;
+            letter-spacing: 2px !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        #s20250830e815f967366ab .member-title {
+            font-size: 18px !important;
+            color: #d4af37 !important;
+            font-weight: 600 !important;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6) !important;
+            animation: titleGlow 3s ease-in-out infinite !important;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.9);
+            }
+        }
+
+        /* 자격사항 섹션 */
+        #s20250830e815f967366ab .qualifications-section {
+            margin-top: 30px !important;
+            max-width: 800px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            padding: 0 20px !important;
+        }
+
+        /* 자격사항 그리드 - Frost */
+        #s20250830e815f967366ab .qualifications-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 15px !important;
+        }
+
+        #s20250830e815f967366ab .qual-item {
+            background: rgba(212, 175, 55, 0.15) !important;
+            border: 1px solid rgba(212, 175, 55, 0.4) !important;
+            border-radius: 8px !important;
+            padding: 14px 20px !important;
+            font-size: 14px !important;
+            color: #d4af37 !important;
+            text-align: center !important;
+            position: relative !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+
+        #s20250830e815f967366ab .qual-item:hover {
+            background: rgba(212, 175, 55, 0.25) !important;
+            border-color: #d4af37 !important;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5),
+                        0 0 60px rgba(212, 175, 55, 0.3),
+                        inset 0 0 25px rgba(212, 175, 55, 0.15) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        #s20250830e815f967366ab .qual-item::before {
+            content: '✓' !important;
+            color: #d4af37 !important;
+            font-weight: bold !important;
+            margin-right: 8px !important;
+            font-size: 14px !important;
+        }
+
+        /* 오른쪽 인사말 영역 */
+        #s20250830e815f967366ab .greeting-section {
+            flex: 1 !important;
+            position: relative !important;
+            z-index: 2 !important;
+        }
+
+        #s20250830e815f967366ab .greeting-section h3 {
+            font-size: 28px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 30px !important;
+            position: relative !important;
+            display: inline-block !important;
+            line-height: 1.4 !important;
+        }
+
+        /* 강조 텍스트 - 화이트 */
+        #s20250830e815f967366ab .highlight-amount {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.4) !important;
+        }
+
+        #s20250830e815f967366ab .highlight-rate {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.4) !important;
+        }
+
+        /* 제목 아래 Golden Sunset 라인 */
+        #s20250830e815f967366ab .greeting-section h3::after {
+            content: '' !important;
+            position: absolute !important;
+            bottom: -12px !important;
+            left: 0 !important;
+            width: 60px !important;
+            height: 3px !important;
+            background: linear-gradient(90deg, #8b6f3f 0%, #d4af37 100%) !important;
+            border-radius: 2px !important;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6) !important;
+        }
+
+        #s20250830e815f967366ab .greeting-text p {
+            font-size: 17px !important;
+            color: rgba(224, 242, 241, 0.9) !important;
+            line-height: 1.8 !important;
+            margin-bottom: 24px !important;
+        }
+
+        #s20250830e815f967366ab .greeting-text p:first-of-type {
+            font-size: 18px !important;
+            color: rgba(224, 242, 241, 0.95) !important;
+            font-weight: 500 !important;
+            margin-bottom: 28px !important;
+        }
+
+        #s20250830e815f967366ab .greeting-text p:last-of-type {
+            margin-bottom: 0 !important;
+        }
+
+        /* 강조 문구 - Golden Sunset */
+        #s20250830e815f967366ab .emphasis {
+            color: #d4af37 !important;
+            font-weight: 700 !important;
+        }
+
+        /* 모바일 전용 띄어쓰기 처리 */
+        #s20250830e815f967366ab .mobile-br {
+            display: none !important;
+        }
+
+        /* 태블릿 반응형 */
+        @media (max-width: 1024px) {
+            #s20250830e815f967366ab .ceo-intro-container {
+                gap: 40px !important;
+                padding: 40px !important;
+            }
+
+            #s20250830e815f967366ab .ceo-photo-section {
+                flex: 0 0 300px !important;
+            }
+
+            #s20250830e815f967366ab .member-image {
+                width: 260px !important;
+                height: 340px !important;
+            }
+
+            #s20250830e815f967366ab .member-name {
+                font-size: 26px !important;
+            }
+
+            #s20250830e815f967366ab .member-title {
+                font-size: 17px !important;
+            }
+        }
+
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            #s20250830e815f967366ab {
+                padding: 40px 0 !important;
+            }
+
+            #s20250830e815f967366ab .section-title {
+                margin-bottom: 30px !important;
+            }
+
+            #s20250830e815f967366ab .section-title h2 {
+                font-size: 28px !important;
+            }
+
+            #s20250830e815f967366ab .ceo-intro-container {
+                flex-direction: column !important;
+                padding: 30px 20px !important;
+                gap: 40px !important;
+            }
+
+            #s20250830e815f967366ab .ceo-photo-section {
+                flex: none !important;
+                width: 100% !important;
+                max-width: 350px !important;
+                margin: 0 auto !important;
+            }
+
+            #s20250830e815f967366ab .greeting-section h3 {
+                font-size: 24px !important;
+                word-break: keep-all !important;
+            }
+
+            #s20250830e815f967366ab .greeting-text p {
+                font-size: 16px !important;
+                word-break: keep-all !important;
+            }
+
+            #s20250830e815f967366ab .member-image {
+                width: 220px !important;
+                height: 280px !important;
+            }
+
+            #s20250830e815f967366ab .member-name {
+                font-size: 24px !important;
+            }
+
+            #s20250830e815f967366ab .member-title {
+                font-size: 16px !important;
+            }
+
+            #s20250830e815f967366ab .qualifications-grid {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+
+            /* 모바일에서만 띄어쓰기 표시 */
+            #s20250830e815f967366ab .mobile-br {
+                display: inline !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #s20250830e815f967366ab .greeting-section h3 {
+                font-size: 20px !important;
+            }
+
+            #s20250830e815f967366ab .greeting-text p {
+                font-size: 15px !important;
+                line-height: 1.8 !important;
+            }
+
+            #s20250830e815f967366ab .member-image {
+                width: 180px !important;
+                height: 240px !important;
+            }
+
+            #s20250830e815f967366ab .member-name {
+                font-size: 22px !important;
+            }
+
+            #s20250830e815f967366ab .member-title {
+                font-size: 15px !important;
+            }
+
+            #s20250830e815f967366ab .member-title {
+                font-size: 15px !important;
+            }
+
+            #s20250830e815f967366ab .qual-item {
+                font-size: 11px !important;
+                padding: 8px 10px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 대표 소개 섹션 -->
+    <div id="s20250830e815f967366ab">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>대표 소개</h2>
+                <p>정책자금 성장 전략 전문, 자금치유연구소</p>
+                <p style="font-size: 12px; color: rgba(224, 242, 241, 0.6); margin-top: 24px; line-height: 1.6;">
+                    ※ 자금치유연구소는 정책자금 서류작성을 대행하지 않습니다.<br>
+                    ※ 기업평가를 하지 않습니다.
+                </p>
+            </div>
+
+            <!-- 대표 소개 - 가로 레이아웃 -->
+            <div class="ceo-intro-container">
+                <!-- 왼쪽: 대표 사진 카드 -->
+                <div class="ceo-photo-section">
+                    <div class="ceo-card">
+                        <div class="member-image">
+                            <img src="https://cdn.imweb.me/upload/S2025101736be3dda11a3a/daf50bb309abe.png" alt="안정현 대표">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">안 정 현</div>
+                        <div class="member-title">대표 / 기업심사관</div>
+                    </div>
+                </div>
+
+                <!-- 오른쪽: 인사말 -->
+                <div class="greeting-section">
+                    <h3>대표님의 잠재력을 실체화하고<br><span class="highlight-rate">자금조달을 극대화</span>하는 파트너가 되겠습니다</h3>
+                    <div class="greeting-text">
+                        <p>
+                            안녕하십니까, 자금치유연구소 대표 안정현입니다.
+                        </p>
+                        <p>
+                            정책자금 확보는 <span class="emphasis">전문가와의 협업이 핵심</span>입니다.<br class="mobile-br">
+                            저희는 성장 전략 전문가로서, 대표님의 자금조달 구조를 체계적으로 분석하고<br class="mobile-br">
+                            최적의 자금 조달 방안을 제시하여 실질적인 성과를 창출합니다.
+                        </p>
+                        <p>
+                            많은 대표님들이 전문 지원 없이<br class="mobile-br">
+                            소중한 기회를 놓치고 있습니다.<br class="mobile-br">
+                            <span class="emphasis">대표님이 최선의 자금 전략으로 성장할 수 있도록 함께하겠습니다.</span>
+                        </p>
+                        <p>
+                            귀사의 성장이 저희의 보람입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 자격사항 그리드 - 별도 섹션 -->
+            <div class="qualifications-section">
+                <div class="qualifications-grid">
+                    <div class="qual-item">자금조달 전략 수립 전문가</div>
+                    <div class="qual-item">대표자 성장 지원</div>
+                    <div class="qual-item">정책자금 극대화 전략</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 마우스 트래킹 스포트라이트 효과 (데스크탑 전용)
+        if (window.innerWidth > 768) {
+            const container = document.querySelector('#s20250830e815f967366ab .ceo-intro-container');
+
+            if (container) {
+                container.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    this.style.setProperty('--mx', `${x}px`);
+                    this.style.setProperty('--my', `${y}px`);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

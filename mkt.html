@@ -1,0 +1,3399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온라인마케팅 - KY 중소기업지원센터</title>
+    <meta name="description" content="KY 중소기업지원센터 온라인마케팅 - 홈페이지 제작, 검색광고, SNS 마케팅, 블로그 마케팅, AI 자동화 구축, 퍼포먼스 마케팅 전문.">
+
+    <!-- Pretendard 폰트 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+    <style>
+/* ========================================
+   KY 중소기업지원센터 - 온라인마케팅 페이지
+   ======================================== */
+
+/* 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    color: #93C5FD;
+    overflow-x: hidden;
+    background: #ffffff;
+}
+
+/* 공통 유틸리티 */
+.highlight-accent {
+    color: #3B82F6;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 50%, #93C5FD 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 모바일 줄바꿈 - 데스크톱에서는 숨김 */
+.mobile-br {
+    display: none;
+}
+@media (max-width: 767px) {
+    .mobile-br {
+        display: inline;
+    }
+}
+
+/* 글로우 애니메이션 */
+@keyframes logoGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4)); }
+    50% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.6)); }
+}
+
+@keyframes logoImgGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3)); }
+    50% { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.7)) drop-shadow(0 0 25px rgba(59, 130, 246, 0.5)); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes kyFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-20px) rotate(5deg); }
+    50% { transform: translateY(-10px) rotate(-5deg); }
+    75% { transform: translateY(-30px) rotate(3deg); }
+}
+
+/* ========================================
+   헤더 스타일
+   ======================================== */
+
+.ky-header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ky-header-wrapper.scrolled {
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2), 0 4px 20px rgba(30, 58, 95, 0.1);
+}
+
+.ky-header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.ky-logo {
+    z-index: 10001;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.ky-logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+    animation: logoImgGlow 3s ease-in-out infinite;
+}
+
+.ky-logo:hover .ky-logo-img {
+    filter: brightness(1.1) drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
+    transform: scale(1.02);
+}
+
+.ky-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    background: linear-gradient(to bottom, #DBEAFE 0%, #93C5FD 35%, #3B82F6 65%, #1E3A5F 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
+.ky-nav-desktop {
+    display: none;
+}
+
+.ky-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+}
+
+.ky-nav-link {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #93C5FD;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.ky-nav-link:hover {
+    color: #FFFFFF;
+    background: rgba(59, 130, 246, 0.15);
+}
+
+.ky-nav-link.active {
+    color: #3B82F6;
+}
+
+.ky-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #3B82F6;
+    transition: width 0.3s ease;
+}
+
+.ky-nav-link:hover::after {
+    width: 60%;
+}
+
+.ky-nav-cta {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+    margin-left: 12px;
+}
+
+.ky-nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+.ky-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10001;
+    transition: all 0.3s ease;
+}
+
+.ky-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.ky-hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+    background: #3B82F6;
+}
+
+.ky-hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.ky-hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+    background: #3B82F6;
+}
+
+.ky-mobile-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 9998;
+}
+
+.ky-mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.ky-mobile-nav-list {
+    list-style: none;
+    padding: 20px;
+}
+
+.ky-mobile-nav-item {
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.ky-mobile-nav-item:last-child {
+    border-bottom: none;
+}
+
+.ky-mobile-nav-link {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #93C5FD;
+    text-decoration: none;
+    padding: 16px 12px;
+    transition: all 0.3s ease;
+}
+
+.ky-mobile-nav-link:hover,
+.ky-mobile-nav-link.active {
+    color: #3B82F6;
+    background: rgba(59, 130, 246, 0.1);
+    padding-left: 20px;
+}
+
+.ky-mobile-nav-cta {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 16px 24px;
+    margin: 20px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ky-mobile-nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+/* 헤더 반응형 - 태블릿 */
+@media (min-width: 768px) {
+    .ky-header-container {
+        height: 85px;
+    }
+    .ky-logo-text {
+        font-size: 20px;
+    }
+}
+
+/* 헤더 반응형 - 데스크톱 */
+@media (min-width: 1024px) {
+    .ky-header-container {
+        height: 90px;
+        padding: 0 40px;
+    }
+    .ky-hamburger {
+        display: none;
+    }
+    .ky-nav-desktop {
+        display: flex;
+        align-items: center;
+    }
+    .ky-logo-img {
+        height: 55px;
+    }
+    .ky-logo-text {
+        font-size: 22px;
+    }
+    .ky-mobile-menu {
+        display: none;
+    }
+}
+
+/* ========================================
+   온라인마케팅 히어로 영역
+   ======================================== */
+
+#kyMktHero {
+    position: relative;
+    background: transparent;
+    padding: 120px 0 60px;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* 히어로 배경 그라디언트 */
+#kyMktHero .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 50%, #0F172A 100%);
+    z-index: 0;
+}
+
+/* 컬러 오버레이 */
+#kyMktHero .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 58, 95, 0.75) 50%, rgba(15, 23, 42, 0.85) 100%);
+    z-index: 1;
+}
+
+#kyMktHero .floating-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#kyMktHero .float-icon {
+    position: absolute;
+    opacity: 0.03;
+    animation: kyFloat 20s infinite ease-in-out;
+    color: #3B82F6;
+}
+
+#kyMktHero .float-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+#kyMktHero .float-icon:nth-child(2) { top: 20%; right: 15%; animation-delay: 5s; }
+#kyMktHero .float-icon:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 10s; }
+#kyMktHero .float-icon:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 15s; }
+
+#kyMktHero .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* 히어로 콘텐츠 */
+#kyMktHero .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+#kyMktHero .hero-text {
+    color: #93C5FD;
+}
+
+#kyMktHero .hero-badge {
+    display: inline-block;
+    background: rgba(30, 58, 95, 0.3);
+    color: #3B82F6;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+#kyMktHero .hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #FFFFFF;
+    text-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+#kyMktHero .hero-title .highlight {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    color: #FFFFFF;
+    padding: 8px 24px;
+    border-radius: 8px;
+    font-weight: 800;
+    box-shadow:
+        0 0 40px rgba(59, 130, 246, 0.6),
+        0 4px 20px rgba(30, 58, 95, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    margin: 0 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#kyMktHero .hero-description {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #93C5FD;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* CTA 버튼 그룹 */
+#kyMktHero .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+#kyMktHero .btn-primary {
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    color: #FFFFFF;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.4s ease;
+    box-shadow:
+        0 4px 20px rgba(30, 58, 95, 0.4),
+        0 0 40px rgba(59, 130, 246, 0.3);
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+#kyMktHero .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle 150px at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 255, 255, 0.4),
+        rgba(59, 130, 246, 0.3) 40%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#kyMktHero .btn-primary:hover::before {
+    opacity: 1;
+}
+
+#kyMktHero .btn-primary > * {
+    position: relative;
+    z-index: 2;
+}
+
+#kyMktHero .btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 0 70px rgba(59, 130, 246, 0.9),
+        0 0 110px rgba(255, 255, 255, 0.6),
+        0 0 150px rgba(30, 58, 95, 0.4),
+        0 12px 35px rgba(30, 58, 95, 0.5);
+}
+
+#kyMktHero .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #FFFFFF;
+    padding: 16px 32px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+}
+
+#kyMktHero .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(59, 130, 246, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+}
+
+/* 히어로 카드 영역 */
+#kyMktHero .hero-visual {
+    position: relative;
+}
+
+#kyMktHero .service-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#kyMktHero .service-card {
+    background: rgba(30, 58, 95, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow:
+        0 0 30px rgba(30, 58, 95, 0.4),
+        0 8px 32px rgba(59, 130, 246, 0.2),
+        inset 0 1px 0 rgba(59, 130, 246, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+#kyMktHero .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle 200px at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 255, 255, 0.35),
+        rgba(59, 130, 246, 0.3) 30%,
+        rgba(30, 58, 95, 0.2) 50%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(12px);
+}
+
+#kyMktHero .service-card:hover::before {
+    opacity: 1;
+}
+
+#kyMktHero .service-card:hover {
+    background: rgba(30, 58, 95, 0.25);
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.8);
+    box-shadow:
+        0 0 60px rgba(59, 130, 246, 0.8),
+        0 0 100px rgba(30, 58, 95, 0.5),
+        0 12px 40px rgba(59, 130, 246, 0.4);
+}
+
+#kyMktHero .service-card-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+}
+
+#kyMktHero .service-card-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: #FFFFFF;
+}
+
+#kyMktHero .service-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#kyMktHero .service-card-desc {
+    font-size: 16px;
+    color: #93C5FD;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+#kyMktHero .service-card-feature {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3B82F6;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+}
+
+/* 모바일 요약 카드 - PC에서는 숨김 */
+#kyMktHero .mobile-summary-card {
+    display: none;
+}
+
+/* 히어로 반응형 */
+@media (max-width: 968px) {
+    #kyMktHero {
+        padding: 100px 0 40px;
+    }
+
+    #kyMktHero .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 0;
+    }
+
+    #kyMktHero .hero-title {
+        font-size: 42px;
+    }
+
+    #kyMktHero .hero-buttons {
+        justify-content: center;
+    }
+
+    #kyMktHero .hero-visual {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    #kyMktHero {
+        padding: 100px 0 30px;
+        margin-top: 0;
+        margin-bottom: 0;
+        overflow: visible;
+        background: transparent;
+    }
+
+    #kyMktHero .section-container {
+        padding: 0;
+    }
+
+    #kyMktHero .hero-text {
+        padding: 0 20px;
+    }
+
+    #kyMktHero .hero-badge {
+        font-size: 12px;
+        padding: 6px 16px;
+        margin-bottom: 16px;
+    }
+
+    #kyMktHero .hero-title {
+        font-size: 26px;
+        line-height: 1.3;
+        margin-bottom: 16px;
+        word-break: keep-all;
+    }
+
+    #kyMktHero .hero-description {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+        word-break: keep-all;
+    }
+
+    #kyMktHero .hero-buttons {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    #kyMktHero .btn-primary,
+    #kyMktHero .btn-secondary {
+        font-size: 15px;
+        padding: 12px 20px;
+    }
+
+    /* 모바일 요약 카드 표시 */
+    #kyMktHero .mobile-summary-card {
+        display: block;
+        background: rgba(30, 58, 95, 0.15);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        border-radius: 16px;
+        padding: 16px;
+        margin: 0 20px 12px 20px;
+        box-shadow:
+            0 0 30px rgba(30, 58, 95, 0.4),
+            0 8px 32px rgba(59, 130, 246, 0.2);
+    }
+
+    #kyMktHero .summary-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        text-align: center;
+    }
+
+    #kyMktHero .stat-item {
+        padding: 8px;
+        border-right: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    #kyMktHero .stat-item:last-child {
+        border-right: none;
+    }
+
+    #kyMktHero .stat-number {
+        font-size: 20px;
+        font-weight: 700;
+        color: #3B82F6;
+        text-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+    }
+
+    #kyMktHero .stat-label {
+        font-size: 11px;
+        color: #93C5FD;
+        margin-top: 4px;
+    }
+
+    /* 모바일에서 서비스 카드 숨김 */
+    #kyMktHero .hero-visual {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    #kyMktHero {
+        padding: 100px 0 20px;
+    }
+
+    #kyMktHero .hero-title {
+        font-size: 24px;
+    }
+
+    #kyMktHero .hero-title .highlight {
+        padding: 6px 16px;
+        font-size: 22px;
+    }
+
+    #kyMktHero .hero-description {
+        font-size: 14px;
+    }
+
+    #kyMktHero .stat-number {
+        font-size: 18px;
+    }
+
+    #kyMktHero .stat-label {
+        font-size: 10px;
+    }
+}
+
+/* ========================================
+   온라인마케팅 블럭 영역
+   ======================================== */
+
+#kyMktBlock {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    background: #ffffff !important;
+    padding: 60px 0 100px !important;
+    position: relative !important;
+}
+
+#kyMktBlock .section-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+#kyMktBlock .service-tabs {
+    display: none !important;
+}
+
+#kyMktBlock .services-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    margin-bottom: 80px !important;
+}
+
+#kyMktBlock .service-card {
+    background: #f8f9fa !important;
+    border-radius: 20px !important;
+    padding: 40px !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+#kyMktBlock .service-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, rgba(30, 58, 95, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+#kyMktBlock .service-card:hover::before {
+    opacity: 1 !important;
+}
+
+#kyMktBlock .service-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+#kyMktBlock .service-icon {
+    width: 80px !important;
+    height: 80px !important;
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%) !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto 24px !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+#kyMktBlock .service-icon svg {
+    width: 40px !important;
+    height: 40px !important;
+    fill: #ffffff !important;
+}
+
+#kyMktBlock .service-name {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #212529 !important;
+    margin-bottom: 16px !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+#kyMktBlock .service-desc {
+    font-size: 16px !important;
+    color: #6c757d !important;
+    line-height: 1.6 !important;
+    margin-bottom: 24px !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+#kyMktBlock .service-features {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    text-align: left !important;
+    position: relative !important;
+    z-index: 1 !important;
+    display: inline-block !important;
+}
+
+#kyMktBlock .feature-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 6px 0 !important;
+    font-size: 14px !important;
+    color: #495057 !important;
+}
+
+#kyMktBlock .feature-icon {
+    width: 16px !important;
+    height: 16px !important;
+    fill: #3B82F6 !important;
+    flex-shrink: 0 !important;
+}
+
+/* 통합 마케팅 섹션 */
+#kyMktBlock .integrated-section {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%) !important;
+    border-radius: 30px !important;
+    padding: 60px !important;
+    margin-bottom: 80px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+#kyMktBlock .integrated-section::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -50% !important;
+    right: -30% !important;
+    width: 600px !important;
+    height: 600px !important;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%) !important;
+    border-radius: 50% !important;
+}
+
+#kyMktBlock .integrated-content {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 60px !important;
+    align-items: center !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+#kyMktBlock .integrated-info {
+    order: 1 !important;
+}
+
+#kyMktBlock .integrated-title {
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: #212529 !important;
+    margin-bottom: 20px !important;
+}
+
+#kyMktBlock .integrated-desc {
+    font-size: 18px !important;
+    color: #6c757d !important;
+    line-height: 1.6 !important;
+    margin-bottom: 32px !important;
+}
+
+#kyMktBlock .integrated-benefits {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+}
+
+#kyMktBlock .benefit-card {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+
+#kyMktBlock .benefit-number {
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    margin-bottom: 8px !important;
+}
+
+#kyMktBlock .benefit-label {
+    font-size: 14px !important;
+    color: #6c757d !important;
+}
+
+#kyMktBlock .integrated-visual {
+    order: 2 !important;
+    position: relative !important;
+}
+
+#kyMktBlock .visual-mockup {
+    width: 100% !important;
+    height: 400px !important;
+    background-image: url('https://cdn.imweb.me/upload/S20250717d30b354a13f06/b6e97c6a7d820.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border-radius: 20px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+#kyMktBlock .visual-mockup::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, rgba(30, 58, 95, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%) !important;
+    border-radius: 20px !important;
+}
+
+#kyMktBlock .visual-mockup::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 20px !important;
+    left: 20px !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    border: 2px solid rgba(255,255,255,0.2) !important;
+    border-radius: 16px !important;
+}
+
+/* CTA 섹션 */
+#kyMktBlock .cta-section {
+    text-align: center !important;
+    padding: 60px 40px !important;
+    background: #ffffff !important;
+    border: 2px solid #e9ecef !important;
+    border-radius: 20px !important;
+}
+
+#kyMktBlock .cta-title {
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: #212529 !important;
+    margin-bottom: 16px !important;
+}
+
+#kyMktBlock .cta-desc {
+    font-size: 18px !important;
+    color: #6c757d !important;
+    margin-bottom: 32px !important;
+}
+
+#kyMktBlock .cta-buttons {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#kyMktBlock .cta-button {
+    padding: 16px 32px !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    display: inline-block !important;
+    cursor: pointer !important;
+}
+
+#kyMktBlock .cta-button.primary {
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%) !important;
+    color: #ffffff !important;
+}
+
+#kyMktBlock .cta-button.primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* 반응형 디자인 - 태블릿 */
+@media (max-width: 1024px) {
+    #kyMktBlock .services-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* 반응형 디자인 - 모바일 */
+@media (max-width: 768px) {
+    #kyMktBlock {
+        padding: 40px 0 60px !important;
+    }
+
+    #kyMktBlock .service-tabs {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px !important;
+        margin-bottom: 30px !important;
+        padding: 0 10px !important;
+    }
+
+    #kyMktBlock .tab-button {
+        padding: 10px 3px !important;
+        background: #f8f9fa !important;
+        border: 2px solid #e9ecef !important;
+        border-radius: 12px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        color: #6c757d !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    #kyMktBlock .tab-button:hover {
+        background: #e9ecef !important;
+        color: #495057 !important;
+    }
+
+    #kyMktBlock .tab-button.active {
+        background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%) !important;
+        color: #ffffff !important;
+        border-color: transparent !important;
+        transform: scale(1.05) !important;
+    }
+
+    #kyMktBlock .services-wrapper {
+        overflow: hidden !important;
+        position: relative !important;
+        margin-bottom: 50px !important;
+        margin-left: -20px !important;
+        margin-right: -20px !important;
+        padding: 0 20px !important;
+    }
+
+    #kyMktBlock .services-grid {
+        display: flex !important;
+        transition: transform 0.3s ease !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    #kyMktBlock .swipe-nav {
+        position: absolute !important;
+        top: 40% !important;
+        transform: translateY(-50%) !important;
+        width: 40px !important;
+        height: 40px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        border: 1px solid #e9ecef !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        transition: all 0.3s ease !important;
+        z-index: 10 !important;
+    }
+
+    #kyMktBlock .swipe-nav:hover {
+        background: #ffffff !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    }
+
+    #kyMktBlock .swipe-nav svg {
+        width: 24px !important;
+        height: 24px !important;
+        fill: #6c757d !important;
+    }
+
+    #kyMktBlock .swipe-nav.prev {
+        left: 25px !important;
+    }
+
+    #kyMktBlock .swipe-nav.next {
+        right: 25px !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding: 40px 20px 25px 20px !important;
+        border-radius: 16px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    #kyMktBlock .service-card:hover {
+        transform: none !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .service-icon {
+        width: 56px !important;
+        height: 56px !important;
+        margin: 0 auto 12px auto !important;
+        border-radius: 14px !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .service-icon svg {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .service-name {
+        font-size: 18px !important;
+        margin-bottom: 8px !important;
+        line-height: 1.2 !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .service-desc {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 14px !important;
+        padding: 0 10px !important;
+    }
+
+    #kyMktBlock .service-desc br {
+        display: block !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .service-features {
+        margin-bottom: 0 !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .feature-item {
+        font-size: 12px !important;
+        padding: 4px 0 !important;
+        line-height: 1.3 !important;
+    }
+
+    #kyMktBlock .feature-icon {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    #kyMktBlock .integrated-section {
+        padding: 40px 20px !important;
+        border-radius: 20px !important;
+        margin-bottom: 50px !important;
+    }
+
+    #kyMktBlock .integrated-content {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    #kyMktBlock .integrated-info {
+        order: 2 !important;
+    }
+
+    #kyMktBlock .integrated-visual {
+        order: 1 !important;
+    }
+
+    #kyMktBlock .integrated-title {
+        font-size: 26px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 16px !important;
+    }
+
+    #kyMktBlock .integrated-title br {
+        display: none !important;
+    }
+
+    #kyMktBlock .integrated-desc {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 24px !important;
+    }
+
+    #kyMktBlock .integrated-benefits {
+        gap: 12px !important;
+    }
+
+    #kyMktBlock .benefit-card {
+        padding: 20px !important;
+        border-radius: 10px !important;
+    }
+
+    #kyMktBlock .benefit-number {
+        font-size: 26px !important;
+        margin-bottom: 4px !important;
+    }
+
+    #kyMktBlock .benefit-label {
+        font-size: 12px !important;
+    }
+
+    #kyMktBlock .visual-mockup {
+        height: 280px !important;
+        border-radius: 16px !important;
+    }
+
+    #kyMktBlock .cta-section {
+        padding: 40px 20px !important;
+        border-radius: 16px !important;
+    }
+
+    #kyMktBlock .cta-title {
+        font-size: 24px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 12px !important;
+    }
+
+    #kyMktBlock .cta-title br {
+        display: none !important;
+    }
+
+    #kyMktBlock .cta-desc {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 24px !important;
+    }
+
+    #kyMktBlock .cta-button {
+        padding: 14px 28px !important;
+        font-size: 15px !important;
+        width: 100% !important;
+        max-width: 280px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #kyMktBlock {
+        padding: 30px 0 40px !important;
+    }
+
+    #kyMktBlock .service-tabs {
+        padding: 0 8px !important;
+        gap: 4px !important;
+    }
+
+    #kyMktBlock .tab-button {
+        padding: 8px 2px !important;
+        font-size: 10.5px !important;
+        border-radius: 10px !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card {
+        padding: 35px 15px 22px 15px !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .service-icon {
+        width: 50px !important;
+        height: 50px !important;
+        margin-bottom: 10px !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .service-icon svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .service-name {
+        font-size: 17px !important;
+        margin-bottom: 6px !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .service-desc {
+        font-size: 12px !important;
+        margin-bottom: 12px !important;
+        padding: 0 5px !important;
+    }
+
+    #kyMktBlock .services-wrapper .services-grid .service-card .feature-item {
+        font-size: 11px !important;
+        padding: 3px 0 !important;
+    }
+
+    #kyMktBlock .integrated-title {
+        font-size: 22px !important;
+    }
+
+    #kyMktBlock .integrated-desc {
+        font-size: 14px !important;
+    }
+
+    #kyMktBlock .benefit-number {
+        font-size: 24px !important;
+    }
+
+    #kyMktBlock .cta-title {
+        font-size: 22px !important;
+    }
+
+    #kyMktBlock .cta-desc {
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #kyMktBlock .mobile-br {
+        display: block !important;
+    }
+}
+
+@media (min-width: 769px) {
+    #kyMktBlock .mobile-br {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   상담 신청 폼 섹션
+   ======================================== */
+
+#contact {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    background: #ffffff !important;
+    padding: 80px 0 !important;
+    position: relative !important;
+}
+
+#contact .section-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+#contact .form-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr 1.5fr !important;
+    gap: 60px !important;
+    align-items: start !important;
+}
+
+#contact .form-info {
+    position: sticky !important;
+    top: 100px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+#contact .info-content {
+    width: 100% !important;
+    max-width: 350px !important;
+    text-align: left !important;
+    padding-left: 28px !important;
+}
+
+#contact .info-badge {
+    display: inline-block !important;
+    background: #EFF6FF !important;
+    color: #3B82F6 !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    margin-bottom: 20px !important;
+}
+
+#contact .info-title {
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: #1f2937 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 16px !important;
+}
+
+#contact .info-title .gradient-text {
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+#contact .info-desc {
+    font-size: 18px !important;
+    color: #6b7280 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 40px !important;
+}
+
+#contact .benefit-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 0 40px 0 !important;
+}
+
+#contact .benefit-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 12px 0 !important;
+}
+
+#contact .benefit-icon {
+    width: 24px !important;
+    height: 24px !important;
+    background: rgba(59, 130, 246, 0.2) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+#contact .benefit-icon svg {
+    width: 14px !important;
+    height: 14px !important;
+    fill: #3B82F6 !important;
+}
+
+#contact .benefit-text {
+    font-size: 16px !important;
+    color: #6b7280 !important;
+}
+
+#contact .contact-info {
+    background: #f8fafc !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+#contact .contact-title {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #3B82F6 !important;
+    margin-bottom: 16px !important;
+}
+
+#contact .contact-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 12px !important;
+    justify-content: center !important;
+}
+
+#contact .contact-item:last-child {
+    margin-bottom: 0 !important;
+}
+
+#contact .contact-icon {
+    width: 20px !important;
+    height: 20px !important;
+    fill: #3B82F6 !important;
+}
+
+#contact .contact-text {
+    font-size: 16px !important;
+    color: #6b7280 !important;
+}
+
+#contact .contact-text strong {
+    color: #3B82F6 !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+}
+
+/* 우측 폼 영역 */
+#contact .form-area {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 16px !important;
+    padding: 40px !important;
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15),
+                0 0 20px rgba(30, 58, 95, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+#contact .form-header {
+    text-align: left !important;
+    margin-bottom: 40px !important;
+}
+
+#contact .form-title {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: #1f2937 !important;
+    margin-bottom: 10px !important;
+}
+
+#contact .form-subtitle {
+    font-size: 16px !important;
+    color: #6b7280 !important;
+}
+
+#contact .form-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+    margin-bottom: 25px !important;
+}
+
+#contact .form-group {
+    margin-bottom: 25px !important;
+}
+
+#contact .form-grid .form-group {
+    margin-bottom: 0 !important;
+}
+
+#contact .form-group.full-width {
+    grid-column: 1 / -1 !important;
+}
+
+#contact .form-label {
+    display: block !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    color: #6b7280 !important;
+}
+
+#contact .required {
+    color: #dc2626 !important;
+    margin-left: 4px !important;
+}
+
+#contact .form-input,
+#contact .form-select,
+#contact .form-textarea {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    border: 1px solid #e1e4e8 !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+#contact .form-input::placeholder,
+#contact .form-textarea::placeholder {
+    color: #9ca3af !important;
+    opacity: 1 !important;
+    font-size: 14px !important;
+}
+
+#contact .form-select option {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+#contact .form-input:focus,
+#contact .form-select:focus,
+#contact .form-textarea:focus {
+    outline: none !important;
+    border-color: #3B82F6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2),
+                0 0 15px #e5e7eb !important;
+}
+
+#contact .form-select {
+    cursor: pointer !important;
+    appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233B82F6'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg>") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: 20px !important;
+    padding-right: 40px !important;
+}
+
+#contact .form-textarea {
+    resize: vertical !important;
+    min-height: 120px !important;
+}
+
+#contact .checkbox-group {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    margin-top: 8px !important;
+}
+
+#contact .checkbox-label {
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    font-size: 15px !important;
+    color: #6b7280 !important;
+}
+
+#contact .checkbox-label input {
+    margin-right: 8px !important;
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer !important;
+}
+
+#contact .privacy-agreement {
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+}
+
+#contact .privacy-main {
+    display: flex !important;
+    align-items: flex-start !important;
+    position: relative !important;
+    cursor: pointer !important;
+}
+
+#contact .privacy-main input[type="checkbox"] {
+    margin-top: 2px !important;
+}
+
+#contact .privacy-main span {
+    flex: 1 !important;
+    margin-left: 8px !important;
+    color: #6b7280 !important;
+}
+
+#contact .privacy-toggle {
+    background: none !important;
+    border: none !important;
+    color: #3B82F6 !important;
+    font-size: 13px !important;
+    text-decoration: underline !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin-left: 10px !important;
+    transition: color 0.2s ease !important;
+}
+
+#contact .privacy-toggle:hover {
+    color: #60A5FA !important;
+}
+
+#contact .privacy-detail {
+    display: none !important;
+    margin-top: 15px !important;
+    padding: 20px !important;
+    background: rgba(0, 4, 40, 0.5) !important;
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+    border-radius: 8px !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+#contact .privacy-detail.show {
+    display: block !important;
+}
+
+#contact .privacy-content h4 {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px !important;
+    color: #3B82F6 !important;
+}
+
+#contact .privacy-section {
+    margin-bottom: 20px !important;
+}
+
+#contact .privacy-section:last-child {
+    margin-bottom: 0 !important;
+}
+
+#contact .privacy-section strong {
+    display: block !important;
+    font-size: 14px !important;
+    color: #6b7280 !important;
+    margin-bottom: 8px !important;
+}
+
+#contact .privacy-section p {
+    font-size: 13px !important;
+    color: #c0d9d9 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 4px !important;
+}
+
+#contact .submit-btn {
+    width: 100% !important;
+    padding: 16px !important;
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: 30px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+#contact .submit-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4),
+                0 0 20px rgba(30, 58, 95, 0.3) !important;
+    background: linear-gradient(135deg, #0F1D2F 0%, #60A5FA 100%) !important;
+}
+
+#contact .submit-btn::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 0 !important;
+    height: 0 !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,0.3) !important;
+    transform: translate(-50%, -50%) !important;
+    transition: width 0.6s, height 0.6s !important;
+}
+
+#contact .submit-btn:active::after {
+    width: 300px !important;
+    height: 300px !important;
+}
+
+#contact .privacy-notice {
+    font-size: 13px !important;
+    color: #6b7280 !important;
+    margin-top: 20px !important;
+    line-height: 1.5 !important;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 968px) {
+    #contact .form-wrapper {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    #contact .form-info {
+        position: static !important;
+        align-items: center !important;
+    }
+
+    #contact .info-content {
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+
+    #contact .benefit-item {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #contact {
+        padding: 40px 0 !important;
+    }
+
+    #contact .info-content {
+        padding-left: 0 !important;
+    }
+
+    #contact .info-title {
+        font-size: 28px !important;
+        margin-bottom: 12px !important;
+        line-height: 1.2 !important;
+    }
+
+    #contact .info-desc {
+        font-size: 15px !important;
+        margin-bottom: 24px !important;
+        line-height: 1.4 !important;
+    }
+
+    #contact .benefit-list {
+        margin-bottom: 24px !important;
+        width: 100% !important;
+        max-width: 280px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    #contact .benefit-item {
+        padding: 8px 0 !important;
+        justify-content: flex-start !important;
+    }
+
+    #contact .benefit-text {
+        font-size: 14px !important;
+    }
+
+    #contact .contact-info {
+        padding: 16px !important;
+        margin-bottom: 24px !important;
+    }
+
+    #contact .contact-title {
+        font-size: 16px !important;
+        margin-bottom: 12px !important;
+    }
+
+    #contact .contact-item {
+        margin-bottom: 8px !important;
+    }
+
+    #contact .contact-text {
+        font-size: 14px !important;
+    }
+
+    #contact .form-area {
+        padding: 20px 16px !important;
+        border-radius: 12px !important;
+    }
+
+    #contact .form-header {
+        margin-bottom: 20px !important;
+    }
+
+    #contact .form-title {
+        font-size: 22px !important;
+        margin-bottom: 8px !important;
+    }
+
+    #contact .form-subtitle {
+        font-size: 13px !important;
+    }
+
+    #contact .form-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        margin-bottom: 15px !important;
+    }
+
+    #contact .form-group {
+        margin-bottom: 15px !important;
+    }
+
+    #contact .form-label {
+        font-size: 12px !important;
+        margin-bottom: 5px !important;
+    }
+
+    #contact .form-input,
+    #contact .form-select,
+    #contact .form-textarea {
+        font-size: 16px !important;
+        padding: 10px 12px !important;
+    }
+
+    #contact .form-textarea {
+        min-height: 100px !important;
+    }
+
+    #contact .checkbox-group {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+
+    #contact .checkbox-label {
+        font-size: 13px !important;
+    }
+
+    #contact .checkbox-label input {
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 6px !important;
+    }
+
+    #contact .submit-btn {
+        margin-top: 15px !important;
+        font-size: 16px !important;
+        padding: 14px !important;
+    }
+
+    #contact .privacy-notice {
+        font-size: 11px !important;
+        margin-top: 15px !important;
+        line-height: 1.4 !important;
+    }
+
+    #contact .privacy-toggle {
+        font-size: 12px !important;
+    }
+
+    #contact .privacy-detail {
+        padding: 15px !important;
+        max-height: 250px !important;
+    }
+
+    #contact .privacy-content h4 {
+        font-size: 14px !important;
+        margin-bottom: 12px !important;
+    }
+
+    #contact .privacy-section strong {
+        font-size: 13px !important;
+        margin-bottom: 6px !important;
+    }
+
+    #contact .privacy-section p {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+    }
+
+    #contact .privacy-section {
+        margin-bottom: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #contact .form-grid {
+        gap: 8px !important;
+    }
+
+    #contact .info-title {
+        font-size: 24px !important;
+    }
+}
+
+/* ========================================
+   푸터 스타일 (fund.html과 동일)
+   ======================================== */
+
+#kyFooter {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#kyFooter .footer-wrapper {
+    background: #050a14;
+    color: white;
+    padding: 60px 0 0;
+    margin: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+}
+
+#kyFooter .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#kyFooter .footer-top {
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#kyFooter .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+#kyFooter .footer-logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(to bottom, #DBEAFE 0%, #93C5FD 35%, #3B82F6 65%, #1E3A5F 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+    animation: footerLogoGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerLogoGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4)); }
+    50% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.6)); }
+}
+
+#kyFooter .footer-logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+    animation: footerLogoImgGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerLogoImgGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3)); }
+    50% { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.7)) drop-shadow(0 0 25px rgba(59, 130, 246, 0.5)); }
+}
+
+#kyFooter .footer-desc {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+#kyFooter .footer-middle {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 80px;
+    padding: 40px 0 30px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#kyFooter .footer-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #3B82F6;
+}
+
+#kyFooter .footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#kyFooter .footer-list li {
+    margin-bottom: 12px;
+}
+
+#kyFooter .footer-list a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+#kyFooter .footer-list a:hover {
+    color: #3B82F6;
+    padding-left: 5px;
+}
+
+#kyFooter .footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+
+#kyFooter .footer-contact-item svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    stroke: #3B82F6;
+}
+
+#kyFooter .disclaimer-section {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#kyFooter .disclaimer-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+}
+
+#kyFooter .disclaimer-item {
+    margin-right: 20px;
+}
+
+#kyFooter .partnership-section {
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    justify-content: flex-start;
+}
+
+#kyFooter .partnership-link {
+    text-align: left;
+}
+
+#kyFooter .partnership-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.1));
+    border: 2px solid rgba(59, 130, 246, 0.4);
+    border-radius: 12px;
+    padding: 18px 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+    animation: footerBlueGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerBlueGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); border-color: rgba(59, 130, 246, 0.4); }
+    50% { box-shadow: 0 0 50px rgba(59, 130, 246, 0.6); border-color: rgba(59, 130, 246, 0.7); }
+}
+
+#kyFooter .partnership-link a:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.6);
+}
+
+#kyFooter .partnership-icon {
+    height: 20px;
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+}
+
+#kyFooter .partnership-link span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #3B82F6;
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+}
+
+#kyFooter .footer-bottom {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#kyFooter .copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+#kyFooter .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#kyFooter .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+#kyFooter .footer-links a:hover {
+    color: #3B82F6;
+}
+
+#kyFooter .footer-links .divider {
+    color: rgba(59, 130, 246, 0.4);
+}
+
+/* 푸터 반응형 */
+@media (max-width: 968px) {
+    #kyFooter .footer-middle { grid-template-columns: 1fr; gap: 40px; }
+    #kyFooter .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+}
+
+@media (max-width: 768px) {
+    #kyFooter .footer-wrapper { padding: 40px 0 0; }
+    #kyFooter .footer-middle { grid-template-columns: 1.5fr 0.7fr; gap: 12px; }
+    #kyFooter .footer-logo-text { font-size: 22px; }
+    #kyFooter .footer-desc { font-size: 13px; }
+    #kyFooter .footer-contact-item { font-size: 11.5px; }
+    #kyFooter .footer-contact-item svg { width: 12px; height: 12px; }
+    #kyFooter .address-province { display: none; }
+    #kyFooter .partnership-section { justify-content: center; }
+    #kyFooter .partnership-link { text-align: center; }
+    #kyFooter .partnership-link a { flex-direction: row; padding: 16px 32px; gap: 14px; text-align: center; }
+    #kyFooter .partnership-icon { height: 22px; }
+    #kyFooter .partnership-link span { font-size: 13px; text-align: center; }
+    #kyFooter .footer-list a { font-size: 10.5px; }
+    #kyFooter .disclaimer-item { display: block; margin-right: 0; margin-bottom: 4px; }
+}
+
+@media (max-width: 480px) {
+    #kyFooter .footer-middle { grid-template-columns: 1.6fr 0.6fr; gap: 10px; }
+    #kyFooter .footer-logo-text { font-size: 18px; }
+    #kyFooter .footer-contact-item { font-size: 10.5px; }
+    #kyFooter .footer-list a { font-size: 9.5px; }
+    #kyFooter .partnership-link span { font-size: 11px; }
+}
+
+/* Top 버튼 스타일 */
+.top-button { position: fixed; bottom: 30px; right: 30px; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%); border: 2px solid rgba(59, 130, 246, 0.5); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 9998; box-shadow: 0 4px 20px rgba(30, 58, 95, 0.4), 0 0 30px rgba(59, 130, 246, 0.2); }
+.top-button svg { width: 24px; height: 24px; stroke: #fff; transition: transform 0.3s ease; }
+.top-button:hover { background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%); border-color: rgba(59, 130, 246, 0.8); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(30, 58, 95, 0.5), 0 0 40px rgba(59, 130, 246, 0.4); }
+.top-button:hover svg { transform: translateY(-2px); }
+.top-button.visible { opacity: 1; visibility: visible; transform: translateY(0); animation: topButtonGlow 3s ease-in-out infinite; }
+.top-button:hover { animation: none; }
+@keyframes topButtonGlow { 0%, 100% { box-shadow: 0 4px 20px rgba(30, 58, 95, 0.4), 0 0 30px rgba(59, 130, 246, 0.2); } 50% { box-shadow: 0 4px 25px rgba(30, 58, 95, 0.5), 0 0 40px rgba(59, 130, 246, 0.35); } }
+@media (max-width: 768px) { .top-button { width: 46px; height: 46px; bottom: 20px; right: 20px; } .top-button svg { width: 20px; height: 20px; } }
+    </style>
+</head>
+<body>
+    <!-- ========================================
+         헤더
+         ======================================== -->
+    <div class="ky-header-wrapper" id="kyHeader">
+        <header class="ky-header-container">
+            <a href="index.html" class="ky-logo">
+                <img src="화이트로고.png" alt="KY 로고" class="ky-logo-img">
+                <span class="ky-logo-text">중소기업지원센터</span>
+            </a>
+
+            <!-- 데스크톱 네비게이션 -->
+            <nav class="ky-nav-desktop">
+                <ul class="ky-nav-list">
+                    <li><a href="index.html" class="ky-nav-link">홈</a></li>
+                    <li><a href="about.html" class="ky-nav-link">회사소개</a></li>
+                    <li><a href="process.html" class="ky-nav-link">진행과정</a></li>
+                    <li><a href="fund.html" class="ky-nav-link">자금상담</a></li>
+                    <li><a href="pro.html" class="ky-nav-link">전문서비스</a></li>
+                    <li><a href="mkt.html" class="ky-nav-link active">온라인마케팅</a></li>
+                </ul>
+                <a href="#contact" class="ky-nav-cta">상담신청</a>
+            </nav>
+
+            <!-- 모바일 햄버거 버튼 -->
+            <button class="ky-hamburger" id="kyHamburger" aria-label="메뉴 열기">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+    </div>
+
+    <!-- 모바일 메뉴 -->
+    <div class="ky-mobile-menu" id="kyMobileMenu">
+        <ul class="ky-mobile-nav-list">
+            <li class="ky-mobile-nav-item"><a href="index.html" class="ky-mobile-nav-link">홈</a></li>
+            <li class="ky-mobile-nav-item"><a href="about.html" class="ky-mobile-nav-link">회사소개</a></li>
+            <li class="ky-mobile-nav-item"><a href="process.html" class="ky-mobile-nav-link">진행과정</a></li>
+            <li class="ky-mobile-nav-item"><a href="fund.html" class="ky-mobile-nav-link">자금상담</a></li>
+            <li class="ky-mobile-nav-item"><a href="pro.html" class="ky-mobile-nav-link">전문서비스</a></li>
+            <li class="ky-mobile-nav-item"><a href="mkt.html" class="ky-mobile-nav-link active">온라인마케팅</a></li>
+        </ul>
+        <a href="#contact" class="ky-mobile-nav-cta">상담신청</a>
+    </div>
+
+    <!-- ========================================
+         온라인마케팅 히어로 영역
+         ======================================== -->
+    <section id="kyMktHero">
+        <!-- 배경 그라디언트 -->
+        <div class="hero-bg"></div>
+        <!-- 컬러 오버레이 -->
+        <div class="hero-overlay"></div>
+
+        <div class="section-container">
+            <!-- 플로팅 아이콘 배경 -->
+            <div class="floating-icons">
+                <svg class="float-icon" width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                </svg>
+                <svg class="float-icon" width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <svg class="float-icon" width="70" height="70" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                </svg>
+                <svg class="float-icon" width="75" height="75" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                </svg>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">KY 중소기업지원센터 디지털 마케팅 솔루션</span>
+                    <h1 class="hero-title">
+                        온라인 마케팅,<br>
+                        <span class="highlight">전문가와 함께</span>하면<br>
+                        성과가 다릅니다
+                    </h1>
+                    <p class="hero-description">
+                        데이터 기반의 전략적 마케팅으로<br class="mobile-br"> 비즈니스 성과를 극대화합니다.<br>
+                        각 분야 전문가들이<br class="mobile-br"> 맞춤형 솔루션을 제공합니다.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-primary">
+                            <span>무료 상담 신청하기</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                            </svg>
+                        </a>
+                        <a href="tel:1555-0238" class="btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            전문가 바로 연결
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 모바일 요약 카드 -->
+                <div class="mobile-summary-card">
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">마케팅 성공</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">150%</div>
+                            <div class="stat-label">평균 성과향상</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">고객 만족도</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="service-cards">
+                        <div class="service-card">
+                            <div class="service-card-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                                </svg>
+                            </div>
+                            <h3 class="service-card-title">홈페이지 제작</h3>
+                            <p class="service-card-desc">SEO 최적화 반응형 웹</p>
+                            <div class="service-card-feature">맞춤형 디자인</div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-card-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                </svg>
+                            </div>
+                            <h3 class="service-card-title">검색광고 운영</h3>
+                            <p class="service-card-desc">네이버/구글 광고</p>
+                            <div class="service-card-feature">ROI 최적화</div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-card-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm5-4H7V6h10v10z"/>
+                                </svg>
+                            </div>
+                            <h3 class="service-card-title">SNS 마케팅</h3>
+                            <p class="service-card-desc">인스타/페이스북 광고</p>
+                            <div class="service-card-feature">타겟 마케팅</div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-card-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                </svg>
+                            </div>
+                            <h3 class="service-card-title">블로그 마케팅</h3>
+                            <p class="service-card-desc">콘텐츠 마케팅</p>
+                            <div class="service-card-feature">브랜드 강화</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         온라인마케팅 블럭 영역
+         ======================================== -->
+    <section id="kyMktBlock">
+        <div class="section-container">
+            <!-- 서비스 탭 인디케이터 -->
+            <div class="service-tabs">
+                <button class="tab-button active" data-service="0">홈페이지 제작</button>
+                <button class="tab-button" data-service="1">검색광고 운영</button>
+                <button class="tab-button" data-service="2">SNS 마케팅</button>
+                <button class="tab-button" data-service="3">블로그 마케팅</button>
+                <button class="tab-button" data-service="4">AI 자동화 구축</button>
+                <button class="tab-button" data-service="5">퍼포먼스 마케팅</button>
+            </div>
+
+            <!-- 서비스 카드 그리드 -->
+            <div class="services-wrapper">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-name">홈페이지 제작</h3>
+                        <p class="service-desc">
+                            비즈니스 성장을 돕는<br>
+                            SEO 최적화 반응형 웹사이트 구축
+                        </p>
+                        <ul class="service-features">
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>맞춤형 디자인 & UX/UI</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>모바일 최적화</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>SEO 기본 설정</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-name">검색광고 운영</h3>
+                        <p class="service-desc">
+                            구글, 네이버 등 검색광고로<br>
+                            효율적인 타겟 고객 유입 전략
+                        </p>
+                        <ul class="service-features">
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>키워드 분석 & 선정</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>광고 예산 최적화</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>실시간 성과 분석</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-name">SNS 마케팅</h3>
+                        <p class="service-desc">
+                            인스타그램, 페이스북 등 SNS로<br>
+                            브랜드 인지도 향상과 고객 소통 강화
+                        </p>
+                        <ul class="service-features">
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>콘텐츠 기획 & 제작</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>타겟 광고 운영</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>인플루언서 협업</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-name">블로그 마케팅</h3>
+                        <p class="service-desc">
+                            네이버 블로그, 티스토리를 활용한<br>
+                            콘텐츠 마케팅으로 자연스러운 유입 증대
+                        </p>
+                        <ul class="service-features">
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>키워드 최적화 포스팅</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>체험단 운영 관리</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>바이럴 마케팅</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9,3V5H7A2,2 0 0,0 5,7V9H3V11H5V13H3V15H5V17A2,2 0 0,0 7,19H9V21H11V19H13V21H15V19H17A2,2 0 0,0 19,17V15H21V13H19V11H21V9H19V7A2,2 0 0,0 17,5H15V3H13V5H11V3M7,9H17V15H7V9Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-name">AI 자동화 구축</h3>
+                        <p class="service-desc">
+                            효율적인 DB 확보를 위한<br>
+                            AI 자동화 시스템 구축
+                        </p>
+                        <ul class="service-features">
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>입력폼 디자인</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>자동화 설정</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>메신저로 DB 받기 설정</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-name">퍼포먼스 마케팅</h3>
+                        <p class="service-desc">
+                            데이터 분석 기반의 성과 중심<br>
+                            통합 마케팅 전략 수립과 실행
+                        </p>
+                        <ul class="service-features">
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>GA4 & GTM 설정</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>전환율 최적화</span>
+                            </li>
+                            <li class="feature-item">
+                                <svg class="feature-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                                <span>A/B 테스트</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 통합 마케팅 섹션 -->
+            <div class="integrated-section">
+                <div class="integrated-content">
+                    <div class="integrated-info">
+                        <h3 class="integrated-title">
+                            온·오프라인 통합 마케팅으로<br>
+                            더 큰 시너지를 창출합니다
+                        </h3>
+                        <p class="integrated-desc">
+                            단순한 온라인 광고를 넘어, 기업의 전체적인 마케팅 전략을
+                            수립하고 실행합니다. 데이터 기반의 의사결정으로
+                            마케팅 ROI를 극대화합니다.
+                        </p>
+                        <div class="integrated-benefits">
+                            <div class="benefit-card">
+                                <div class="benefit-number">250%</div>
+                                <div class="benefit-label">평균 매출 상승률</div>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-number">90%</div>
+                                <div class="benefit-label">높은 고객만족도</div>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-number">72시간</div>
+                                <div class="benefit-label">신규 캠페인 구축</div>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-number">15개</div>
+                                <div class="benefit-label">채널 통합 관리</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="integrated-visual">
+                        <div class="visual-mockup">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA 섹션 -->
+            <div class="cta-section">
+                <h3 class="cta-title">지금 시작하세요,<span class="mobile-br"></span> 내일의 성장을 위해</h3>
+                <p class="cta-desc">
+                    전문 마케터가 귀사의 비즈니스 성장을 위한<span class="mobile-br"></span> 최적의 솔루션을 제안합니다
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="cta-button primary">무료 상담 신청</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         상담 신청 폼 섹션
+         ======================================== -->
+    <section id="contact">
+        <div class="section-container">
+            <div class="form-wrapper">
+                <!-- 좌측 정보 영역 -->
+                <div class="form-info">
+                    <div class="info-content">
+                        <span class="info-badge">KY 중소기업지원센터</span>
+                        <h2 class="info-title">
+                            성공적인<br>
+                          <span class="gradient-text">온라인 마케팅</span><br>
+                            KY와 함께
+                        </h2>
+                        <p class="info-desc">
+                            온라인 마케팅의 모든 것을 한 곳에서<br>
+                            전문가와 함께 만들어가는 성장 전략
+                        </p>
+
+                        <ul class="benefit-list">
+                            <li class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                    </svg>
+                                </div>
+                                <span class="benefit-text">마케팅 컨설팅</span>
+                            </li>
+                            <li class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                    </svg>
+                                </div>
+                                <span class="benefit-text">광고DB 자동화</span>
+                            </li>
+                            <li class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                    </svg>
+                                </div>
+                                <span class="benefit-text">콘텐츠 마케팅</span>
+                            </li>
+                            <li class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                    </svg>
+                                </div>
+                                <span class="benefit-text">홈페이지 제작 (아임웹 전문)</span>
+                            </li>
+                        </ul>
+
+                        <div class="contact-info">
+                            <h3 class="contact-title">빠른 상담 문의</h3>
+                            <div class="contact-item">
+                                <svg class="contact-icon" viewBox="0 0 24 24">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                </svg>
+                                <span class="contact-text">전화: <strong>1555-0238</strong></span>
+                            </div>
+                            <div class="contact-item">
+                                <svg class="contact-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                                </svg>
+                                <span class="contact-text">평일 09:00 ~ 18:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 우측 폼 영역 -->
+                <div class="form-area">
+                    <div class="form-header">
+                        <h2 class="form-title">무료 상담 신청</h2>
+                        <p class="form-subtitle">전문가가 직접 상담해드립니다</p>
+                    </div>
+
+                    <form id="consultForm">
+                        <!-- 2열 그리드 구성 -->
+                        <div class="form-grid">
+                            <!-- 업체명 -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    업체명 <span class="required">*</span>
+                                </label>
+                                <input type="text" class="form-input" name="company" required placeholder="업체명을 입력하세요">
+                            </div>
+
+                            <!-- 이메일 -->
+                            <div class="form-group">
+                                <label class="form-label">이메일</label>
+                                <input type="email" class="form-input" name="email" placeholder="example@email.com">
+                            </div>
+
+                            <!-- 담당자명 -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    담당자명 <span class="required">*</span>
+                                </label>
+                                <input type="text" class="form-input" name="name" required placeholder="담당자명을 입력하세요">
+                            </div>
+
+                            <!-- 연락처 -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    연락처 <span class="required">*</span>
+                                </label>
+                                <input type="tel" class="form-input" name="phone" placeholder="010-0000-0000" required>
+                            </div>
+                        </div>
+
+                        <!-- 업무분야 (체크박스) -->
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                관심 서비스 <span class="required">*</span>
+                            </label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="service" value="마케팅 컨설팅">
+                                    마케팅 컨설팅
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="service" value="광고DB 자동화">
+                                    광고DB 자동화
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="service" value="콘텐츠 마케팅">
+                                    콘텐츠 마케팅
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="service" value="홈페이지 제작 (아임웹)">
+                                    홈페이지 제작 (아임웹)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 예산과 문의내용을 같은 form-grid에 배치 -->
+                        <div class="form-grid">
+                            <!-- 예산 -->
+                            <div class="form-group">
+                                <label class="form-label">예상 예산</label>
+                                <select class="form-select" name="budget">
+                                    <option value="">선택해주세요</option>
+                                    <option value="100만원 미만">100만원 미만</option>
+                                    <option value="100-300만원">100-300만원</option>
+                                    <option value="300-500만원">300-500만원</option>
+                                    <option value="500-1000만원">500-1000만원</option>
+                                    <option value="1000만원 이상">1000만원 이상</option>
+                                    <option value="협의">협의</option>
+                                </select>
+                            </div>
+
+                            <!-- 문의내용 -->
+                            <div class="form-group">
+                                <label class="form-label">문의내용</label>
+                                <textarea class="form-textarea" name="message" placeholder="구체적인 문의사항을 작성해주세요"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 개인정보 수집 동의 -->
+                        <div class="form-group full-width privacy-agreement">
+                            <label class="checkbox-label privacy-main">
+                                <input type="checkbox" name="privacy_agree" id="privacyAgree" required>
+                                <span>개인정보 수집 및 이용에 동의합니다 <span class="required">*</span></span>
+                                <button type="button" class="privacy-toggle" onclick="togglePrivacyDetail()">자세히보기</button>
+                            </label>
+
+                            <div class="privacy-detail" id="privacyDetail">
+                                <div class="privacy-content">
+                                    <h4>개인정보 수집 및 이용 동의</h4>
+
+                                    <div class="privacy-section">
+                                        <strong>1. 수집하는 개인정보 항목</strong>
+                                        <p>- 필수항목: 업체명, 담당자명, 연락처</p>
+                                        <p>- 선택항목: 이메일, 관심 서비스, 예상 예산, 문의내용</p>
+                                    </div>
+
+                                    <div class="privacy-section">
+                                        <strong>2. 개인정보의 수집 및 이용목적</strong>
+                                        <p>- 서비스 상담 및 문의사항 답변</p>
+                                        <p>- 맞춤형 서비스 제안 및 마케팅 정보 제공</p>
+                                        <p>- 계약 체결 시 연락 및 안내</p>
+                                    </div>
+
+                                    <div class="privacy-section">
+                                        <strong>3. 개인정보의 보유 및 이용기간</strong>
+                                        <p>- 상담 완료 후 1년간 보관</p>
+                                        <p>- 관계 법령에 따라 보존할 필요가 있는 경우 해당 기간 동안 보관</p>
+                                    </div>
+
+                                    <div class="privacy-section">
+                                        <strong>4. 동의 거부 권리 및 동의 거부 시 불이익</strong>
+                                        <p>귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 다만, 필수항목에 대한 동의를 거부할 경우 상담 서비스 이용이 제한될 수 있습니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">상담 신청하기</button>
+
+                        <p class="privacy-notice">
+                            * 제출하신 정보는 상담 목적으로만 사용되며, 관련 법령에 따라 안전하게 관리됩니다.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top 버튼 -->
+    <button id="topButton" class="top-button" aria-label="맨 위로 이동" title="맨 위로">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <!-- ========================================
+         푸터
+         ======================================== -->
+    <footer id="kyFooter">
+        <div class="footer-wrapper">
+            <div class="footer-container">
+                <div class="footer-top">
+                    <div class="footer-info">
+                        <div class="footer-logo"><img src="화이트로고.png" alt="KY 로고" class="footer-logo-img"><span class="footer-logo-text">중소기업지원센터</span></div>
+                        <p class="footer-desc">중소기업 정책자금 전문 | 맞춤형 자금조달 컨설팅</p>
+                    </div>
+                </div>
+                <div class="footer-middle">
+                    <div class="footer-contact">
+                        <h4 class="footer-title">Contact</h4>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 12h-3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3v7z"/></svg><span>대표자: 최승균</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>사업자등록번호: 837-05-02123</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>대표전화: 1555-0238</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M12 12l8-5H4l8 5z"/></svg><span>이메일: jmfood12@naver.com</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>주소: <span class="address-province">전북특별자치도</span>익산시 평동로3길 32, 1층(인화동1가)</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>상담시간: 평일 09:00-18:00</span></div>
+                    </div>
+                    <div class="footer-menu">
+                        <h4 class="footer-title">Menu</h4>
+                        <ul class="footer-list">
+                            <li><a href="index.html">홈</a></li>
+                            <li><a href="about.html">회사소개</a></li>
+                            <li><a href="process.html">진행과정</a></li>
+                            <li><a href="fund.html">자금상담</a></li>
+                            <li><a href="pro.html">전문서비스</a></li>
+                            <li><a href="mkt.html">온라인마케팅</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="disclaimer-section">
+                    <p class="disclaimer-text"><span class="disclaimer-item">※ KY 중소기업지원센터는 정책자금 서류작성을 대행하지 않습니다.</span><span class="disclaimer-item">※ 기업평가를 하지 않습니다.</span></p>
+                </div>
+                <div class="partnership-section">
+                    <div class="partnership-link">
+                        <a href="http://jjk-biz.com/" target="_blank">
+                            <img src="https://cdn.imweb.me/upload/S2025072970f03c9c7eca7/ac036acf8a029.png" alt="업무협약 아이콘" class="partnership-icon">
+                            <span>정책자금지원센터 | 업무협약 KY 중소기업지원센터</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright">© 2025 케이와이. All rights reserved.</p>
+                    <div class="footer-links"><a href="policy.html">이용약관</a><span class="divider">|</span><a href="privacy.html">개인정보처리방침</a></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    /* ========================================
+       메인 스크립트
+       ======================================== */
+    (function() {
+        'use strict';
+
+        // 헤더 & 네비게이션
+        const header = document.getElementById('kyHeader');
+        const hamburger = document.getElementById('kyHamburger');
+        const mobileMenu = document.getElementById('kyMobileMenu');
+        const mobileMenuLinks = document.querySelectorAll('.ky-mobile-nav-link, .ky-mobile-nav-cta');
+        let isMenuOpen = false;
+
+        function toggleMenu(forceClose = false) {
+            if (forceClose || isMenuOpen) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                isMenuOpen = false;
+            } else {
+                hamburger.classList.add('active');
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                isMenuOpen = true;
+            }
+        }
+
+        if (hamburger) {
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu();
+            });
+        }
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                setTimeout(() => toggleMenu(true), 100);
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMenuOpen) {
+                toggleMenu(true);
+            }
+        });
+
+        function handleScroll() {
+            if (header) {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        // 상담신청 버튼 클릭 시 폼으로 스크롤
+        document.querySelectorAll('a[href="#contact"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const formSection = document.getElementById('contact');
+                if (formSection) {
+                    formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    })();
+
+    // 개인정보 상세보기 토글
+    function togglePrivacyDetail() {
+        const detail = document.getElementById('privacyDetail');
+        const toggle = event.target;
+
+        if (detail.classList.contains('show')) {
+            detail.classList.remove('show');
+            toggle.textContent = '자세히보기';
+        } else {
+            detail.classList.add('show');
+            toggle.textContent = '닫기';
+        }
+    }
+
+    // 폼 제출 처리
+    document.getElementById('consultForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // 개인정보 동의 체크
+        const privacyAgree = document.getElementById('privacyAgree');
+        if (!privacyAgree.checked) {
+            alert('개인정보 수집 및 이용에 동의해주세요.');
+            privacyAgree.focus();
+            return;
+        }
+
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = '전송 중...';
+
+        const formData = new FormData(this);
+        const data = {};
+
+        for (let [key, value] of formData.entries()) {
+            if (key !== 'service') {
+                data[key] = value;
+            }
+        }
+
+        const services = formData.getAll('service');
+        if (services.length === 0) {
+            alert('관심 서비스를 하나 이상 선택해주세요.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            return;
+        }
+        data.service = services.join(', ');
+        data.timestamp = new Date().toLocaleString('ko-KR');
+        data.privacy_agreed = privacyAgree.checked ? '동의' : '미동의';
+        data.source = 'KY 중소기업지원센터 온라인마케팅 홈페이지 접수';
+
+        try {
+            // Google Apps Script Web App URL
+            const response = await fetch('https://script.google.com/macros/s/AKfycbw2C9YHrrZHMjK14suJaHEAnK3MQIxqQfmXKJDjbrtZpZ984YURZHKuRnD6PHVhU6rscQ/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(data)
+            });
+
+            const now = new Date();
+            const hour = now.getHours();
+            const day = now.getDay();
+            const isWorkingTime = day >= 1 && day <= 5 && hour >= 9 && hour < 18;
+
+            let message = '상담 신청이 접수되었습니다.\n';
+            if (isWorkingTime) {
+                message += '영업일 기준 24시간 내에 연락드리겠습니다.';
+            } else {
+                message += '현재 업무시간이 아닙니다.\n다음 영업일에 연락드리겠습니다.\n\n';
+                message += '업무시간: 평일 09:00-18:00';
+            }
+
+            if (data.email) {
+                message += '\n\n확인 메일을 발송했습니다.';
+            }
+
+            alert(message);
+            this.reset();
+
+        } catch (error) {
+            console.error('전송 실패:', error);
+            alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    });
+
+    // 전화번호 자동 포맷팅
+    document.querySelector('input[name="phone"]').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/[^0-9]/g, '');
+        if (value.length > 3 && value.length <= 7) {
+            value = value.slice(0, 3) + '-' + value.slice(3);
+        } else if (value.length > 7) {
+            value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7, 11);
+        }
+        e.target.value = value;
+    });
+
+    // 모바일 최적화 추가 기능
+    if (window.innerWidth <= 768) {
+        // 스크롤 포커스 기능
+        const inputs = document.querySelectorAll('#contact .form-input, #contact .form-select, #contact .form-textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                setTimeout(() => {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            });
+        });
+    }
+
+    // 모바일 탭 기능
+    (function() {
+        function initMobileTabs() {
+            if (window.innerWidth > 768) return;
+
+            const tabButtons = document.querySelectorAll('#kyMktBlock .tab-button');
+            const servicesGrid = document.querySelector('#kyMktBlock .services-grid');
+            const serviceCards = document.querySelectorAll('#kyMktBlock .service-card');
+            const wrapper = document.querySelector('#kyMktBlock .services-wrapper');
+
+            if (!tabButtons.length || !servicesGrid || !serviceCards.length || !wrapper) return;
+
+            let currentIndex = 0;
+
+            // 기존 화살표 제거
+            const existingArrows = wrapper.querySelectorAll('.swipe-nav');
+            existingArrows.forEach(arrow => arrow.remove());
+
+            // 초기 설정
+            tabButtons[0].classList.add('active');
+            servicesGrid.style.transform = 'translateX(0)';
+
+            // 탭 클릭 이벤트
+            tabButtons.forEach(function(button, index) {
+                button.addEventListener('click', function() {
+                    // 모든 탭 비활성화
+                    tabButtons.forEach(function(btn) {
+                        btn.classList.remove('active');
+                    });
+
+                    // 현재 탭 활성화
+                    button.classList.add('active');
+
+                    // 카드 이동
+                    currentIndex = index;
+                    const offset = -currentIndex * 100;
+                    servicesGrid.style.transform = 'translateX(' + offset + '%)';
+
+                    // 화살표 업데이트
+                    updateArrows();
+                });
+            });
+
+            // 화살표 버튼 생성
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'swipe-nav prev';
+            prevBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>';
+            prevBtn.addEventListener('click', function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    tabButtons[currentIndex].click();
+                }
+            });
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'swipe-nav next';
+            nextBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>';
+            nextBtn.addEventListener('click', function() {
+                if (currentIndex < serviceCards.length - 1) {
+                    currentIndex++;
+                    tabButtons[currentIndex].click();
+                }
+            });
+
+            wrapper.appendChild(prevBtn);
+            wrapper.appendChild(nextBtn);
+
+            // 화살표 표시/숨기기
+            function updateArrows() {
+                prevBtn.style.display = currentIndex === 0 ? 'none' : 'flex';
+                nextBtn.style.display = currentIndex === serviceCards.length - 1 ? 'none' : 'flex';
+            }
+
+            updateArrows();
+
+            // 터치 스와이프
+            let startX = 0;
+            let startY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let isDragging = false;
+            let isScrolling = false;
+
+            servicesGrid.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                currentX = startX;
+                currentY = startY;
+                isDragging = true;
+                isScrolling = false;
+            }, { passive: true });
+
+            servicesGrid.addEventListener('touchmove', function(e) {
+                if (!isDragging) return;
+
+                currentX = e.touches[0].clientX;
+                currentY = e.touches[0].clientY;
+
+                const diffX = Math.abs(currentX - startX);
+                const diffY = Math.abs(currentY - startY);
+
+                if (!isScrolling && (diffX > 5 || diffY > 5)) {
+                    isScrolling = diffY > diffX;
+                }
+
+                if (isScrolling) {
+                    return;
+                }
+
+                if (diffX > diffY && diffX > 10) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            servicesGrid.addEventListener('touchend', function(e) {
+                if (!isDragging || isScrolling) {
+                    isDragging = false;
+                    return;
+                }
+
+                const diffX = startX - currentX;
+
+                if (Math.abs(diffX) > 50) {
+                    if (diffX > 0 && currentIndex < serviceCards.length - 1) {
+                        currentIndex++;
+                        tabButtons[currentIndex].click();
+                    } else if (diffX < 0 && currentIndex > 0) {
+                        currentIndex--;
+                        tabButtons[currentIndex].click();
+                    }
+                }
+
+                isDragging = false;
+            }, { passive: true });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMobileTabs);
+        } else {
+            initMobileTabs();
+        }
+
+        setTimeout(initMobileTabs, 500);
+
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (window.innerWidth > 768) {
+                    const servicesGrid = document.querySelector('#kyMktBlock .services-grid');
+                    const arrows = document.querySelectorAll('#kyMktBlock .swipe-nav');
+
+                    if (servicesGrid) {
+                        servicesGrid.style.transform = '';
+                    }
+                    arrows.forEach(arrow => arrow.remove());
+                } else {
+                    initMobileTabs();
+                }
+            }, 250);
+        });
+    })();
+
+    // Top 버튼 기능
+    (function() {
+        const topButton = document.getElementById('topButton');
+        if (!topButton) return;
+        let ticking = false;
+        function updateTopButton() { if (window.scrollY > 400) { topButton.classList.add('visible'); } else { topButton.classList.remove('visible'); } ticking = false; }
+        window.addEventListener('scroll', function() { if (!ticking) { requestAnimationFrame(updateTopButton); ticking = true; } }, { passive: true });
+        topButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>방문통계 - KY 중소기업지원센터</title>
+  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../scripts/admin-auth.js"></script>
+  <style>
+    .loading-skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .error-message {
+      text-align: center;
+      padding: 40px;
+      color: var(--error);
+    }
+    .refresh-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--neutral-100);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      color: var(--neutral-700);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .refresh-btn:hover {
+      background: var(--neutral-200);
+    }
+    .refresh-btn.loading svg {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .data-list {
+      list-style: none;
+    }
+    .data-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+    .data-list-item:last-child {
+      border-bottom: none;
+    }
+    .data-list-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--neutral-700);
+    }
+    .data-list-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-800);
+    }
+    .data-list-badge {
+      font-size: 12px;
+      padding: 2px 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 10px;
+      margin-left: 8px;
+    }
+    .progress-bar {
+      height: 6px;
+      background: var(--neutral-200);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+    .last-updated {
+      font-size: 12px;
+      color: var(--neutral-500);
+    }
+    /* 히스토리 섹션 스타일 */
+    .section-divider {
+      margin: 40px 0 24px;
+      padding-top: 24px;
+      border-top: 2px solid var(--neutral-200);
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--neutral-800);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .days-selector {
+      display: flex;
+      gap: 8px;
+    }
+    .days-btn {
+      padding: 6px 12px;
+      border: 1px solid var(--neutral-300);
+      background: white;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      color: var(--neutral-600);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .days-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .days-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    /* 히스토리 테이블 */
+    .history-table-wrapper {
+      overflow-x: auto;
+      overflow-y: auto;
+      max-height: 400px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--neutral-200);
+    }
+    .history-table thead {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .history-table th {
+      background: var(--neutral-50);
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--neutral-700);
+      border-bottom: 1px solid var(--neutral-200);
+      white-space: nowrap;
+    }
+    .history-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--neutral-100);
+      color: var(--neutral-700);
+    }
+    .history-table tr:last-child td {
+      border-bottom: none;
+    }
+    .history-table tr:hover td {
+      background: var(--neutral-50);
+    }
+    .table-value {
+      font-weight: 600;
+      color: var(--neutral-800);
+    }
+    .table-empty {
+      text-align: center;
+      padding: 40px;
+      color: var(--neutral-400);
+    }
+    /* 기간 비교 카드 */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .compare-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--neutral-200);
+    }
+    .compare-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-700);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .compare-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+    .compare-row:last-child {
+      border-bottom: none;
+    }
+    .compare-label {
+      font-size: 13px;
+      color: var(--neutral-600);
+    }
+    .compare-values {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .compare-current {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-800);
+    }
+    .compare-previous {
+      font-size: 12px;
+      color: var(--neutral-400);
+    }
+    .compare-change {
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .compare-change.positive {
+      background: rgba(16, 185, 129, 0.1);
+      color: #059669;
+    }
+    .compare-change.negative {
+      background: rgba(239, 68, 68, 0.1);
+      color: #DC2626;
+    }
+    /* 누적 차트 */
+    .cumulative-chart-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--neutral-200);
+      margin-top: 16px;
+    }
+    .cumulative-chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .cumulative-chart-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--neutral-800);
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- 사이드바 -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <aside class="sidebar"></aside>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+      <!-- 헤더 -->
+      <header class="dashboard-header"></header>
+
+      <!-- 기간 선택 탭 -->
+      <div class="period-tabs">
+        <button class="period-tab active" data-period="daily">일간</button>
+        <button class="period-tab" data-period="weekly">주간</button>
+        <button class="period-tab" data-period="monthly">월간</button>
+      </div>
+
+      <!-- 기간 표시 -->
+      <div class="period-range">
+        <span class="period-range-label">📅 집계 기간</span>
+        <span class="period-range-value" id="period-display">로딩 중...</span>
+        <div style="flex:1"></div>
+        <button class="refresh-btn" onclick="refreshData()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 4v6h-6M1 20v-6h6"/>
+            <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+          </svg>
+          새로고침
+        </button>
+      </div>
+
+      <!-- 통계 카드 -->
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">방문자</div>
+            <div class="stat-value" id="stat-visitors">-</div>
+            <div class="stat-change" id="stat-visitors-change">로딩 중...</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon icon-page">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">페이지뷰</div>
+            <div class="stat-value" id="stat-pageviews">-</div>
+            <div class="stat-change" id="stat-pageviews-change">로딩 중...</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon icon-time">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12,6 12,12 16,14"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">평균 체류시간</div>
+            <div class="stat-value" id="stat-duration">-</div>
+            <div class="stat-change" id="stat-duration-change">로딩 중...</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon icon-inbox">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16,17 21,12 16,7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">이탈률</div>
+            <div class="stat-value" id="stat-bounce">-</div>
+            <div class="stat-change" id="stat-bounce-change">로딩 중...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 추이 차트 (최근 7일) -->
+      <div class="charts-grid analytics-charts">
+        <div class="chart-card chart-card-wide">
+          <div class="chart-header">
+            <h3 class="chart-title" id="chart-title">일별 방문 추이 (최근 7일)</h3>
+            <div class="chart-legend">
+              <div class="legend-item"><span class="legend-color" style="background:#1E3A5F"></span>방문자</div>
+              <div class="legend-item"><span class="legend-color" style="background:#10B981"></span>페이지뷰</div>
+            </div>
+          </div>
+          <div class="chart-body" style="height:200px">
+            <canvas id="trendChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- 분석 그리드 -->
+      <div class="charts-grid" style="margin-top:20px">
+        <!-- 트래픽 소스 -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">🔗 트래픽 소스</h3>
+          </div>
+          <ul class="data-list" id="traffic-list">
+            <li class="data-list-item">
+              <span class="data-list-label loading-skeleton" style="width:100px;height:16px"></span>
+              <span class="data-list-value loading-skeleton" style="width:50px;height:16px"></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 유입 경로 (참조 URL) -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">🌐 유입 경로</h3>
+          </div>
+          <ul class="data-list" id="referrer-list">
+            <li class="data-list-item">
+              <span class="data-list-label loading-skeleton" style="width:150px;height:16px"></span>
+              <span class="data-list-value loading-skeleton" style="width:40px;height:16px"></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 기기별 -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">📱 기기별 사용자</h3>
+          </div>
+          <ul class="data-list" id="devices-list">
+            <li class="data-list-item">
+              <span class="data-list-label loading-skeleton" style="width:100px;height:16px"></span>
+              <span class="data-list-value loading-skeleton" style="width:50px;height:16px"></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 인기 페이지 -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">📄 인기 페이지</h3>
+          </div>
+          <ul class="data-list" id="pages-list">
+            <li class="data-list-item">
+              <span class="data-list-label loading-skeleton" style="width:150px;height:16px"></span>
+              <span class="data-list-value loading-skeleton" style="width:40px;height:16px"></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 지역별 -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">🌏 방문 지역</h3>
+          </div>
+          <ul class="data-list" id="geography-list">
+            <li class="data-list-item">
+              <span class="data-list-label loading-skeleton" style="width:80px;height:16px"></span>
+              <span class="data-list-value loading-skeleton" style="width:40px;height:16px"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 마지막 업데이트 -->
+      <div style="text-align:center; margin-top:24px; padding:16px;">
+        <span class="last-updated" id="last-updated"></span>
+      </div>
+
+      <!-- ========== 히스토리 섹션 ========== -->
+      <div class="section-divider" style="margin-bottom: 300px;">
+        <div class="section-header">
+          <h2 class="section-title">📊 기간별 누적 데이터</h2>
+          <div class="days-selector">
+            <button class="days-btn active" data-days="7">7일</button>
+            <button class="days-btn" data-days="30">30일</button>
+            <button class="days-btn" data-days="90">90일</button>
+          </div>
+        </div>
+
+        <!-- 기간 비교 (일간/주간/월간 한눈에) -->
+        <div class="compare-grid" id="compare-grid">
+          <div class="compare-card">
+            <div class="compare-title">📅 오늘 vs 어제</div>
+            <div id="compare-daily">
+              <div class="compare-row">
+                <span class="compare-label">방문자</span>
+                <div class="compare-values">
+                  <span class="compare-current loading-skeleton" style="width:40px;height:16px"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="compare-card">
+            <div class="compare-title">📆 이번 주 vs 지난 주</div>
+            <div id="compare-weekly">
+              <div class="compare-row">
+                <span class="compare-label">방문자</span>
+                <div class="compare-values">
+                  <span class="compare-current loading-skeleton" style="width:40px;height:16px"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="compare-card">
+            <div class="compare-title">🗓️ 이번 달 vs 지난 달</div>
+            <div id="compare-monthly">
+              <div class="compare-row">
+                <span class="compare-label">방문자</span>
+                <div class="compare-values">
+                  <span class="compare-current loading-skeleton" style="width:40px;height:16px"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 누적 추이 차트 -->
+        <div class="cumulative-chart-card">
+          <div class="cumulative-chart-header">
+            <span class="cumulative-chart-title">📈 장기 추이 차트</span>
+            <span style="font-size:11px; color:var(--neutral-400)">매일 01:00 자동 수집</span>
+          </div>
+          <div style="height:250px">
+            <canvas id="historyChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 히스토리 테이블 -->
+        <div class="cumulative-chart-card" style="margin-top:16px">
+          <div class="cumulative-chart-header">
+            <span class="cumulative-chart-title">📋 일별 상세 데이터</span>
+          </div>
+          <div class="history-table-wrapper">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>날짜</th>
+                  <th>방문자</th>
+                  <th>페이지뷰</th>
+                  <th>평균 체류</th>
+                  <th>이탈률</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body">
+                <tr>
+                  <td colspan="5" class="table-empty">데이터를 불러오는 중...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../scripts/components.js"></script>
+  <script>
+    // GA4 Analytics Worker URL
+    const GA4_API_URL = 'https://ky-form.chltmdrbs7.workers.dev';
+
+    // 현재 기간
+    let currentPeriod = 'daily';
+    let trendChart = null;
+    let analyticsData = null;
+
+    // 초기화
+    document.addEventListener('DOMContentLoaded', function() {
+      loadSidebar('analytics');
+      loadDashboardHeader('방문통계', 'Google Analytics 데이터');
+      initPeriodTabs();
+      loadAnalyticsData();
+      initDaysSelector();
+      loadHistoryData();
+      loadCompareData();
+    });
+
+    // 기간 탭 초기화
+    function initPeriodTabs() {
+      const tabs = document.querySelectorAll('.period-tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          tabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          currentPeriod = this.dataset.period;
+          loadAnalyticsData();
+        });
+      });
+    }
+
+    // 데이터 로드
+    async function loadAnalyticsData() {
+      try {
+        showLoading();
+        const response = await fetch(`${GA4_API_URL}/analytics/all?period=${currentPeriod}`);
+
+        if (!response.ok) {
+          throw new Error('API 요청 실패');
+        }
+
+        analyticsData = await response.json();
+        renderDashboard(analyticsData);
+
+      } catch (error) {
+        console.error('데이터 로드 실패:', error);
+        showError('데이터를 불러올 수 없습니다. 잠시 후 다시 시도해주세요.');
+      }
+    }
+
+    // 대시보드 렌더링
+    function renderDashboard(data) {
+      // 기간 표시
+      if (data.overview && data.overview.period) {
+        const { startDate, endDate } = data.overview.period;
+        document.getElementById('period-display').textContent =
+          `${formatDate(startDate)} ~ ${formatDate(endDate)}`;
+      }
+
+      // 통계 카드
+      if (data.overview) {
+        renderOverview(data.overview);
+      }
+
+      // 추이 차트
+      if (data.trend) {
+        renderTrendChart(data.trend);
+      }
+
+      // 트래픽 소스
+      if (data.traffic) {
+        renderTrafficSources(data.traffic);
+      }
+
+      // 기기별
+      if (data.devices) {
+        renderDevices(data.devices);
+      }
+
+      // 인기 페이지
+      if (data.pages) {
+        renderTopPages(data.pages);
+      }
+
+      // 지역별
+      if (data.geography) {
+        renderGeography(data.geography);
+      }
+
+      // 유입 경로
+      if (data.referrers) {
+        renderReferrers(data.referrers);
+      } else {
+        document.getElementById('referrer-list').innerHTML =
+          '<li class="data-list-item"><span class="data-list-label" style="color:var(--neutral-400)">상세 유입 경로는 트래픽 소스에서 확인하세요</span></li>';
+      }
+
+      // 마지막 업데이트
+      document.getElementById('last-updated').textContent =
+        `마지막 업데이트: ${new Date().toLocaleString('ko-KR')}`;
+    }
+
+    // 개요 통계 렌더링
+    function renderOverview(overview) {
+      document.getElementById('stat-visitors').textContent =
+        overview.visitors.value.toLocaleString() + '명';
+      renderChange('stat-visitors-change', overview.visitors.change);
+
+      document.getElementById('stat-pageviews').textContent =
+        overview.pageviews.value.toLocaleString() + '회';
+      renderChange('stat-pageviews-change', overview.pageviews.change);
+
+      document.getElementById('stat-duration').textContent = overview.duration.value;
+      renderChange('stat-duration-change', overview.duration.change);
+
+      document.getElementById('stat-bounce').textContent = overview.bounceRate.value + '%';
+      renderChange('stat-bounce-change', overview.bounceRate.change, true);
+    }
+
+    // 변화율 표시
+    function renderChange(elementId, change, isReverse = false) {
+      const el = document.getElementById(elementId);
+      const isPositive = isReverse ? change < 0 : change > 0;
+      const sign = change >= 0 ? '+' : '';
+      const periodLabel = getPeriodLabel();
+
+      el.textContent = `${sign}${change}% ${periodLabel}`;
+      el.className = `stat-change ${isPositive ? 'positive' : 'negative'}`;
+    }
+
+    // 기간 레이블
+    function getPeriodLabel() {
+      switch(currentPeriod) {
+        case 'daily': return '전일 대비';
+        case 'weekly': return '전주 대비';
+        case 'monthly': return '전월 대비';
+        default: return '';
+      }
+    }
+
+    // 추이 차트 렌더링
+    function renderTrendChart(trendData) {
+      const ctx = document.getElementById('trendChart').getContext('2d');
+
+      const titleMap = {
+        daily: '일별 방문 추이 (최근 7일)',
+        weekly: '주별 방문 추이',
+        monthly: '월별 방문 추이'
+      };
+      document.getElementById('chart-title').textContent = titleMap[currentPeriod];
+
+      if (trendChart) {
+        trendChart.destroy();
+      }
+
+      let trendItems = trendData.trend || [];
+      if (currentPeriod === 'daily' && trendItems.length > 7) {
+        trendItems = trendItems.slice(-7);
+      }
+      const labels = trendItems.map(item => formatChartDate(item.date));
+      const visitors = trendItems.map(item => item.visitors);
+      const pageviews = trendItems.map(item => item.pageviews);
+
+      trendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: '방문자',
+              data: visitors,
+              borderColor: '#1E3A5F',
+              backgroundColor: 'rgba(30, 58, 95, 0.1)',
+              fill: true,
+              tension: 0.4,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointHoverRadius: 6
+            },
+            {
+              label: '페이지뷰',
+              data: pageviews,
+              borderColor: '#10B981',
+              backgroundColor: 'transparent',
+              tension: 0.4,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointHoverRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'white',
+              titleColor: '#1F2937',
+              bodyColor: '#4B5563',
+              borderColor: '#E5E7EB',
+              borderWidth: 1,
+              padding: 12
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { size: 11 } }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#F3F4F6' },
+              ticks: { font: { size: 11 } }
+            }
+          }
+        }
+      });
+    }
+
+    // 트래픽 소스 렌더링
+    function renderTrafficSources(trafficData) {
+      const list = document.getElementById('traffic-list');
+
+      if (!trafficData.sources || trafficData.sources.length === 0) {
+        list.innerHTML = '<li class="data-list-item"><span class="data-list-label">데이터 없음</span></li>';
+        return;
+      }
+
+      const colorMap = {
+        'Direct': '#1E3A5F',
+        'Organic Search': '#10B981',
+        'Referral': '#F59E0B',
+        'Social': '#8B5CF6',
+        'Email': '#EF4444',
+        'Paid Search': '#EC4899'
+      };
+
+      list.innerHTML = trafficData.sources.map(source => `
+        <li class="data-list-item">
+          <div style="flex:1">
+            <div class="data-list-label">
+              <span style="width:8px;height:8px;background:${colorMap[source.source] || '#6B7280'};border-radius:2px"></span>
+              ${translateSource(source.source)}
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:${source.percentage}%;background:${colorMap[source.source] || '#6B7280'}"></div>
+            </div>
+          </div>
+          <span class="data-list-value">${source.sessions}회<span class="data-list-badge">${source.percentage}%</span></span>
+        </li>
+      `).join('');
+    }
+
+    // 기기별 렌더링
+    function renderDevices(devicesData) {
+      const list = document.getElementById('devices-list');
+
+      if (!devicesData.devices || devicesData.devices.length === 0) {
+        list.innerHTML = '<li class="data-list-item"><span class="data-list-label">데이터 없음</span></li>';
+        return;
+      }
+
+      const iconMap = { 'mobile': '📱', 'desktop': '💻', 'tablet': '📲' };
+      const colorMap = { 'mobile': '#1E3A5F', 'desktop': '#10B981', 'tablet': '#F59E0B' };
+
+      list.innerHTML = devicesData.devices.map(device => `
+        <li class="data-list-item">
+          <div style="flex:1">
+            <div class="data-list-label">
+              ${iconMap[device.device] || '🖥️'} ${translateDevice(device.device)}
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:${device.percentage}%;background:${colorMap[device.device] || '#6B7280'}"></div>
+            </div>
+          </div>
+          <span class="data-list-value">${device.users}명<span class="data-list-badge">${device.percentage}%</span></span>
+        </li>
+      `).join('');
+    }
+
+    // 인기 페이지 렌더링
+    function renderTopPages(pagesData) {
+      const list = document.getElementById('pages-list');
+
+      if (!pagesData.pages || pagesData.pages.length === 0) {
+        list.innerHTML = '<li class="data-list-item"><span class="data-list-label">데이터 없음</span></li>';
+        return;
+      }
+
+      list.innerHTML = pagesData.pages.map((page, idx) => `
+        <li class="data-list-item">
+          <span class="data-list-label">
+            <span style="width:20px;height:20px;background:var(--primary);color:white;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600">${idx + 1}</span>
+            ${translatePage(page.path)}
+          </span>
+          <span class="data-list-value">${page.views}회</span>
+        </li>
+      `).join('');
+    }
+
+    // 지역별 렌더링
+    function renderGeography(geoData) {
+      const list = document.getElementById('geography-list');
+
+      if (!geoData.regions || geoData.regions.length === 0) {
+        list.innerHTML = '<li class="data-list-item"><span class="data-list-label">데이터 없음</span></li>';
+        return;
+      }
+
+      list.innerHTML = geoData.regions.map(region => `
+        <li class="data-list-item">
+          <span class="data-list-label">📍 ${region.city === '(not set)' ? '미확인' : region.city}</span>
+          <span class="data-list-value">${region.users}명</span>
+        </li>
+      `).join('');
+    }
+
+    // 유입 경로 렌더링
+    function renderReferrers(referrersData) {
+      const list = document.getElementById('referrer-list');
+
+      if (!referrersData.referrers || referrersData.referrers.length === 0) {
+        list.innerHTML = '<li class="data-list-item"><span class="data-list-label">데이터 없음</span></li>';
+        return;
+      }
+
+      list.innerHTML = referrersData.referrers.map(ref => {
+        const sourceName = translateReferrer(ref.source, ref.medium);
+        return `
+          <li class="data-list-item">
+            <div style="flex:1">
+              <div class="data-list-label">${sourceName}</div>
+              <div style="font-size:11px;color:var(--neutral-400);margin-top:2px">${ref.source} / ${ref.medium}</div>
+            </div>
+            <span class="data-list-value">${ref.sessions}회<span class="data-list-badge">${ref.percentage}%</span></span>
+          </li>
+        `;
+      }).join('');
+    }
+
+    // 유입 경로 번역
+    function translateReferrer(source, medium) {
+      if (source === '(direct)' && medium === '(none)') return '🔗 직접 방문';
+      if (medium === 'organic') return '🔍 검색 유입 (' + source + ')';
+      if (medium === 'referral') return '🌐 외부 링크 (' + source + ')';
+      if (medium === 'social') return '📱 소셜 (' + source + ')';
+      if (medium === 'email') return '📧 이메일';
+      if (medium === 'cpc' || medium === 'ppc') return '💰 유료 광고 (' + source + ')';
+      return '🔗 ' + source;
+    }
+
+    // 유틸리티 함수들
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const year = dateStr.substring(0, 4);
+      const month = dateStr.substring(5, 7);
+      const day = dateStr.substring(8, 10);
+      return `${year}.${month}.${day}`;
+    }
+
+    function formatChartDate(dateStr) {
+      if (!dateStr) return '';
+      const month = dateStr.substring(4, 6);
+      const day = dateStr.substring(6, 8);
+      return `${parseInt(month)}/${parseInt(day)}`;
+    }
+
+    function translateSource(source) {
+      const map = {
+        'Direct': '직접 방문',
+        'Organic Search': '검색 유입',
+        'Referral': '참조 유입',
+        'Social': '소셜 미디어',
+        'Email': '이메일',
+        'Paid Search': '유료 검색',
+        '(none)': '직접 방문'
+      };
+      return map[source] || source;
+    }
+
+    function translateDevice(device) {
+      const map = { 'mobile': '모바일', 'desktop': '데스크톱', 'tablet': '태블릿' };
+      return map[device] || device;
+    }
+
+    function translatePage(path) {
+      const map = {
+        '/': '메인 페이지',
+        '/index.html': '메인 페이지',
+        '/pro.html': '전문가 소개',
+        '/pro': '전문가 소개',
+        '/process.html': '진행 프로세스',
+        '/process': '진행 프로세스',
+        '/fund.html': '정책자금',
+        '/fund': '정책자금',
+        '/about.html': '회사 소개',
+        '/about': '회사 소개',
+        '/post.html': '성공 사례',
+        '/post': '성공 사례'
+      };
+      return map[path] || path;
+    }
+
+    // 로딩 표시
+    function showLoading() {
+      document.getElementById('stat-visitors').textContent = '-';
+      document.getElementById('stat-pageviews').textContent = '-';
+      document.getElementById('stat-duration').textContent = '-';
+      document.getElementById('stat-bounce').textContent = '-';
+
+      ['stat-visitors-change', 'stat-pageviews-change', 'stat-duration-change', 'stat-bounce-change'].forEach(id => {
+        document.getElementById(id).textContent = '로딩 중...';
+        document.getElementById(id).className = 'stat-change';
+      });
+    }
+
+    // 에러 표시
+    function showError(message) {
+      document.getElementById('period-display').textContent = '오류 발생';
+      ['stat-visitors', 'stat-pageviews', 'stat-duration', 'stat-bounce'].forEach(id => {
+        document.getElementById(id).textContent = '-';
+      });
+      ['stat-visitors-change', 'stat-pageviews-change', 'stat-duration-change', 'stat-bounce-change'].forEach(id => {
+        document.getElementById(id).textContent = message;
+        document.getElementById(id).className = 'stat-change negative';
+      });
+    }
+
+    // 새로고침
+    function refreshData() {
+      const btn = document.querySelector('.refresh-btn');
+      btn.classList.add('loading');
+      loadAnalyticsData().finally(() => {
+        btn.classList.remove('loading');
+      });
+    }
+
+    // ========== 히스토리 섹션 로직 ==========
+    let historyDays = 7;
+    let historyChart = null;
+    let historyData = null;
+
+    // 기간 선택 버튼 초기화
+    function initDaysSelector() {
+      const btns = document.querySelectorAll('.days-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          btns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          historyDays = parseInt(this.dataset.days);
+          loadHistoryData();
+        });
+      });
+    }
+
+    // 히스토리 데이터 로드
+    async function loadHistoryData() {
+      try {
+        const response = await fetch(`${GA4_API_URL}/history/stats?days=${historyDays}`);
+        if (!response.ok) {
+          throw new Error('히스토리 API 요청 실패');
+        }
+        historyData = await response.json();
+        renderHistoryTable(historyData.data || []);
+        renderHistoryChart(historyData.data || []);
+      } catch (error) {
+        console.error('히스토리 데이터 로드 실패:', error);
+        renderHistoryTable([]);
+        if (analyticsData && analyticsData.trend) {
+          renderHistoryChart(analyticsData.trend.trend || []);
+        }
+      }
+    }
+
+    // 기간 비교 데이터 로드
+    async function loadCompareData() {
+      try {
+        const [dailyRes, weeklyRes, monthlyRes] = await Promise.all([
+          fetch(`${GA4_API_URL}/analytics/overview?period=daily`),
+          fetch(`${GA4_API_URL}/analytics/overview?period=weekly`),
+          fetch(`${GA4_API_URL}/analytics/overview?period=monthly`)
+        ]);
+
+        const [daily, weekly, monthly] = await Promise.all([
+          dailyRes.json(),
+          weeklyRes.json(),
+          monthlyRes.json()
+        ]);
+
+        renderCompareCard('compare-daily', daily, '어제');
+        renderCompareCard('compare-weekly', weekly, '지난 주');
+        renderCompareCard('compare-monthly', monthly, '지난 달');
+      } catch (error) {
+        console.error('비교 데이터 로드 실패:', error);
+      }
+    }
+
+    // 비교 카드 렌더링
+    function renderCompareCard(elementId, data, prevLabel) {
+      const el = document.getElementById(elementId);
+      if (!data || !data.visitors) {
+        el.innerHTML = '<div class="compare-row"><span class="compare-label">데이터 없음</span></div>';
+        return;
+      }
+
+      const rows = [
+        { label: '방문자', current: data.visitors.value, change: data.visitors.change, unit: '명' },
+        { label: '페이지뷰', current: data.pageviews.value, change: data.pageviews.change, unit: '회' },
+        { label: '체류시간', current: data.duration.value, change: data.duration.change, unit: '' },
+        { label: '이탈률', current: data.bounceRate.value + '%', change: data.bounceRate.change, unit: '', reverse: true }
+      ];
+
+      el.innerHTML = rows.map(row => {
+        const isPositive = row.reverse ? row.change < 0 : row.change > 0;
+        const changeClass = isPositive ? 'positive' : 'negative';
+        const sign = row.change >= 0 ? '+' : '';
+        return `
+          <div class="compare-row">
+            <span class="compare-label">${row.label}</span>
+            <div class="compare-values">
+              <span class="compare-current">${typeof row.current === 'number' ? row.current.toLocaleString() : row.current}${row.unit}</span>
+              <span class="compare-change ${changeClass}">${sign}${row.change}%</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 히스토리 테이블 렌더링
+    function renderHistoryTable(data) {
+      const tbody = document.getElementById('history-table-body');
+
+      if (!data || data.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="table-empty">
+              저장된 히스토리 데이터가 없습니다.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      const sortedData = [...data].sort((a, b) => b.date.localeCompare(a.date));
+
+      tbody.innerHTML = sortedData.map(row => {
+        const duration = row.avg_duration ? formatDuration(row.avg_duration) : '-';
+        const bounceRate = row.bounce_rate ? Math.round(row.bounce_rate * 100) + '%' : '-';
+        return `
+          <tr>
+            <td>${formatHistoryDate(row.date)}</td>
+            <td class="table-value">${row.visitors?.toLocaleString() || 0}명</td>
+            <td class="table-value">${row.pageviews?.toLocaleString() || 0}회</td>
+            <td>${duration}</td>
+            <td>${bounceRate}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // 히스토리 차트 렌더링
+    function renderHistoryChart(data) {
+      const ctx = document.getElementById('historyChart').getContext('2d');
+
+      if (historyChart) {
+        historyChart.destroy();
+      }
+
+      if (!data || data.length === 0) {
+        historyChart = new Chart(ctx, {
+          type: 'line',
+          data: { labels: [], datasets: [] },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: { enabled: false } }
+          }
+        });
+        return;
+      }
+
+      const sortedData = [...data].sort((a, b) => {
+        const dateA = a.date || '';
+        const dateB = b.date || '';
+        return dateA.localeCompare(dateB);
+      });
+
+      const labels = sortedData.map(d => formatHistoryChartDate(d.date));
+      const visitors = sortedData.map(d => d.visitors || 0);
+      const pageviews = sortedData.map(d => d.pageviews || 0);
+
+      historyChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: '방문자',
+              data: visitors,
+              borderColor: '#1E3A5F',
+              backgroundColor: 'rgba(30, 58, 95, 0.1)',
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: historyDays <= 14 ? 4 : 2,
+              pointHoverRadius: 6
+            },
+            {
+              label: '페이지뷰',
+              data: pageviews,
+              borderColor: '#10B981',
+              backgroundColor: 'transparent',
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: historyDays <= 14 ? 4 : 2,
+              pointHoverRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              align: 'end',
+              labels: { boxWidth: 12, padding: 16, font: { size: 11 } }
+            },
+            tooltip: {
+              backgroundColor: 'white',
+              titleColor: '#1F2937',
+              bodyColor: '#4B5563',
+              borderColor: '#E5E7EB',
+              borderWidth: 1,
+              padding: 12
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { size: 10 }, maxTicksLimit: historyDays <= 14 ? 7 : 10 }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#F3F4F6' },
+              ticks: { font: { size: 11 } }
+            }
+          }
+        }
+      });
+    }
+
+    // 유틸리티: 체류시간 포맷
+    function formatDuration(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.round(seconds % 60);
+      return `${mins}분 ${secs}초`;
+    }
+
+    // 유틸리티: 히스토리 날짜 포맷 (테이블용)
+    function formatHistoryDate(dateStr) {
+      if (!dateStr) return '-';
+      const year = dateStr.substring(0, 4);
+      const month = dateStr.substring(5, 7);
+      const day = dateStr.substring(8, 10);
+      const date = new Date(year, parseInt(month) - 1, day);
+      const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+      return `${month}.${day} (${dayNames[date.getDay()]})`;
+    }
+
+    // 유틸리티: 히스토리 날짜 포맷 (차트용)
+    function formatHistoryChartDate(dateStr) {
+      if (!dateStr) return '';
+      const month = dateStr.substring(5, 7);
+      const day = dateStr.substring(8, 10);
+      return `${parseInt(month)}/${parseInt(day)}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자금치유연구소 - 회사소개</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* 히어로 타이틀 섹션 */
+        #s2025101731a8ca1f249d5 {
+            position: relative;
+            width: 100%;
+            min-height: 60vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 80px;
+            /* 배경색 제거 - 투명 배경 */
+            background: transparent;
+        }
+
+        /* 타이틀 컨테이너 */
+        #s2025101731a8ca1f249d5 .hero-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 배지 - Golden Sunset 컬러 적용 */
+        #s2025101731a8ca1f249d5 .hero-badge {
+            display: inline-block;
+            padding: 10px 30px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 50px;
+            color: #d4af37;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 메인 타이틀 - 밝은 색상 */
+        #s2025101731a8ca1f249d5 .hero-title {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 900;
+            color: #e0f2f1;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        /* 화이트 강조 (네온글로우 적용) */
+        #s2025101731a8ca1f249d5 .hero-title .highlight {
+            color: #ffffff;
+            display: inline-block;
+            font-weight: 900;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* 서브타이틀 - 밝은 색상 */
+        #s2025101731a8ca1f249d5 .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: rgba(224, 242, 241, 0.9);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* 스크롤 인디케이터 */
+        #s2025101731a8ca1f249d5 .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        #s2025101731a8ca1f249d5 .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: rgba(224, 242, 241, 0.5);
+        }
+
+        /* 반응형 - 태블릿 */
+        @media (min-width: 768px) {
+            #s2025101731a8ca1f249d5 {
+                min-height: 70vh;
+                padding: 140px 40px 100px;
+            }
+        }
+
+        /* 반응형 - 모바일 */
+        @media (max-width: 767px) {
+            #s2025101731a8ca1f249d5 {
+                min-height: 50vh;
+                padding: 100px 16px 60px;
+            }
+
+            #s2025101731a8ca1f249d5 .hero-title {
+                font-size: clamp(28px, 7vw, 36px);
+            }
+
+            #s2025101731a8ca1f249d5 .hero-subtitle {
+                font-size: clamp(16px, 4vw, 18px);
+            }
+
+            #s2025101731a8ca1f249d5 .hero-badge {
+                font-size: 12px;
+                padding: 8px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 히어로 타이틀 섹션 -->
+    <section id="s2025101731a8ca1f249d5">
+        <!-- 타이틀 컨텐츠 -->
+        <div class="hero-container">
+            <span class="hero-badge">About Us</span>
+            <h1 class="hero-title">
+                <span class="highlight">자금치유연구소</span>
+            </h1>
+            <p class="hero-subtitle">
+                대표자 역량을 강화하는 성장 전문 파트너<br>
+                성공적인 자금확보를 위한 완벽한 준비, 심사 통과율 96%
+            </p>
+            <p style="font-size:12px;color:rgba(224,242,241,0.7);margin-top:20px;line-height:1.5;">
+                ※ 자금치유연구소는 정책자금 서류작성을 대행하지 않습니다.<br>
+                ※ 기업평가를 하지 않습니다.
+            </p>
+        </div>
+
+        <!-- 스크롤 인디케이터 -->
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+    </section>
+
+    <script>
+        // 배경 효과 제거 - 스크립트 단순화
+    </script>
+</body>
+</html>

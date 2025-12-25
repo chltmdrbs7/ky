@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>자금치유연구소 - 기업 성장 전문 컨설팅</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif;
+    min-height:100vh;
+    color:#e8d4a8;
+    overflow-x:hidden;
+}
+
+#s20251017f9d98dc094ff5 {
+    position:relative;
+    width:100%;
+    padding:42px 20px 30px;
+    overflow:hidden;
+    background:transparent;
+}
+
+#s20251017f9d98dc094ff5 .ha-hero-container {
+    position:relative;
+    z-index:1;
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+}
+
+.ha-emotion-message {
+    text-align:center;
+    animation:fadeUp 0.8s ease;
+    background:rgba(30, 60, 120, 0.25);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(212, 175, 55, 0.3);
+    border-radius:24px;
+    padding:32px 24px;
+    box-shadow:0 0 30px rgba(30, 60, 120, 0.4),
+               0 8px 32px rgba(212, 175, 55, 0.2),
+               inset 0 1px 0 rgba(212, 175, 55, 0.1);
+    width:100%;
+}
+
+.ha-sub-title {
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:#d4af37;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    word-break:keep-all;
+    text-shadow:0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.ha-main-title {
+    font-size:19px;
+    font-weight:800;
+    line-height:1.4;
+    color:#faf8f3;
+    margin-bottom:10px;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+}
+
+.ha-highlight {
+    background:linear-gradient(45deg, #8b6f3f, #d4af37, #faf8f3);
+    background-size:250% 250%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:highlightWave 6s ease infinite;
+    font-weight:900;
+    text-shadow:0 0 12px rgba(212, 175, 55, 0.6);
+}
+
+.ha-sub-desc {
+    font-size:15px;
+    color:rgba(232, 212, 168, 0.85);
+    line-height:1.7;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+}
+
+.ha-brand-name {
+    color:#d4af37;
+    font-weight:900;
+    text-shadow:0 0 8px rgba(212, 175, 55, 0.5);
+    white-space:nowrap;
+}
+
+.mobile-br { display:inline; }
+.mobile-br-only { display:block; }
+.desktop-br-only { display:none; }
+
+.ha-main-content {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    align-items:center;
+}
+
+.ha-rate-card {
+    width:100%;
+    max-width:380px;
+    background:rgba(30, 60, 120, 0.2);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(212, 175, 55, 0.25);
+    border-radius:26px;
+    padding:26px;
+    box-shadow:0 0 25px rgba(30, 60, 120, 0.3),
+               0 8px 32px rgba(212, 175, 55, 0.15),
+               inset 0 1px 0 rgba(212, 175, 55, 0.1);
+    position:relative;
+    transition:all 0.4s ease;
+    overflow:hidden;
+}
+
+.ha-rate-card::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(
+            circle 180px at var(--mx, 50%) var(--my, 50%),
+            rgba(255, 255, 255, 0.3),
+            rgba(212, 175, 55, 0.25) 30%,
+            rgba(30, 60, 120, 0.15) 50%,
+            transparent 100%
+        );
+    opacity:0;
+    transition:opacity 0.3s ease;
+    pointer-events:none;
+    z-index:1;
+    filter:blur(8px);
+}
+
+.ha-rate-card:hover::before {
+    opacity:1;
+}
+
+.ha-rate-card:hover {
+    transform:translateY(-5px);
+    border-color:rgba(212, 175, 55, 0.8);
+    box-shadow:0 0 60px rgba(212, 175, 55, 0.8),
+               0 0 100px rgba(30, 60, 120, 0.5),
+               0 12px 40px rgba(212, 175, 55, 0.4),
+               inset 0 0 40px rgba(212, 175, 55, 0.1);
+}
+
+.ha-rate-card > * {
+    position:relative;
+    z-index:2;
+}
+
+.ha-rate-title {
+    font-size:17px;
+    font-weight:700;
+    color:#faf8f3;
+    text-align:center;
+    margin-bottom:18px;
+    word-break:keep-all;
+    line-height:1.4;
+}
+
+.ha-rate-comparison {
+    display:flex;
+    gap:14px;
+    justify-content:space-between;
+}
+
+.ha-rate-item {
+    flex:1;
+    padding:16px 12px;
+    border-radius:18px;
+    background:rgba(30, 60, 120, 0.15);
+    border:1px solid rgba(212, 175, 55, 0.3);
+    text-align:center;
+    box-shadow:0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.ha-rate-item.bank {
+    background:rgba(232, 212, 168, 0.05);
+    border:1px dashed rgba(232, 212, 168, 0.25);
+    box-shadow:none;
+}
+
+.ha-rate-item .ha-rate-label {
+    font-size:12px;
+    font-weight:600;
+    color:#ffffff !important;
+    margin-bottom:6px;
+}
+
+.ha-rate-value {
+    font-size:22px;
+    font-weight:800;
+    color:#d4af37;
+    margin-bottom:5px;
+    text-shadow:0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.ha-rate-item.bank .ha-rate-value {
+    color:#a0aec0;
+    text-shadow:none;
+}
+
+.ha-rate-item .ha-rate-status {
+    font-size:11px;
+    font-weight:600;
+    color:#ffffff !important;
+}
+
+.ha-rate-item.bank .ha-rate-status {
+    color:#ffffff !important;
+}
+
+.ha-graph-container {
+    display:none;
+    position:relative;
+    height:170px;
+    margin-top:18px;
+}
+
+.ha-graph-bar {
+    position:absolute;
+    bottom:0;
+    width:40%;
+    border-radius:14px 14px 0 0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    padding-bottom:14px;
+}
+
+.ha-graph-bar.policy {
+    left:10%;
+    background:linear-gradient(180deg, #d4af37, #8b6f3f);
+    box-shadow:0 0 40px rgba(212, 175, 55, 0.5),
+               0 18px 45px rgba(212, 175, 55, 0.3);
+    height:30%;
+}
+
+.ha-graph-bar.bank {
+    right:10%;
+    background:linear-gradient(180deg, #a0aec0, #64748b);
+    height:58%;
+    box-shadow:0 0 25px rgba(160, 174, 192, 0.2);
+}
+
+.ha-graph-value {
+    font-size:30px;
+    font-weight:800;
+    color:#faf8f3;
+    text-shadow:0 0 15px rgba(212, 175, 55, 0.6);
+}
+
+.ha-graph-bar.bank .ha-graph-value {
+    color:#f1f5f9;
+    font-weight:700;
+    font-size:24px;
+    text-shadow:none;
+}
+
+.ha-graph-label {
+    margin-top:8px;
+    font-size:13px;
+    color:#ffffff !important;
+    font-weight:600;
+}
+
+.ha-graph-legend {
+    display:flex;
+    justify-content:space-around;
+    padding-top:12px;
+    border-top:1px solid rgba(148,163,184,0.3);
+    color:#ffffff !important;
+    margin-top:12px;
+}
+
+.ha-info-section {
+    width:100%;
+    max-width:380px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.ha-info-item {
+    display:flex;
+    gap:16px;
+    align-items:center;
+    background:rgba(30, 60, 120, 0.2);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(212, 175, 55, 0.25);
+    border-left:5px solid #d4af37;
+    border-radius:22px;
+    padding:18px 20px;
+    box-shadow:0 0 25px rgba(30, 60, 120, 0.3),
+               0 8px 32px rgba(212, 175, 55, 0.15);
+    transition:all 0.4s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.ha-info-item::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(
+            circle 150px at var(--mx, 50%) var(--my, 50%),
+            rgba(255, 255, 255, 0.4),
+            rgba(212, 175, 55, 0.3) 25%,
+            rgba(30, 60, 120, 0.18) 50%,
+            transparent 100%
+        );
+    opacity:0;
+    transition:opacity 0.3s ease;
+    pointer-events:none;
+    z-index:1;
+    filter:blur(6px);
+}
+
+.ha-info-item:hover::before {
+    opacity:1;
+}
+
+.ha-info-item:hover {
+    transform:translateY(-3px);
+    border-left-color:#d4af37;
+    box-shadow:0 0 50px rgba(212, 175, 55, 0.9),
+               0 0 80px rgba(30, 60, 120, 0.6),
+               0 12px 40px rgba(212, 175, 55, 0.4),
+               inset 0 0 30px rgba(212, 175, 55, 0.15);
+}
+
+.ha-info-item > * {
+    position:relative;
+    z-index:2;
+}
+
+.ha-info-icon {
+    width:52px;
+    height:52px;
+    min-width:52px;
+    border-radius:16px;
+    background:linear-gradient(135deg, rgba(30, 60, 120, 0.3), rgba(212, 175, 55, 0.2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#d4af37;
+    box-shadow:0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.ha-info-icon svg {
+    width:26px;
+    height:26px;
+}
+
+.ha-info-title {
+    font-size:18px;
+    font-weight:800;
+    color:#faf8f3;
+    margin-bottom:4px;
+    word-break:keep-all;
+}
+
+.ha-info-desc {
+    font-size:14px;
+    color:rgba(232, 212, 168, 0.8);
+    line-height:1.6;
+    word-break:keep-all;
+}
+
+.ha-info-oneline {
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.ha-arrow {
+    font-size:14px;
+}
+
+.ha-arrow.up { color:#10b981; }
+.ha-arrow.down { color:#ef4444; }
+
+/* 모바일 테이블 */
+.ha-info-table-mobile {
+    display:block;
+    margin-top:8px;
+}
+
+.ha-info-desc-desktop {
+    display:none;
+}
+
+.table-header {
+    display:grid;
+    grid-template-columns:70px 1fr 1fr 1fr;
+    gap:4px;
+    margin-bottom:6px;
+}
+
+.table-row {
+    display:grid;
+    grid-template-columns:70px 1fr 1fr 1fr;
+    gap:4px;
+    margin-bottom:4px;
+}
+
+.table-cell {
+    font-size:13px;
+    color:rgba(232, 212, 168, 0.8);
+    text-align:center;
+    padding:4px 2px;
+    font-weight:600;
+    word-break:keep-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.table-cell.label {
+    text-align:left;
+    font-weight:700;
+    color:#faf8f3;
+}
+
+.table-header .table-cell {
+    font-weight:700;
+    color:#d4af37;
+    font-size:12px;
+}
+
+.ha-cta-section {
+    margin-top:30px;
+    width:100%;
+    max-width:360px;
+    text-align:center;
+}
+
+.ha-cta-btn {
+    display:block;
+    width:100%;
+    background:linear-gradient(135deg, #8b6f3f, #d4af37);
+    color:#ffffff;
+    padding:16px 32px;
+    border-radius:28px;
+    font-size:17px;
+    font-weight:800;
+    text-decoration:none;
+    box-shadow:0 0 30px rgba(212, 175, 55, 0.4),
+               0 8px 25px rgba(30, 60, 120, 0.3);
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.ha-cta-btn::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(
+            circle 140px at var(--mx, 50%) var(--my, 50%),
+            rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0.35) 20%,
+            rgba(212, 175, 55, 0.2) 40%,
+            transparent 100%
+        );
+    opacity:0;
+    transition:opacity 0.3s ease;
+    filter:blur(4px);
+}
+
+.ha-cta-btn:hover::before {
+    opacity:1;
+}
+
+.ha-cta-btn:hover {
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 0 70px rgba(212, 175, 55, 0.9),
+               0 0 110px rgba(255, 255, 255, 0.6),
+               0 0 150px rgba(30, 60, 120, 0.4),
+               0 12px 35px rgba(30, 60, 120, 0.5);
+}
+
+.ha-cta-btn:active {
+    transform:scale(0.98);
+}
+
+.ha-cta-btn .button-text {
+    position:relative;
+    z-index:1;
+}
+
+@keyframes highlightWave {
+    0%,100% { background-position:0% 50%; }
+    50% { background-position:100% 50%; }
+}
+
+@keyframes fadeUp {
+    from { opacity:0; transform:translateY(15px); }
+    to { opacity:1; transform:translateY(0); }
+}
+
+/* 모바일 최적화 */
+@media (max-width:767px) {
+    #s20251017f9d98dc094ff5 {
+        padding:42px 12px 30px;
+    }
+
+    .ha-emotion-message {
+        padding:28px 16px;
+    }
+
+    .ha-sub-title {
+        font-size:12px !important;
+        letter-spacing:0.5px;
+    }
+
+    .ha-main-title {
+        font-size:18px !important;
+        line-height:1.45;
+        padding:0 2px;
+    }
+
+    .ha-sub-desc {
+        font-size:14px !important;
+        line-height:1.75;
+        padding:0 2px;
+    }
+
+    .ha-rate-card {
+        padding:20px 14px;
+    }
+
+    .ha-rate-title {
+        font-size:16px;
+        padding:0 2px;
+    }
+
+    .ha-info-item {
+        padding:14px 12px;
+        border-left-width:3px;
+    }
+
+    /* 검증된 성공률 섹션만 차트 아이콘 숨기기 */
+    .ha-info-item:first-child .ha-info-icon {
+        display:none;
+    }
+
+    .ha-info-item:first-child {
+        padding:14px 12px;
+        border-left-width:3px;
+        justify-content:center;
+    }
+
+    .ha-info-item:first-child > div {
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    /* 자금 전문가 시스템 섹션 아이콘 숨기기 */
+    .ha-info-item:last-child .ha-info-icon {
+        display:none;
+    }
+
+    .ha-info-item:last-child {
+        padding:14px 12px;
+        border-left-width:3px;
+        justify-content:center;
+    }
+
+    .ha-info-item:last-child > div {
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .ha-info-title {
+        font-size:16px;
+        margin-bottom:6px;
+        word-break:keep-all;
+        text-align:center;
+    }
+
+    .ha-info-desc {
+        font-size:13px;
+        word-break:keep-all;
+        text-align:center;
+    }
+
+    .table-header {
+        grid-template-columns:48px 1fr 1fr 1fr;
+        gap:2px;
+    }
+
+    .table-row {
+        grid-template-columns:48px 1fr 1fr 1fr;
+        gap:2px;
+    }
+
+    .table-cell {
+        font-size:11px;
+        padding:2px 1px;
+        word-break:keep-all;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:normal;
+        line-height:1.3;
+    }
+
+    .table-cell.label {
+        font-size:10.5px;
+        white-space:normal;
+    }
+
+    .table-header .table-cell {
+        font-size:10.5px;
+        white-space:normal;
+    }
+}
+
+/* 아주 작은 모바일 */
+@media (max-width:380px) {
+    #s20251017f9d98dc094ff5 {
+        padding:38px 10px 26px;
+    }
+
+    .ha-emotion-message {
+        padding:24px 14px;
+    }
+
+    .ha-main-title {
+        font-size:17px !important;
+    }
+
+    .ha-sub-desc {
+        font-size:13px !important;
+    }
+
+    .ha-rate-card {
+        padding:18px 12px;
+    }
+
+    .ha-rate-title {
+        font-size:15px;
+    }
+
+    .ha-info-item {
+        padding:12px 10px;
+        border-left-width:3px;
+    }
+
+    .ha-info-item:first-child {
+        padding:12px 10px;
+        border-left-width:3px;
+        justify-content:center;
+    }
+
+    .ha-info-item:first-child > div {
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .ha-info-item:last-child .ha-info-icon {
+        display:none;
+    }
+
+    .ha-info-item:last-child {
+        padding:12px 10px;
+        border-left-width:3px;
+        justify-content:center;
+    }
+
+    .ha-info-item:last-child > div {
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .ha-info-title {
+        font-size:15px;
+        text-align:center;
+    }
+
+    .ha-info-desc {
+        text-align:center;
+    }
+
+    .table-header {
+        grid-template-columns:46px 1fr 1fr 1fr;
+        gap:1.5px;
+    }
+
+    .table-row {
+        grid-template-columns:46px 1fr 1fr 1fr;
+        gap:1.5px;
+    }
+
+    .table-cell {
+        font-size:10px;
+        padding:2px 0.5px;
+        white-space:normal;
+        line-height:1.35;
+    }
+
+    .table-cell.label {
+        font-size:9.5px;
+        white-space:normal;
+    }
+
+    .table-header .table-cell {
+        font-size:9.5px;
+        white-space:normal;
+    }
+}
+
+@media (min-width:768px) {
+    #s20251017f9d98dc094ff5 { padding:70px 32px 48px; }
+    .ha-emotion-message { padding:48px 64px; }
+    .ha-sub-title { font-size:16px; }
+    .ha-main-title { font-size:40px; line-height:1.3; }
+    .ha-sub-desc { font-size:19px; }
+    .mobile-br { display:none; }
+    .mobile-br-only { display:none; }
+    .desktop-br-only { display:inline; }
+    .ha-main-content {
+        flex-direction:row;
+        gap:60px;
+        align-items:flex-start;
+        justify-content:center;
+    }
+    .ha-rate-card {
+        flex:0 0 430px;
+        max-width:430px;
+        padding:34px;
+    }
+    .ha-info-section {
+        flex:0 0 520px;
+        max-width:520px;
+        gap:22px;
+    }
+    .ha-rate-comparison { display:none; }
+    .ha-graph-container { display:block; }
+    .ha-info-item {
+        padding:24px;
+        border-left-width:8px;
+    }
+    .ha-info-title { font-size:24px; }
+    .ha-info-desc { font-size:18px; }
+    .ha-info-oneline { display:block; }
+    .ha-arrow { font-size:18px; }
+    .ha-info-table-mobile { display:none; }
+    .ha-info-desc-desktop { display:block; }
+    .ha-cta-btn {
+        display:inline-block;
+        width:auto;
+        padding:18px 48px;
+        font-size:20px;
+    }
+}
+</style>
+</head>
+<body>
+<section id="s20251017f9d98dc094ff5">
+    <div class="ha-hero-container">
+        <div class="ha-emotion-message">
+            <p class="ha-sub-title">정부정책 및 성장 전문가</p>
+            <h1 class="ha-main-title">
+                체계적인 <span class="ha-highlight">경영 자문</span><br class="desktop-br-only">
+                어디서부터 시작해야 하나요?
+            </h1>
+            <p class="ha-sub-desc">
+                <span class="ha-brand-name">자금치유연구소</span>의 성장 전문가와<br class="mobile-br-only">
+                대표님의 성장 과정을 함께합니다<br class="mobile-br-only">
+                올바른 전략 수립이 성공의 첫걸음입니다<br class="mobile-br-only">
+                <small style="font-size:13px;color:rgba(232,212,168,0.75);display:block;margin-top:10px;">※ 자금치유연구소는 기업평가 및 정부정책 서류작성 대행을 하지 않습니다.</small>
+            </p>
+        </div>
+
+        <div class="ha-main-content">
+            <div class="ha-rate-card">
+                <h3 class="ha-rate-title">💡 정책자금 vs 시중은행</h3>
+
+                <div class="ha-rate-comparison">
+                    <div class="ha-rate-item policy">
+                        <div class="ha-rate-label">정책자금</div>
+                        <div class="ha-rate-value">2~4.5%</div>
+                        <div class="ha-rate-status">최저금리</div>
+                    </div>
+                    <div class="ha-rate-item bank">
+                        <div class="ha-rate-label">시중은행</div>
+                        <div class="ha-rate-value">5.5~8.5%</div>
+                        <div class="ha-rate-status">부담금리</div>
+                    </div>
+                </div>
+
+                <div class="ha-graph-container">
+                    <div class="ha-graph-bar policy">
+                        <span class="ha-graph-value">2~4.5%</span>
+                        <span class="ha-graph-label">최저금리</span>
+                    </div>
+                    <div class="ha-graph-bar bank">
+                        <span class="ha-graph-value">5.5~8.5%</span>
+                        <span class="ha-graph-label">부담금리</span>
+                    </div>
+                </div>
+                <div class="ha-graph-legend">
+                    <div class="ha-legend-item"><span class="ha-legend-label">정책자금</span></div>
+                    <div class="ha-legend-item"><span class="ha-legend-label">시중은행</span></div>
+                </div>
+            </div>
+
+            <div class="ha-info-section">
+                <div class="ha-info-item">
+                    <div class="ha-info-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="ha-info-title">검증된 성공률 96% 기록</h4>
+                        <div class="ha-info-table-mobile">
+                            <div class="table-header">
+                                <div class="table-cell"></div>
+                                <div class="table-cell">성공률</div>
+                                <div class="table-cell">전략</div>
+                                <div class="table-cell">성과</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell label">자체진행</div>
+                                <div class="table-cell"><span class="ha-arrow down">▼</span></div>
+                                <div class="table-cell"><span class="ha-arrow down">▼</span></div>
+                                <div class="table-cell"><span class="ha-arrow down">▼</span></div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell label">전문전략</div>
+                                <div class="table-cell"><span class="ha-arrow up">▲</span></div>
+                                <div class="table-cell"><span class="ha-arrow up">▲</span></div>
+                                <div class="table-cell"><span class="ha-arrow up">▲</span></div>
+                            </div>
+                        </div>
+                        <p class="ha-info-desc ha-info-desc-desktop">
+                            <span class="ha-info-oneline">
+                                자체 진행 시 <span class="ha-arrow down">▼</span>낮은 성공률<br>
+                                전문 성장 전략 <span class="ha-arrow up">▲</span>높은 성공률 <span class="ha-arrow up">▲</span>우수한 성과
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ha-info-item">
+                    <div class="ha-info-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="ha-info-title">체계적 성장 전략 시스템</h4>
+                        <p class="ha-info-desc">
+                            성장 전문가 팀이<br>
+                            대표자 분석부터 전략 실행까지 함께합니다
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ha-cta-section">
+            <a class="ha-cta-btn" href="#s20251017bcddee2e53649"><span class="button-text">무료 상담신청</span></a>
+        </div>
+    </div>
+</section>
+
+<script>
+// CTA 버튼 및 카드 마우스 추적 효과
+(function() {
+    // 데스크톱에서만 실행
+    if (window.innerWidth > 768) {
+        const ctaButtons = document.querySelectorAll('.ha-cta-btn');
+
+        ctaButtons.forEach(button => {
+            button.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                this.style.setProperty('--mx', `${x}px`);
+                this.style.setProperty('--my', `${y}px`);
+            });
+
+            button.addEventListener('mouseleave', function() {
+                this.style.setProperty('--mx', '50%');
+                this.style.setProperty('--my', '50%');
+            });
+        });
+
+        // 카드들에도 마우스 추적 스포트라이트 효과 추가
+        const cards = document.querySelectorAll('.ha-rate-card, .ha-info-item');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // 스포트라이트 효과용 마우스 위치 업데이트
+                this.style.setProperty('--mx', `${x}px`);
+                this.style.setProperty('--my', `${y}px`);
+
+                // 3D 틸트 효과
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.setProperty('--mx', '50%');
+                this.style.setProperty('--my', '50%');
+            });
+        });
+    }
+})();
+</script>
+</body>
+</html>

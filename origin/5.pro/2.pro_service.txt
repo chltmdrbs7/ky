@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자금치유연구소 자금조달 전문서비스</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      /* 섹션 전체 배경 - 다크 블루 + 네온 골드 테마 */
+      #s202510178a1cb6811ca81 {
+          width: 100vw !important;
+          margin-left: calc(-50vw + 50%) !important;
+          background: #0f172e !important;
+          position: relative !important;
+          overflow: hidden !important;
+          z-index: 3 !important;
+      }
+
+      .expert-network-section {
+          width: 100% !important;
+          background: transparent !important;
+          margin: 0 !important;
+          padding: 0 !important;
+      }
+
+      .section-wrapper {
+          width: 100% !important;
+          padding: 50px 0 !important;
+          background: transparent !important;
+      }
+
+      .container {
+          max-width: 1200px !important;
+          margin: 0 auto !important;
+          padding: 0 20px !important;
+      }
+
+      /* 헤더 영역 */
+      .section-header {
+          text-align: center !important;
+          margin-bottom: 40px !important;
+      }
+
+      .section-title {
+          font-size: 38px !important;
+          font-weight: 700 !important;
+          color: #faf8f3 !important;
+          margin-bottom: 16px !important;
+          line-height: 1.2 !important;
+          text-shadow:
+              0 0 10px rgba(250, 248, 243, 0.5),
+              0 0 20px rgba(212, 175, 55, 0.5) !important;
+      }
+
+      .section-subtitle {
+          font-size: 18px !important;
+          font-weight: 400 !important;
+          color: #e8d4a8 !important;
+          line-height: 1.5 !important;
+          text-shadow: 0 0 5px rgba(232, 212, 168, 0.5) !important;
+      }
+
+      /* 전문가 카드 그리드 */
+      .expert-grid {
+          display: grid !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 24px !important;
+          margin-bottom: 45px !important;
+      }
+
+      /* 전문가 카드 */
+      .expert-card {
+          background: rgba(212, 175, 55, 0.05) !important;
+          border: 1px solid rgba(212, 175, 55, 0.3) !important;
+          border-radius: 14px !important;
+          padding: 32px !important;
+          position: relative !important;
+          overflow: hidden !important;
+          transition: all 0.3s ease !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          backdrop-filter: blur(10px) !important;
+      }
+
+      /* 스포트라이트 효과 - 전문가 카드 */
+      .expert-card::after {
+          content: '' !important;
+          position: absolute !important;
+          inset: 0 !important;
+          background: radial-gradient(
+              circle 150px at var(--mx, 50%) var(--my, 50%),
+              rgba(250, 248, 243, 0.3),
+              rgba(212, 175, 55, 0.25) 40%,
+              rgba(139, 111, 63, 0.15) 60%,
+              transparent 100%
+          ) !important;
+          opacity: 0 !important;
+          transition: opacity 0.3s ease !important;
+          pointer-events: none !important;
+          z-index: 0 !important;
+          filter: blur(10px) !important;
+          border-radius: inherit !important;
+      }
+
+      .expert-card:hover::after {
+          opacity: 1 !important;
+      }
+
+      .expert-card:hover {
+          transform: translateY(-3px) !important;
+          box-shadow:
+              0 0 30px rgba(212, 175, 55, 0.4),
+              inset 0 0 20px rgba(212, 175, 55, 0.1) !important;
+          border-color: #d4af37 !important;
+          background: rgba(212, 175, 55, 0.1) !important;
+      }
+
+      /* 카드 내부 요소들의 z-index 설정 */
+      .expert-card > * {
+          position: relative !important;
+          z-index: 1 !important;
+      }
+
+      /* 아이콘 영역 */
+      .expert-icon {
+          width: 54px !important;
+          height: 54px !important;
+          background: linear-gradient(135deg, #8b6f3f 0%, #d4af37 100%) !important;
+          border-radius: 10px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          margin-bottom: 20px !important;
+          box-shadow:
+              0 0 20px rgba(212, 175, 55, 0.5),
+              inset 0 0 10px rgba(212, 175, 55, 0.3) !important;
+      }
+
+      .expert-icon svg {
+          width: 28px !important;
+          height: 28px !important;
+          fill: #faf8f3 !important;
+          filter: drop-shadow(0 0 3px rgba(250, 248, 243, 0.5)) !important;
+      }
+
+      /* 카드 콘텐츠 */
+      .expert-title {
+          font-size: 22px !important;
+          font-weight: 700 !important;
+          color: #d4af37 !important;
+          margin-bottom: 14px !important;
+          text-align: center !important;
+          text-shadow: 0 0 10px rgba(212, 175, 55, 0.8) !important;
+      }
+
+      .expert-list {
+          list-style: none !important;
+          margin-bottom: 20px !important;
+          padding: 0 !important;
+          width: auto !important;
+          max-width: 280px !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: flex-start !important;
+      }
+
+      .expert-list li {
+          position: relative !important;
+          padding-left: 20px !important;
+          margin-bottom: 10px !important;
+          font-size: 16px !important;
+          line-height: 1.5 !important;
+          color: #cbd5e1 !important;
+          text-align: left !important;
+          width: auto !important;
+      }
+
+      .expert-list li::before {
+          content: '' !important;
+          position: absolute !important;
+          left: 0px !important;
+          top: 7px !important;
+          width: 5px !important;
+          height: 5px !important;
+          background-color: #d4af37 !important;
+          border-radius: 50% !important;
+          box-shadow: 0 0 6px rgba(212, 175, 55, 0.8) !important;
+      }
+
+      /* 서비스 영역 */
+      .service-area {
+          margin-top: 20px !important;
+          padding-top: 20px !important;
+          border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
+          width: 100% !important;
+          max-width: 320px !important;
+      }
+
+      .service-label {
+          font-size: 14px !important;
+          font-weight: 600 !important;
+          color: #e0f2f1 !important;
+          margin-bottom: 12px !important;
+          text-transform: uppercase !important;
+          letter-spacing: 0.5px !important;
+          text-align: center !important;
+          text-shadow: 0 0 5px rgba(224, 242, 241, 0.5) !important;
+      }
+
+      .service-items {
+          display: grid !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 8px !important;
+          justify-items: center !important;
+      }
+
+      .service-tag {
+          background-color: rgba(212, 175, 55, 0.1) !important;
+          border: 1px solid rgba(212, 175, 55, 0.3) !important;
+          padding: 8px 12px !important;
+          border-radius: 18px !important;
+          font-size: 14px !important;
+          color: #e8d4a8 !important;
+          transition: all 0.2s ease !important;
+          width: 150px !important;
+          text-align: center !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          min-height: 36px !important;
+      }
+
+      .service-tag:hover {
+          background-color: rgba(212, 175, 55, 0.2) !important;
+          border-color: #d4af37 !important;
+          box-shadow: 0 0 10px rgba(212, 175, 55, 0.5) !important;
+          color: #faf8f3 !important;
+      }
+
+      /* CTA 영역 */
+      .cta-area {
+          text-align: center !important;
+          margin-top: 45px !important;
+      }
+
+      .cta-description {
+          font-size: 17px !important;
+          color: #cbd5e1 !important;
+          margin-bottom: 24px !important;
+          line-height: 1.5 !important;
+      }
+
+      .cta-button {
+          display: inline-block !important;
+          background: linear-gradient(135deg, #8b6f3f 0%, #d4af37 100%) !important;
+          color: #faf8f3 !important;
+          font-size: 17px !important;
+          font-weight: 700 !important;
+          padding: 14px 40px !important;
+          border-radius: 50px !important;
+          text-decoration: none !important;
+          transition: all 0.3s ease !important;
+          border: 1px solid #d4af37 !important;
+          text-shadow: 0 0 10px rgba(250, 248, 243, 0.8) !important;
+          box-shadow:
+              0 0 30px rgba(212, 175, 55, 0.8),
+              inset 0 0 20px rgba(212, 175, 55, 0.3) !important;
+      }
+
+      .cta-button:hover {
+          transform: translateY(-2px) scale(1.05) !important;
+          box-shadow:
+              0 0 40px rgba(212, 175, 55, 1),
+              0 10px 30px rgba(212, 175, 55, 0.5),
+              inset 0 0 30px rgba(212, 175, 55, 0.4) !important;
+          background: linear-gradient(135deg, #d4af37 0%, #e8d4a8 100%) !important;
+      }
+
+      /* PC에서는 네비게이션 버튼 숨기기 */
+      .scroll-nav {
+          display: none !important;
+      }
+
+      /* 반응형 디자인 - 모바일 */
+      @media (max-width: 768px) {
+          .section-wrapper {
+              padding: 35px 0 !important;
+          }
+
+          .section-header {
+              margin-bottom: 30px !important;
+          }
+
+          .section-title {
+              font-size: 24px !important;
+              line-height: 1.4 !important;
+              word-break: keep-all !important;
+          }
+
+          .section-subtitle {
+              font-size: 15px !important;
+              word-break: keep-all !important;
+          }
+
+          /* 모바일에서만 네비게이션 버튼 표시 */
+          .scroll-nav {
+              display: flex !important;
+          }
+
+          /* 카드 그리드 래퍼 */
+          .expert-grid-wrapper {
+              position: relative !important;
+              margin-bottom: 30px !important;
+          }
+
+          /* 가로 스크롤 그리드 */
+          .expert-grid {
+              display: flex !important;
+              grid-template-columns: none !important;
+              overflow-x: auto !important;
+              scroll-snap-type: x mandatory !important;
+              -webkit-overflow-scrolling: touch !important;
+              gap: 16px !important;
+              padding: 10px 20px 20px !important;
+              margin-bottom: 0 !important;
+          }
+
+          /* 좌우 화살표 네비게이션 */
+          .scroll-nav {
+              position: absolute !important;
+              top: 50% !important;
+              transform: translateY(-50%) !important;
+              width: 36px !important;
+              height: 36px !important;
+              background: rgba(212, 175, 55, 0.1) !important;
+              backdrop-filter: blur(10px) !important;
+              border: 1px solid rgba(212, 175, 55, 0.3) !important;
+              border-radius: 50% !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              cursor: pointer !important;
+              transition: all 0.3s ease !important;
+              z-index: 10 !important;
+              box-shadow: 0 0 15px rgba(212, 175, 55, 0.3) !important;
+          }
+
+          .scroll-nav:hover {
+              background: rgba(212, 175, 55, 0.2) !important;
+              box-shadow: 0 0 20px rgba(212, 175, 55, 0.5) !important;
+          }
+
+          .scroll-nav.prev {
+              left: 5px !important;
+          }
+
+          .scroll-nav.next {
+              right: 5px !important;
+          }
+
+          .scroll-nav.hidden {
+              opacity: 0 !important;
+              pointer-events: none !important;
+          }
+
+          .scroll-nav svg {
+              width: 20px !important;
+              height: 20px !important;
+              fill: #d4af37 !important;
+              filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.8)) !important;
+          }
+
+          .expert-card {
+              flex: 0 0 280px !important;
+              scroll-snap-align: start !important;
+              padding: 24px 18px !important;
+          }
+
+          .expert-icon {
+              width: 44px !important;
+              height: 44px !important;
+              margin-bottom: 14px !important;
+          }
+
+          .expert-icon svg {
+              width: 24px !important;
+              height: 24px !important;
+          }
+
+          .expert-title {
+              font-size: 19px !important;
+              margin-bottom: 12px !important;
+          }
+
+          .expert-list {
+              max-width: 250px !important;
+              margin-bottom: 16px !important;
+          }
+
+          .expert-list li {
+              font-size: 14px !important;
+              padding-left: 18px !important;
+              margin-bottom: 8px !important;
+          }
+
+          .expert-list li::before {
+              left: 0px !important;
+          }
+
+          /* 모바일 서비스 영역 최적화 */
+          .service-area {
+              margin-top: 16px !important;
+              padding-top: 16px !important;
+              max-width: 250px !important;
+          }
+
+          .service-label {
+              font-size: 12px !important;
+              margin-bottom: 10px !important;
+          }
+
+          .service-items {
+              gap: 6px !important;
+          }
+
+          .service-tag {
+              font-size: 11px !important;
+              padding: 6px 8px !important;
+              width: 115px !important;
+              min-height: 30px !important;
+              border-radius: 14px !important;
+          }
+
+          .cta-description {
+              font-size: 15px !important;
+              word-break: keep-all !important;
+          }
+
+          .cta-button {
+              padding: 12px 32px !important;
+              font-size: 15px !important;
+          }
+      }
+  </style>
+</head>
+<body>
+  <section id="s202510178a1cb6811ca81" class="expert-network-section">
+      <div class="section-wrapper">
+          <div class="container">
+          <!-- 섹션 헤더 -->
+          <div class="section-header">
+              <h2 class="section-title">다양한 분야의 전문가 서비스로<br>기업의 모든 니즈를 충족합니다</h2>
+              <p class="section-subtitle">자금 조달 성공률을 높이는<br>자금치유연구소의 전문가 매칭 서비스</p>
+          </div>
+
+          <!-- 전문가 카드 그리드 래퍼 -->
+          <div class="expert-grid-wrapper">
+              <!-- 전문가 카드 그리드 -->
+              <div class="expert-grid">
+                  <!-- 법무 전문가 카드 -->
+                  <div class="expert-card">
+                      <div class="expert-icon">
+                          <svg viewBox="0 0 24 24">
+                              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z M12 11.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V8.93l7-3.11v6.17z"/>
+                          </svg>
+                      </div>
+                      <h3 class="expert-title">법무 전문가</h3>
+                      <ul class="expert-list">
+                          <li>변호사 네트워크</li>
+                          <li>법률 자문 및 위험 검토</li>
+                          <li>계약 구조 최적화</li>
+                      </ul>
+                      <div class="service-area">
+                          <p class="service-label">핵심 서비스</p>
+                          <div class="service-items">
+                              <span class="service-tag">법률 검토</span>
+                              <span class="service-tag">계약 관리</span>
+                              <span class="service-tag">리스크 관리</span>
+                              <span class="service-tag">자문 서비스</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- 세무 전문가 카드 -->
+                  <div class="expert-card">
+                      <div class="expert-icon">
+                          <svg viewBox="0 0 24 24">
+                              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                          </svg>
+                      </div>
+                      <h3 class="expert-title">세무 전문가</h3>
+                      <ul class="expert-list">
+                          <li>세무사 네트워크</li>
+                          <li>세무 전략 및 절세 계획</li>
+                          <li>세무 리스크 관리</li>
+                      </ul>
+                      <div class="service-area">
+                          <p class="service-label">핵심 서비스</p>
+                          <div class="service-items">
+                              <span class="service-tag">절세 전략</span>
+                              <span class="service-tag">세무 자문</span>
+                              <span class="service-tag">세무 신고</span>
+                              <span class="service-tag">리스크 관리</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- 회계 전문가 카드 -->
+                  <div class="expert-card">
+                      <div class="expert-icon">
+                          <svg viewBox="0 0 24 24">
+                              <path d="M9 3V1h6v2H9zM11 21h2V8h-2v13zM17.5 11.5L19 13l-6 6-4.5-4.5L10 13l3 3 4.5-4.5z"/>
+                          </svg>
+                      </div>
+                      <h3 class="expert-title">회계 전문가</h3>
+                      <ul class="expert-list">
+                          <li>회계사 네트워크</li>
+                          <li>재무제표 검토 및 분석</li>
+                          <li>재무 컨설팅</li>
+                      </ul>
+                      <div class="service-area">
+                          <p class="service-label">핵심 서비스</p>
+                          <div class="service-items">
+                              <span class="service-tag">회계 감시</span>
+                              <span class="service-tag">재무 분석</span>
+                              <span class="service-tag">재무 계획</span>
+                              <span class="service-tag">내부 감시</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- 노무 전문가 카드 -->
+                  <div class="expert-card">
+                      <div class="expert-icon">
+                          <svg viewBox="0 0 24 24">
+                              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                          </svg>
+                      </div>
+                      <h3 class="expert-title">노무 전문가</h3>
+                      <ul class="expert-list">
+                          <li>공인노무사 네트워크</li>
+                          <li>인사노무 컨설팅</li>
+                          <li>근로계약 관리</li>
+                      </ul>
+                      <div class="service-area">
+                          <p class="service-label">핵심 서비스</p>
+                          <div class="service-items">
+                              <span class="service-tag">노무 관리</span>
+                              <span class="service-tag">임금 설계</span>
+                              <span class="service-tag">노동분쟁</span>
+                              <span class="service-tag">4대보험</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- 좌우 스크롤 네비게이션 버튼 (모바일 전용) -->
+              <button class="scroll-nav prev hidden">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                  </svg>
+              </button>
+              <button class="scroll-nav next">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                  </svg>
+              </button>
+          </div>
+
+          <!-- CTA 영역 -->
+          <div class="cta-area">
+              <p class="cta-description">
+                  자금치유연구소의 전문가 네트워크로<br>
+                  자금 조달 성공률을 높이세요
+              </p>
+              <a href="#s20251017b5820c727e09d" class="cta-button">전문가 서비스 신청하기</a>
+          </div>
+          </div>
+      </div>
+  </section>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const sectionElement = document.querySelector('#s202510178a1cb6811ca81');
+      if (!sectionElement) return;
+
+      // 스포트라이트 마우스 트래킹 - 전문가 카드
+      const expertCards = sectionElement.querySelectorAll('.expert-card');
+
+      expertCards.forEach(card => {
+          card.addEventListener('mousemove', function(e) {
+              const rect = this.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              this.style.setProperty('--mx', x + 'px');
+              this.style.setProperty('--my', y + 'px');
+          });
+
+          card.addEventListener('mouseleave', function() {
+              this.style.removeProperty('--mx');
+              this.style.removeProperty('--my');
+          });
+      });
+
+      // 모바일 가로 스크롤 네비게이션
+      const expertWrapper = sectionElement.querySelector('.expert-grid-wrapper');
+      const expertGrid = expertWrapper ? expertWrapper.querySelector('.expert-grid') : null;
+      const expertPrev = expertWrapper ? expertWrapper.querySelector('.scroll-nav.prev') : null;
+      const expertNext = expertWrapper ? expertWrapper.querySelector('.scroll-nav.next') : null;
+
+      if (expertGrid && expertPrev && expertNext) {
+          const cards = expertGrid.querySelectorAll('.expert-card');
+
+          function checkExpertScroll() {
+              const scrollLeft = expertGrid.scrollLeft;
+              const maxScroll = expertGrid.scrollWidth - expertGrid.clientWidth;
+
+              if (scrollLeft <= 10) {
+                  expertPrev.classList.add('hidden');
+              } else {
+                  expertPrev.classList.remove('hidden');
+              }
+
+              if (scrollLeft >= maxScroll - 10) {
+                  expertNext.classList.add('hidden');
+              } else {
+                  expertNext.classList.remove('hidden');
+              }
+          }
+
+          // 초기 체크 및 리사이즈 이벤트
+          function initScrollNav() {
+              if (window.innerWidth <= 768) {
+                  checkExpertScroll();
+              }
+          }
+
+          initScrollNav();
+          window.addEventListener('resize', initScrollNav);
+          expertGrid.addEventListener('scroll', checkExpertScroll);
+
+          expertPrev.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              const cardWidth = cards[0].offsetWidth + 16;
+              expertGrid.scrollBy({
+                  left: -cardWidth,
+                  behavior: 'smooth'
+              });
+          });
+
+          expertNext.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              const cardWidth = cards[0].offsetWidth + 16;
+              expertGrid.scrollBy({
+                  left: cardWidth,
+                  behavior: 'smooth'
+              });
+          });
+      }
+  });
+  </script>
+</body>
+</html>

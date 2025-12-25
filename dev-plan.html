@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KY 중소기업지원센터 - 홈페이지 개발 계획</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1E3A5F;
+            --primary-light: #2D5A87;
+            --accent: #3B82F6;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --gray-50: #F8FAFC;
+            --gray-200: #E2E8F0;
+            --gray-500: #64748B;
+            --gray-800: #1E293B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Pretendard', -apple-system, system-ui, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0F1D2F 0%, #1E3A5F 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.8rem; margin-bottom: 8px; }
+        .header p { opacity: 0.9; font-size: 0.95rem; }
+        .domain {
+            display: inline-block;
+            background: var(--accent);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 16px;
+            font-weight: 600;
+        }
+
+        /* Brand Info */
+        .brand-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray-200);
+        }
+        .brand-card h2 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .info-item {
+            background: var(--gray-50);
+            padding: 12px 16px;
+            border-radius: 8px;
+        }
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 4px;
+        }
+        .info-value {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        /* Progress */
+        .progress-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray-200);
+        }
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .progress-header h2 {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .progress-bar {
+            background: var(--gray-200);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+        .progress-text {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        /* Page List */
+        .page-list { display: flex; flex-direction: column; gap: 12px; }
+        .page-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: var(--gray-50);
+            border-radius: 10px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.2s;
+        }
+        .page-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+        }
+        .page-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .page-info { flex: 1; }
+        .page-name { font-weight: 600; margin-bottom: 2px; }
+        .page-desc { font-size: 0.85rem; color: var(--gray-500); }
+        .page-sections {
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-top: 4px;
+        }
+        .page-status {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-pending {
+            background: var(--gray-200);
+            color: var(--gray-500);
+        }
+        .status-progress {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+        .status-done {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray-200);
+        }
+        .checklist h2 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-item input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent);
+        }
+        .check-item label { cursor: pointer; }
+        .check-item.checked label {
+            color: var(--gray-500);
+            text-decoration: line-through;
+        }
+
+        /* Color Preview */
+        .color-preview {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .color-chip {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--gray-200);
+        }
+        .timeline h2 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            padding-bottom: 20px;
+            position: relative;
+        }
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 32px;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray-200);
+        }
+        .timeline-dot {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .timeline-content { flex: 1; }
+        .timeline-title { font-weight: 600; margin-bottom: 4px; }
+        .timeline-desc { font-size: 0.85rem; color: var(--gray-500); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.4rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .page-item { flex-wrap: wrap; }
+            .page-status { margin-top: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>KY 중소기업지원센터</h1>
+            <p>홈페이지 개발 계획 및 진행 현황</p>
+            <div class="domain">kybiz.co.kr</div>
+        </header>
+
+        <!-- Brand Info -->
+        <div class="brand-card">
+            <h2>브랜드 정보</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">브랜드명</div>
+                    <div class="info-value">KY 중소기업지원센터</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">대표</div>
+                    <div class="info-value">최승균</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">대표번호</div>
+                    <div class="info-value">1555-0238</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">이메일</div>
+                    <div class="info-value">jmfood12@naver.com</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">사업자명</div>
+                    <div class="info-value">케이와이 (837-05-02123)</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">주소</div>
+                    <div class="info-value">전북특별자치도 익산시 평동로3길 32, 1층</div>
+                </div>
+            </div>
+            <div class="color-preview">
+                <div class="color-chip" style="background: #1E3A5F;" onclick="copyColor('#1E3A5F')" title="Primary">Primary</div>
+                <div class="color-chip" style="background: #2D5A87;" onclick="copyColor('#2D5A87')" title="Light">Light</div>
+                <div class="color-chip" style="background: #3B82F6;" onclick="copyColor('#3B82F6')" title="Accent">Accent</div>
+                <div class="color-chip" style="background: #0F1D2F;" onclick="copyColor('#0F1D2F')" title="Dark">Dark</div>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-section">
+            <div class="progress-header">
+                <h2>개발 진행률</h2>
+                <span class="progress-text" id="progressText">0 / 6 페이지 완료</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+            </div>
+
+            <div class="page-list">
+                <div class="page-item" data-page="1">
+                    <div class="page-number">1</div>
+                    <div class="page-info">
+                        <div class="page-name">메인 페이지 (index.html)</div>
+                        <div class="page-desc">히어로, 서비스 소개, 프로세스, 상담 폼</div>
+                        <div class="page-sections">6개 섹션: 헤더, 히어로, 프로세스, 서비스, 폼, 푸터</div>
+                    </div>
+                    <span class="page-status status-pending">대기중</span>
+                </div>
+
+                <div class="page-item" data-page="2">
+                    <div class="page-number">2</div>
+                    <div class="page-info">
+                        <div class="page-name">회사소개 (company.html)</div>
+                        <div class="page-desc">기업 소개, 지원 시스템, 대표 인사말</div>
+                        <div class="page-sections">4개 섹션: 히어로, 시스템, 카테고리, CEO</div>
+                    </div>
+                    <span class="page-status status-pending">대기중</span>
+                </div>
+
+                <div class="page-item" data-page="3">
+                    <div class="page-number">3</div>
+                    <div class="page-info">
+                        <div class="page-name">진행절차 (process.html)</div>
+                        <div class="page-desc">상담 프로세스, FAQ, CTA</div>
+                        <div class="page-sections">4개 섹션: 히어로, 서비스, FAQ, CTA</div>
+                    </div>
+                    <span class="page-status status-pending">대기중</span>
+                </div>
+
+                <div class="page-item" data-page="4">
+                    <div class="page-number">4</div>
+                    <div class="page-info">
+                        <div class="page-name">정책자금 (fund.html)</div>
+                        <div class="page-desc">정책자금 안내, 신청 프로세스</div>
+                        <div class="page-sections">3개 섹션: 히어로, 프로세스, 상세</div>
+                    </div>
+                    <span class="page-status status-pending">대기중</span>
+                </div>
+
+                <div class="page-item" data-page="5">
+                    <div class="page-number">5</div>
+                    <div class="page-info">
+                        <div class="page-name">전문분야 (pro.html)</div>
+                        <div class="page-desc">전문 서비스 영역, 컨설팅</div>
+                        <div class="page-sections">3개 섹션: 히어로, 서비스, 프로세스</div>
+                    </div>
+                    <span class="page-status status-pending">대기중</span>
+                </div>
+
+                <div class="page-item" data-page="6">
+                    <div class="page-number">6</div>
+                    <div class="page-info">
+                        <div class="page-name">마케팅 (mkt.html)</div>
+                        <div class="page-desc">마케팅 지원 서비스</div>
+                        <div class="page-sections">3개 섹션: 히어로, 블록, 폼</div>
+                    </div>
+                    <span class="page-status status-pending">대기중</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="checklist">
+            <h2>개발 체크리스트</h2>
+            <div class="check-item">
+                <input type="checkbox" id="check1">
+                <label for="check1">브랜드 정보 정리 (brand-info.json)</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check2">
+                <label for="check2">컬러 가이드 설정 (color-guide.html)</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check3">
+                <label for="check3">공통 CSS/JS 파일 생성</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check4">
+                <label for="check4">SEO 메타태그 템플릿 작성</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check5">
+                <label for="check5">반응형 디자인 테스트</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check6">
+                <label for="check6">접근성 검사 (WCAG 2.1 AA)</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check7">
+                <label for="check7">Cloudflare 배포 설정</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check8">
+                <label for="check8">도메인 연결 (kybiz.co.kr)</label>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline">
+            <h2>개발 단계</h2>
+            <div class="timeline-item">
+                <div class="timeline-dot">1</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">기획 및 설정</div>
+                    <div class="timeline-desc">브랜드 정보, 컬러 가이드, 개발 환경 설정</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">2</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">HTML 로컬 개발</div>
+                    <div class="timeline-desc">페이지별 HTML/CSS 구현, 반응형 적용</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">3</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">테스트 및 최적화</div>
+                    <div class="timeline-desc">크로스 브라우저, 성능, SEO, 접근성 테스트</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">4</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">배포</div>
+                    <div class="timeline-desc">Cloudflare Pages 배포, 도메인 연결</div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>KY 중소기업지원센터 | kybiz.co.kr</p>
+            <p style="margin-top: 8px;">개발 문서 최종 수정: 2025-12-23</p>
+        </footer>
+    </div>
+
+    <script>
+        // 체크리스트 상태 저장
+        document.querySelectorAll('.check-item input').forEach(checkbox => {
+            const saved = localStorage.getItem(checkbox.id);
+            if (saved === 'true') {
+                checkbox.checked = true;
+                checkbox.parentElement.classList.add('checked');
+            }
+
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem(this.id, this.checked);
+                this.parentElement.classList.toggle('checked', this.checked);
+            });
+        });
+
+        // 페이지 상태 관리
+        function updatePageStatus(pageNum, status) {
+            const item = document.querySelector(`[data-page="${pageNum}"]`);
+            const statusEl = item.querySelector('.page-status');
+            statusEl.className = 'page-status';
+
+            if (status === 'progress') {
+                statusEl.classList.add('status-progress');
+                statusEl.textContent = '진행중';
+            } else if (status === 'done') {
+                statusEl.classList.add('status-done');
+                statusEl.textContent = '완료';
+            } else {
+                statusEl.classList.add('status-pending');
+                statusEl.textContent = '대기중';
+            }
+
+            localStorage.setItem(`page-${pageNum}`, status);
+            updateProgress();
+        }
+
+        function updateProgress() {
+            let done = 0;
+            for (let i = 1; i <= 6; i++) {
+                if (localStorage.getItem(`page-${i}`) === 'done') done++;
+            }
+            const percent = Math.round((done / 6) * 100);
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').textContent = `${done} / 6 페이지 완료`;
+        }
+
+        // 페이지 상태 복원
+        for (let i = 1; i <= 6; i++) {
+            const status = localStorage.getItem(`page-${i}`);
+            if (status) updatePageStatus(i, status);
+        }
+        updateProgress();
+
+        // 페이지 클릭으로 상태 변경
+        document.querySelectorAll('.page-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const pageNum = this.dataset.page;
+                const current = localStorage.getItem(`page-${pageNum}`) || 'pending';
+                const next = current === 'pending' ? 'progress' : current === 'progress' ? 'done' : 'pending';
+                updatePageStatus(pageNum, next);
+            });
+        });
+
+        // 색상 복사
+        function copyColor(color) {
+            navigator.clipboard.writeText(color);
+            alert('복사됨: ' + color);
+        }
+    </script>
+</body>
+</html>

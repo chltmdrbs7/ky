@@ -1,0 +1,637 @@
+<!-- ================================================ -->
+<!-- 자금치유연구소 사업분야 섹션 - Golden Sunset Theme -->
+<!-- 섹션 ID: #s20250731337f4d2ea9683 -->
+<!-- ================================================ -->
+
+<style>
+/* 폰트 설정 */
+#s20250731337f4d2ea9683 {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* 사업분야 섹션 배경 - 다크 블루 통일 */
+#s20250731337f4d2ea9683 {
+    background: #0f172e !important;
+    padding: 60px 0 !important;
+    width: 100vw !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-left: calc(-50vw + 50%) !important;
+    left: 0 !important;
+}
+
+/* Frost 파티클 애니메이션 배경 */
+#s20250731337f4d2ea9683::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: radial-gradient(circle at 20% 50%, rgba(0, 78, 146, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(30, 144, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 20%, rgba(0, 4, 40, 0.08) 0%, transparent 40%) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+/* 추가 배경 레이어 - 깊이감 연출 */
+#s20250731337f4d2ea9683::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(180deg, transparent 0%, rgba(15, 21, 53, 0.3) 100%) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+#s20250731337f4d2ea9683 .section-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+#s20250731337f4d2ea9683 .section-title {
+    text-align: center !important;
+    margin-bottom: 40px !important;
+}
+
+/* 타이틀을 화이트로 변경 */
+#s20250731337f4d2ea9683 .section-title h2 {
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin-bottom: 16px !important;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3) !important;
+}
+
+#s20250731337f4d2ea9683 .section-title p {
+    font-size: 18px !important;
+    color: rgba(224, 242, 241, 0.8) !important;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* PC 그리드 레이아웃 */
+#s20250731337f4d2ea9683 .business-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 40px !important;
+    margin-top: 60px !important;
+}
+
+/* 글래스모피즘 카드 스타일 - Golden Sunset 테마 */
+#s20250731337f4d2ea9683 .business-card {
+    background: rgba(212, 175, 55, 0.15) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    border-radius: 16px !important;
+    padding: 40px !important;
+    transition: all 0.4s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow:
+        0 0 30px rgba(212, 175, 55, 0.2),
+        0 8px 32px rgba(212, 175, 55, 0.15),
+        inset 0 1px 0 rgba(212, 175, 55, 0.1) !important;
+}
+
+/* 배경 워터마크 */
+#s20250731337f4d2ea9683 .business-card > *:not(::before):not(::after) {
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+#s20250731337f4d2ea9683 .business-card::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -20px !important;
+    right: -20px !important;
+    width: 120px !important;
+    height: 120px !important;
+    background: radial-gradient(circle, rgba(30, 144, 255, 0.15) 0%, transparent 70%) !important;
+    opacity: 0.3 !important;
+    transition: all 0.3s ease !important;
+    z-index: 1 !important;
+}
+
+/* 마우스 추적 스포트라이트 효과 */
+#s20250731337f4d2ea9683 .business-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: radial-gradient(
+        circle 180px at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 255, 255, 0.3),
+        rgba(30, 144, 255, 0.25) 30%),
+        rgba(0, 78, 146, 0.15) 50%,
+        transparent 100%
+    ) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+    filter: blur(8px) !important;
+}
+
+#s20250731337f4d2ea9683 .business-card:hover::before {
+    opacity: 1 !important;
+}
+
+#s20250731337f4d2ea9683 .business-card:hover {
+    border-color: rgba(212, 175, 55, 0.8) !important;
+    box-shadow:
+        0 0 60px rgba(212, 175, 55, 0.6),
+        0 0 100px rgba(212, 175, 55, 0.3),
+        0 12px 40px rgba(212, 175, 55, 0.3),
+        inset 0 0 40px rgba(212, 175, 55, 0.1) !important;
+    transform: translateY(-5px) !important;
+    background: rgba(212, 175, 55, 0.25) !important;
+}
+
+#s20250731337f4d2ea9683 .business-card:hover::after {
+    opacity: 0.6 !important;
+    transform: scale(1.5) !important;
+}
+
+#s20250731337f4d2ea9683 .business-card h4 {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin-bottom: 16px !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+#s20250731337f4d2ea9683 .business-card p {
+    font-size: 16px !important;
+    color: rgba(224, 242, 241, 0.85) !important;
+    line-height: 1.8 !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+#s20250731337f4d2ea9683 .business-tags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+/* 태그를 Golden Sunset 색상으로 변경 */
+#s20250731337f4d2ea9683 .business-tag {
+    background: rgba(212, 175, 55, 0.15) !important;
+    color: #d4af37 !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    backdrop-filter: blur(5px) !important;
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.5) !important;
+    white-space: nowrap !important;
+}
+
+/* 모바일 네비 블록 기본 숨김 */
+#s20250731337f4d2ea9683 .mobile-nav-blocks {
+    display: none !important;
+}
+
+/* 스크롤 인디케이터 기본 숨김 */
+#s20250731337f4d2ea9683 .scroll-indicator {
+    display: none !important;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    #s20250731337f4d2ea9683 .business-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #s20250731337f4d2ea9683 {
+        padding: 60px 0 !important;
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        min-height: auto !important;
+        width: 100vw !important;
+        margin-left: calc(-50vw + 50%) !important;
+    }
+
+    #s20250731337f4d2ea9683 .section-container {
+        padding: 0 !important;
+    }
+
+    #s20250731337f4d2ea9683 .section-title {
+        padding: 0 20px !important;
+        margin-bottom: 40px !important;
+    }
+
+    #s20250731337f4d2ea9683 .section-title h2 {
+        font-size: 28px !important;
+    }
+
+    /* 모바일 소제목 블록 */
+    #s20250731337f4d2ea9683 .mobile-nav-blocks {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        padding: 0 20px !important;
+        margin-bottom: 40px !important;
+    }
+
+    #s20250731337f4d2ea9683 .nav-block {
+        background: rgba(212, 175, 55, 0.15) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(212, 175, 55, 0.3) !important;
+        border-radius: 12px !important;
+        padding: 16px !important;
+        text-align: center !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: rgba(224, 242, 241, 0.7) !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+
+    #s20250731337f4d2ea9683 .nav-block.active {
+        background: rgba(212, 175, 55, 0.2) !important;
+        color: #d4af37 !important;
+        border-color: rgba(212, 175, 55, 0.8) !important;
+        font-weight: 700 !important;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5) !important;
+    }
+
+    #s20250731337f4d2ea9683 .nav-block:not(.active):hover {
+        background: rgba(212, 175, 55, 0.25) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* 모바일 가로 스크롤 컨테이너 */
+    #s20250731337f4d2ea9683 .business-grid {
+        display: flex !important;
+        gap: 16px !important;
+        padding: 20px 20px 0 20px !important;
+        margin-top: 0 !important;
+        overflow-x: auto !important;
+        overflow-y: visible !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        scroll-padding: 20px !important;
+        position: relative !important;
+    }
+
+    #s20250731337f4d2ea9683 .business-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    /* 모바일 카드 스타일 */
+    #s20250731337f4d2ea9683 .business-card {
+        flex: 0 0 calc(100vw - 56px) !important;
+        max-width: 320px !important;
+        padding: 24px !important;
+        margin: 10px 0 !important;
+        border-radius: 16px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        position: relative !important;
+        overflow: hidden !important;
+        transition: all 0.3s ease !important;
+    }
+
+    /* 모바일에서 배경 이미지 크기 조정 */
+    #s20250731337f4d2ea9683 .business-card::after {
+        width: 80px !important;
+        height: 80px !important;
+        bottom: -10px !important;
+        right: -10px !important;
+    }
+
+    /* 호버 시 카드 스타일 */
+    #s20250731337f4d2ea9683 .business-card:hover {
+        transform: translateY(-5px) !important;
+    }
+
+    /* 각 카드 상단 중앙선 - Frost */
+    #s20250731337f4d2ea9683 .business-card::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 50% !important;
+        width: 0 !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, transparent, #1e90ff, transparent) !important;
+        box-shadow: 0 0 10px rgba(30, 144, 255, 0.8) !important;
+        transform: translateX(-50%) !important;
+        transition: width 0.3s ease !important;
+        border-radius: 0 0 3px 3px !important;
+        z-index: 2 !important;
+    }
+
+    #s20250731337f4d2ea9683 .business-card.active::before,
+    #s20250731337f4d2ea9683 .business-card:hover::before {
+        width: 80px !important;
+        background: linear-gradient(90deg, transparent, #004e92, #1e90ff, transparent) !important;
+        box-shadow: 0 0 15px rgba(30, 144, 255, 1) !important;
+    }
+
+    /* 마지막 카드 뒤에 여백 추가 */
+    #s20250731337f4d2ea9683 .business-card:last-child {
+        margin-right: 20px !important;
+    }
+
+    #s20250731337f4d2ea9683 .business-card h4 {
+        font-size: 18px !important;
+        margin-bottom: 12px !important;
+    }
+
+    #s20250731337f4d2ea9683 .business-card p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* 모바일 태그 컨테이너 - 한 줄로 강제 */
+    #s20250731337f4d2ea9683 .business-tags {
+        gap: 6px !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+
+    #s20250731337f4d2ea9683 .business-tags::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    /* 모바일 태그 스타일 - 폰트 축소 */
+    #s20250731337f4d2ea9683 .business-tag {
+        font-size: 10px !important;
+        padding: 4px 10px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* 스크롤 인디케이터 - Frost 색상 */
+    #s20250731337f4d2ea9683 .scroll-indicator {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        margin-top: 34px !important;
+        padding: 0 20px !important;
+    }
+
+    #s20250731337f4d2ea9683 .indicator-dot {
+        width: 8px !important;
+        height: 8px !important;
+        border-radius: 50% !important;
+        background: rgba(224, 242, 241, 0.2) !important;
+        transition: all 0.3s ease !important;
+        cursor: pointer !important;
+    }
+
+    #s20250731337f4d2ea9683 .indicator-dot:hover {
+        background: rgba(212, 175, 55, 0.5) !important;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.5) !important;
+    }
+
+    #s20250731337f4d2ea9683 .indicator-dot.active {
+        width: 24px !important;
+        border-radius: 4px !important;
+        background: linear-gradient(90deg, #8b6f3f, #d4af37) !important;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.8) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #s20250731337f4d2ea9683 .business-card {
+        flex: 0 0 calc(100vw - 56px) !important;
+        max-width: 280px !important;
+    }
+
+    /* 초소형 모바일 태그 더 축소 */
+    #s20250731337f4d2ea9683 .business-tag {
+        font-size: 9px !important;
+        padding: 3px 8px !important;
+    }
+}
+</style>
+
+<div id="s20250731337f4d2ea9683">
+    <div class="section-container">
+        <div class="section-title">
+            <h2>정책자금 역량강화 서비스</h2>
+            <p>자금치유연구소가 제공하는 대표자 경쟁력 극대화 솔루션</p>
+            <p style="font-size: 12px; color: rgba(224, 242, 241, 0.6); margin-top: 24px; line-height: 1.6;">
+                ※ 자금치유연구소는 정책자금 서류작성을 대행하지 않습니다.<br>
+                ※ 기업평가를 하지 않습니다.
+            </p>
+        </div>
+
+        <!-- 모바일 네비게이션 블록 -->
+        <div class="mobile-nav-blocks">
+            <div class="nav-block active" onclick="scrollToBusinessCardNew(0)">역량진단</div>
+            <div class="nav-block" onclick="scrollToBusinessCardNew(1)">전략수립</div>
+            <div class="nav-block" onclick="scrollToBusinessCardNew(2)">사전준비</div>
+            <div class="nav-block" onclick="scrollToBusinessCardNew(3)">실행지원</div>
+        </div>
+
+        <div class="business-grid">
+            <div class="business-card">
+                <h4>정책자금 역량 진단</h4>
+                <p>대표님이 직접 신청하시기 전, 대표님의 성장 잠재력과 경쟁력을 면밀히 분석하여 최적의 정책자금 지원사업을 선별합니다.</p>
+                <div class="business-tags">
+                    <span class="business-tag">대표자 역량 분석</span>
+                    <span class="business-tag">요건 적합성 분석</span>
+                    <span class="business-tag">경쟁력 진단</span>
+                </div>
+            </div>
+
+            <div class="business-card">
+                <h4>맞춤형 전략 수립</h4>
+                <p>신청 전 준비 단계에서 대표님에게 최적화된 자금 포트폴리오를 설계하고, 대표님이 직접 진행하실 때 사용할 맞춤 전략을 수립합니다.</p>
+                <div class="business-tags">
+                    <span class="business-tag">공고 정보 분석</span>
+                    <span class="business-tag">맞춤 포트폴리오</span>
+                    <span class="business-tag">전략 사전 설계</span>
+                </div>
+            </div>
+
+            <div class="business-card">
+                <h4>사전 준비 완성도 극대화</h4>
+                <p>대표님이 직접 작성하실 때 활용할 사업계획 전략과 필수 증빙 구성 방향을 사전에 철저히 준비합니다.</p>
+                <div class="business-tags">
+                    <span class="business-tag">계획 전략 수립</span>
+                    <span class="business-tag">증빙 방향 설계</span>
+                    <span class="business-tag">준비 완성도 강화</span>
+                </div>
+            </div>
+
+            <div class="business-card">
+                <h4>대표님 실행을 위한 지속 지원</h4>
+                <p>대표님이 직접 진행하시는 협약부터 정산까지의 전 과정에서, 연계 사업 발굴로 지속적인 성장을 함께 준비합니다.</p>
+                <div class="business-tags">
+                    <span class="business-tag">프로세스 가이드</span>
+                    <span class="business-tag">정산 방향 안내</span>
+                    <span class="business-tag">연계 사업 발굴</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 모바일 스크롤 인디케이터 -->
+        <div class="scroll-indicator">
+            <span class="indicator-dot active"></span>
+            <span class="indicator-dot"></span>
+            <span class="indicator-dot"></span>
+            <span class="indicator-dot"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+// 네비게이션 블록 클릭으로 카드 이동
+function scrollToBusinessCardNew(index) {
+    const businessGrid = document.querySelector('#s20250731337f4d2ea9683 .business-grid');
+    const cards = document.querySelectorAll('#s20250731337f4d2ea9683 .business-card');
+    const navBlocks = document.querySelectorAll('#s20250731337f4d2ea9683 .nav-block');
+    const indicators = document.querySelectorAll('#s20250731337f4d2ea9683 .indicator-dot');
+
+    if (businessGrid && cards[index]) {
+        // 카드를 중앙에 정렬
+        const card = cards[index];
+        const cardWidth = card.offsetWidth;
+        const containerWidth = businessGrid.offsetWidth;
+        const cardLeft = card.offsetLeft;
+        const scrollPosition = cardLeft - (containerWidth - cardWidth) / 2;
+
+        businessGrid.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+        });
+
+        // 네비 블록 활성화
+        navBlocks.forEach((block, i) => {
+            block.classList.toggle('active', i === index);
+        });
+
+        // 인디케이터도 업데이트
+        indicators.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+}
+
+// 모바일 스크롤 인디케이터 업데이트 및 클릭 기능
+document.addEventListener('DOMContentLoaded', function() {
+    // 마우스 추적 스포트라이트 효과 (데스크톱 전용)
+    if (window.innerWidth > 768) {
+        const cards = document.querySelectorAll('#s20250731337f4d2ea9683 .business-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                this.style.setProperty('--mx', `${x}px`);
+                this.style.setProperty('--my', `${y}px`);
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.setProperty('--mx', '50%');
+                this.style.setProperty('--my', '50%');
+            });
+        });
+    }
+
+    // 모바일 스크롤 처리
+    if (window.innerWidth <= 768) {
+        const businessGrid = document.querySelector('#s20250731337f4d2ea9683 .business-grid');
+        const indicators = document.querySelectorAll('#s20250731337f4d2ea9683 .indicator-dot');
+        const cards = document.querySelectorAll('#s20250731337f4d2ea9683 .business-card');
+        const navBlocks = document.querySelectorAll('#s20250731337f4d2ea9683 .nav-block');
+
+        if (businessGrid && indicators.length > 0 && cards.length > 0) {
+            // 스크롤 이벤트 - 인디케이터와 네비 블록 업데이트
+            businessGrid.addEventListener('scroll', function() {
+                // 현재 중앙에 있는 카드 찾기
+                const containerWidth = this.offsetWidth;
+                const scrollLeft = this.scrollLeft;
+                const center = scrollLeft + containerWidth / 2;
+
+                let activeIndex = 0;
+                cards.forEach((card, index) => {
+                    const cardLeft = card.offsetLeft;
+                    const cardRight = cardLeft + card.offsetWidth;
+                    const cardCenter = cardLeft + card.offsetWidth / 2;
+
+                    // 카드의 중심이 컨테이너 중앙에 가장 가까운 카드 찾기
+                    if (Math.abs(cardCenter - center) < Math.abs(cards[activeIndex].offsetLeft + cards[activeIndex].offsetWidth / 2 - center)) {
+                        activeIndex = index;
+                    }
+                });
+
+                // 인디케이터 업데이트
+                indicators.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeIndex);
+                });
+
+                // 네비 블록 업데이트
+                navBlocks.forEach((block, index) => {
+                    block.classList.toggle('active', index === activeIndex);
+                });
+
+                // 카드 활성 상태 업데이트
+                cards.forEach((card, i) => {
+                    card.classList.toggle('active', i === activeIndex);
+                });
+            });
+
+            // 인디케이터 클릭 이벤트
+            indicators.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    scrollToBusinessCardNew(index);
+                });
+            });
+        }
+    }
+});
+
+// 화면 크기 변경 시 이벤트 리스너 재설정
+window.addEventListener('resize', function() {
+    if (window.innerWidth <= 768) {
+        const businessGrid = document.querySelector('#s20250731337f4d2ea9683 .business-grid');
+        const indicators = document.querySelectorAll('#s20250731337f4d2ea9683 .indicator-dot');
+        const cards = document.querySelectorAll('#s20250731337f4d2ea9683 .business-card');
+        const navBlocks = document.querySelectorAll('#s20250731337f4d2ea9683 .nav-block');
+
+        if (businessGrid && indicators.length > 0 && cards.length > 0) {
+            // 인디케이터 클릭 이벤트만 다시 설정
+            indicators.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    scrollToBusinessCardNew(index);
+                });
+            });
+        }
+    }
+});
+</script>

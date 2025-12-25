@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KY Workers 설정 가이드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .copy-btn:active { transform: scale(0.95); }
+        .step-done { background: #10b981 !important; }
+        .step-done::after { content: '✓'; color: white; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="max-w-4xl mx-auto py-8 px-4">
+        <!-- 헤더 -->
+        <div class="bg-gradient-to-r from-blue-900 to-blue-600 text-white rounded-xl p-8 mb-8">
+            <h1 class="text-3xl font-bold mb-2">KY 중소기업지원센터</h1>
+            <p class="text-blue-100">Cloudflare Workers 환경변수 설정 가이드</p>
+        </div>
+
+        <!-- 진행 체크리스트 -->
+        <div class="bg-white rounded-xl shadow p-6 mb-8">
+            <h2 class="text-lg font-bold mb-4">📋 설정 체크리스트</h2>
+            <div class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" id="check1" class="w-5 h-5 rounded">
+                    <span>Cloudflare Workers 대시보드 접속</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" id="check2" class="w-5 h-5 rounded">
+                    <span>ky-form 워커 선택</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" id="check3" class="w-5 h-5 rounded">
+                    <span>환경변수 설정</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" id="check4" class="w-5 h-5 rounded">
+                    <span>워커 배포</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" id="check5" class="w-5 h-5 rounded">
+                    <span>Airtable 테이블 생성</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="bg-white rounded-xl shadow p-6 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                <h3 class="text-lg font-bold">Cloudflare Workers 대시보드 접속</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Cloudflare 대시보드에서 Workers & Pages로 이동합니다.</p>
+            <a href="https://dash.cloudflare.com/" target="_blank"
+               class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                Cloudflare 대시보드 열기 →
+            </a>
+            <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                <p class="text-sm text-gray-500">경로: Workers & Pages → <strong>ky-form</strong> 워커 선택</p>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white rounded-xl shadow p-6 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                <h3 class="text-lg font-bold">환경변수 설정</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Settings → Variables 탭에서 아래 환경변수들을 추가합니다.</p>
+
+            <div class="space-y-4">
+                <!-- Airtable 설정 -->
+                <div class="border rounded-lg p-4">
+                    <h4 class="font-bold text-blue-800 mb-3">📊 Airtable 설정</h4>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                            <div>
+                                <span class="font-mono text-sm font-bold">AIRTABLE_BASE_ID</span>
+                                <p class="text-xs text-gray-500">에어테이블 Base ID</p>
+                            </div>
+                            <button onclick="copyText('appVtpUDzH23zDUdu')" class="copy-btn bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">복사</button>
+                        </div>
+                        <div class="text-sm text-gray-600 px-3">값: <code class="bg-gray-100 px-2 py-1 rounded">appVtpUDzH23zDUdu</code></div>
+
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                            <div>
+                                <span class="font-mono text-sm font-bold">AIRTABLE_TABLE_NAME</span>
+                                <p class="text-xs text-gray-500">저장할 테이블 이름</p>
+                            </div>
+                            <button onclick="copyText('고객정보')" class="copy-btn bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">복사</button>
+                        </div>
+                        <div class="text-sm text-gray-600 px-3">값: <code class="bg-gray-100 px-2 py-1 rounded">고객정보</code></div>
+
+                        <div class="flex items-center justify-between p-3 bg-red-50 rounded border border-red-200">
+                            <div>
+                                <span class="font-mono text-sm font-bold text-red-700">AIRTABLE_TOKEN</span>
+                                <span class="text-xs bg-red-200 text-red-700 px-2 py-0.5 rounded ml-2">Secret</span>
+                                <p class="text-xs text-red-500">⚠️ 민감 정보 - Encrypt 설정 필수</p>
+                            </div>
+                            <span class="text-xs text-gray-500">Airtable에서 발급받은 토큰 입력</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email 설정 -->
+                <div class="border rounded-lg p-4">
+                    <h4 class="font-bold text-green-800 mb-3">📧 이메일 설정 (Resend)</h4>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-red-50 rounded border border-red-200">
+                            <div>
+                                <span class="font-mono text-sm font-bold text-red-700">RESEND_API_KEY</span>
+                                <span class="text-xs bg-red-200 text-red-700 px-2 py-0.5 rounded ml-2">Secret</span>
+                                <p class="text-xs text-red-500">⚠️ BIZEN 프로젝트와 동일한 키 사용</p>
+                            </div>
+                        </div>
+                        <div class="text-sm text-gray-600 px-3">Resend 대시보드에서 API Key 확인 후 입력</div>
+
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                            <div>
+                                <span class="font-mono text-sm font-bold">STAFF_EMAIL</span>
+                                <p class="text-xs text-gray-500">내부 알림 수신 이메일</p>
+                            </div>
+                            <button onclick="copyText('jmfood12@naver.com')" class="copy-btn bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">복사</button>
+                        </div>
+                        <div class="text-sm text-gray-600 px-3">값: <code class="bg-gray-100 px-2 py-1 rounded">jmfood12@naver.com</code></div>
+                    </div>
+                </div>
+
+                <!-- Telegram 설정 -->
+                <div class="border rounded-lg p-4">
+                    <h4 class="font-bold text-purple-800 mb-3">📱 텔레그램 설정</h4>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-red-50 rounded border border-red-200">
+                            <div>
+                                <span class="font-mono text-sm font-bold text-red-700">TELEGRAM_BOT_TOKEN</span>
+                                <span class="text-xs bg-red-200 text-red-700 px-2 py-0.5 rounded ml-2">Secret</span>
+                            </div>
+                            <button onclick="copyText('7947112373:AAEs5o3fcm0JoPewh7K5YTUwzq4poWw97pY')" class="copy-btn bg-red-200 px-3 py-1 rounded text-sm hover:bg-red-300">복사</button>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                            <div>
+                                <span class="font-mono text-sm font-bold">TELEGRAM_CHAT_ID</span>
+                                <p class="text-xs text-gray-500">KY 전용 텔레그램 채널</p>
+                            </div>
+                            <button onclick="copyText('-1003552712087')" class="copy-btn bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">복사</button>
+                        </div>
+                        <div class="text-sm text-gray-600 px-3">값: <code class="bg-gray-100 px-2 py-1 rounded">-1003552712087</code></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Airtable 테이블 -->
+        <div class="bg-white rounded-xl shadow p-6 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                <h3 class="text-lg font-bold">Airtable 테이블 생성</h3>
+            </div>
+            <p class="text-gray-600 mb-4">아래 필드들로 "고객정보" 테이블을 생성합니다.</p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2 text-left">필드명</th>
+                            <th class="px-4 py-2 text-left">타입</th>
+                            <th class="px-4 py-2 text-left">설명</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr><td class="px-4 py-2 font-mono">기업명</td><td class="px-4 py-2">Single line text</td><td class="px-4 py-2 text-gray-500">회사명</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">사업자번호</td><td class="px-4 py-2">Single line text</td><td class="px-4 py-2 text-gray-500">000-00-00000</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">대표자명</td><td class="px-4 py-2">Single line text</td><td class="px-4 py-2 text-gray-500">이름</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">직위</td><td class="px-4 py-2">Single line text</td><td class="px-4 py-2 text-gray-500">대표이사 등</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">연락처</td><td class="px-4 py-2">Phone number</td><td class="px-4 py-2 text-gray-500">휴대폰 번호</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">이메일</td><td class="px-4 py-2">Email</td><td class="px-4 py-2 text-gray-500">이메일 주소</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">업종</td><td class="px-4 py-2">Single select</td><td class="px-4 py-2 text-gray-500">제조업, 서비스업 등</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">설립연도</td><td class="px-4 py-2">Single line text</td><td class="px-4 py-2 text-gray-500">YYYY</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">통화가능시간</td><td class="px-4 py-2">Single select</td><td class="px-4 py-2 text-gray-500">09:00-10:00 등</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">필요자금규모</td><td class="px-4 py-2">Single select</td><td class="px-4 py-2 text-gray-500">5천만원 이하 등</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">자금종류</td><td class="px-4 py-2">Single line text</td><td class="px-4 py-2 text-gray-500">창업자금, 운전자금 등</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">문의사항</td><td class="px-4 py-2">Long text</td><td class="px-4 py-2 text-gray-500">상세 문의 내용</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">접수일</td><td class="px-4 py-2">Date</td><td class="px-4 py-2 text-gray-500">YYYY-MM-DD</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">접수시간</td><td class="px-4 py-2">Single line text</td><td class="px-4 py-2 text-gray-500">HH:MM</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">상태</td><td class="px-4 py-2">Single select</td><td class="px-4 py-2 text-gray-500">신규, 상담중, 완료 등</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Step 4: 배포 -->
+        <div class="bg-white rounded-xl shadow p-6 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                <h3 class="text-lg font-bold">워커 배포</h3>
+            </div>
+            <p class="text-gray-600 mb-4">터미널에서 아래 명령어를 실행하여 워커를 배포합니다.</p>
+
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                <p class="text-gray-500"># worker 폴더로 이동</p>
+                <p>cd worker</p>
+                <p class="text-gray-500 mt-2"># 배포</p>
+                <p>npx wrangler deploy</p>
+            </div>
+
+            <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <p class="text-sm text-yellow-800">
+                    <strong>⚠️ 주의:</strong> 환경변수 설정 후 배포해야 합니다.
+                    Secret 변수들은 Cloudflare 대시보드에서 직접 설정하거나
+                    <code class="bg-yellow-100 px-1">wrangler secret put [변수명]</code> 명령어를 사용합니다.
+                </p>
+            </div>
+        </div>
+
+        <!-- 완료 -->
+        <div class="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+            <div class="text-4xl mb-3">✅</div>
+            <h3 class="text-lg font-bold text-green-800 mb-2">설정 완료!</h3>
+            <p class="text-green-600">워커가 배포되면 폼 제출 시 자동으로:</p>
+            <ul class="text-sm text-green-700 mt-2 space-y-1">
+                <li>📊 Airtable에 고객 정보 저장</li>
+                <li>📧 고객에게 접수 확인 이메일 발송</li>
+                <li>📧 담당자에게 알림 이메일 발송</li>
+                <li>📱 텔레그램 채널로 알림 전송</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ 복사됨';
+                btn.classList.add('bg-green-200');
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('bg-green-200');
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>

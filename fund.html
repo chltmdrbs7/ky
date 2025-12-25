@@ -1,0 +1,3755 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정책자금상담 - KY 중소기업지원센터</title>
+    <meta name="description" content="KY 중소기업지원센터 자금상담 - 정책자금, 정부지원자금, 보증서발급 전문 컨설팅. 중소기업 맞춤형 자금조달 전략으로 승인율 96% 달성.">
+
+    <!-- Pretendard 폰트 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+    <style>
+/* ========================================
+   KY 중소기업지원센터 - 자금상담 페이지
+   ======================================== */
+
+/* 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    color: #93C5FD;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 50%, #0F172A 100%);
+}
+
+/* 공통 유틸리티 */
+.highlight-accent {
+    color: #3B82F6;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 50%, #93C5FD 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 모바일 줄바꿈 - 데스크톱에서는 숨김 */
+.mobile-br {
+    display: none;
+}
+@media (max-width: 767px) {
+    .mobile-br {
+        display: inline;
+    }
+}
+
+/* 글로우 애니메이션 */
+@keyframes logoGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4)); }
+    50% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.6)); }
+}
+
+@keyframes logoImgGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3)); }
+    50% { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.7)) drop-shadow(0 0 25px rgba(59, 130, 246, 0.5)); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* ========================================
+   헤더 스타일
+   ======================================== */
+
+.ky-header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ky-header-wrapper.scrolled {
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2), 0 4px 20px rgba(30, 58, 95, 0.1);
+}
+
+.ky-header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.ky-logo {
+    z-index: 10001;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.ky-logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+    animation: logoImgGlow 3s ease-in-out infinite;
+}
+
+.ky-logo:hover .ky-logo-img {
+    filter: brightness(1.1) drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
+    transform: scale(1.02);
+}
+
+.ky-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    background: linear-gradient(to bottom, #DBEAFE 0%, #93C5FD 35%, #3B82F6 65%, #1E3A5F 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
+.ky-nav-desktop {
+    display: none;
+}
+
+.ky-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+}
+
+.ky-nav-link {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #93C5FD;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.ky-nav-link:hover {
+    color: #FFFFFF;
+    background: rgba(59, 130, 246, 0.15);
+}
+
+.ky-nav-link.active {
+    color: #3B82F6;
+}
+
+.ky-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #3B82F6;
+    transition: width 0.3s ease;
+}
+
+.ky-nav-link:hover::after {
+    width: 60%;
+}
+
+.ky-nav-cta {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+    margin-left: 12px;
+}
+
+.ky-nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+.ky-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10001;
+    transition: all 0.3s ease;
+}
+
+.ky-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.ky-hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+    background: #3B82F6;
+}
+
+.ky-hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.ky-hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+    background: #3B82F6;
+}
+
+.ky-mobile-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 9998;
+}
+
+.ky-mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.ky-mobile-nav-list {
+    list-style: none;
+    padding: 20px;
+}
+
+.ky-mobile-nav-item {
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.ky-mobile-nav-item:last-child {
+    border-bottom: none;
+}
+
+.ky-mobile-nav-link {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #93C5FD;
+    text-decoration: none;
+    padding: 16px 12px;
+    transition: all 0.3s ease;
+}
+
+.ky-mobile-nav-link:hover,
+.ky-mobile-nav-link.active {
+    color: #3B82F6;
+    background: rgba(59, 130, 246, 0.1);
+    padding-left: 20px;
+}
+
+.ky-mobile-nav-cta {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 16px 24px;
+    margin: 20px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ky-mobile-nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+/* 헤더 반응형 - 태블릿 */
+@media (min-width: 768px) {
+    .ky-header-container {
+        height: 85px;
+    }
+
+    .ky-logo-text {
+        font-size: 20px;
+    }
+}
+
+/* 헤더 반응형 - 데스크톱 */
+@media (min-width: 1024px) {
+    .ky-header-container {
+        height: 90px;
+        padding: 0 40px;
+    }
+
+    .ky-hamburger {
+        display: none;
+    }
+
+    .ky-nav-desktop {
+        display: flex;
+        align-items: center;
+    }
+
+    .ky-logo-img {
+        height: 55px;
+    }
+
+    .ky-logo-text {
+        font-size: 22px;
+    }
+
+    .ky-mobile-menu {
+        display: none;
+    }
+}
+
+/* ========================================
+   히어로 섹션 - 자금상담
+   ======================================== */
+
+/* 플로팅 아이콘 애니메이션 - 네온 블루 */
+@keyframes kyFloat {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25%      { transform: translate(30px, -30px) rotate(90deg); }
+    50%      { transform: translate(-20px, 20px) rotate(180deg); }
+    75%      { transform: translate(20px, 30px) rotate(270deg); }
+}
+
+#kyFundHero {
+    position: relative;
+    background: transparent;
+    padding: 120px 0 60px;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* 히어로 영상 배경 */
+#kyFundHero .hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#kyFundHero .hero-video-bg iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100%;
+    min-width: 177.77vh;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+#kyFundHero .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 58, 95, 0.75) 50%, rgba(15, 23, 42, 0.85) 100%);
+    z-index: 1;
+}
+
+#kyFundHero .floating-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#kyFundHero .float-icon {
+    position: absolute;
+    opacity: 0.03;
+    animation: kyFloat 20s infinite ease-in-out;
+    color: #3B82F6;
+}
+
+#kyFundHero .float-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+#kyFundHero .float-icon:nth-child(2) { top: 20%; right: 15%; animation-delay: 5s; }
+#kyFundHero .float-icon:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 10s; }
+#kyFundHero .float-icon:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 15s; }
+
+#kyFundHero .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* 히어로 콘텐츠 */
+#kyFundHero .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+#kyFundHero .hero-text {
+    color: #93C5FD;
+}
+
+#kyFundHero .hero-badge {
+    display: inline-block;
+    background: rgba(30, 58, 95, 0.3);
+    color: #3B82F6;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+#kyFundHero .hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #FFFFFF;
+    text-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+#kyFundHero .hero-title .highlight {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    color: #FFFFFF;
+    padding: 8px 24px;
+    border-radius: 8px;
+    font-weight: 800;
+    box-shadow:
+        0 0 40px rgba(59, 130, 246, 0.6),
+        0 4px 20px rgba(30, 58, 95, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    margin: 0 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#kyFundHero .hero-description {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #93C5FD;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#kyFundHero .disclaimer-note {
+    font-size: 12px;
+    color: rgba(147, 197, 253, 0.6);
+    margin-top: 12px;
+    line-height: 1.6;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* CTA 버튼 그룹 */
+#kyFundHero .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+#kyFundHero .btn-primary {
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    color: #FFFFFF;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.4s ease;
+    box-shadow:
+        0 4px 20px rgba(30, 58, 95, 0.4),
+        0 0 40px rgba(59, 130, 246, 0.3);
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+#kyFundHero .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle 150px at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 255, 255, 0.4),
+        rgba(59, 130, 246, 0.3) 40%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#kyFundHero .btn-primary:hover::before {
+    opacity: 1;
+}
+
+#kyFundHero .btn-primary > * {
+    position: relative;
+    z-index: 2;
+}
+
+#kyFundHero .btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 0 70px rgba(59, 130, 246, 0.9),
+        0 0 110px rgba(255, 255, 255, 0.6),
+        0 0 150px rgba(30, 58, 95, 0.4),
+        0 12px 35px rgba(30, 58, 95, 0.5);
+}
+
+#kyFundHero .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #FFFFFF;
+    padding: 16px 32px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+}
+
+#kyFundHero .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(59, 130, 246, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+}
+
+/* 히어로 이미지/카드 영역 */
+#kyFundHero .hero-visual {
+    position: relative;
+}
+
+#kyFundHero .fund-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#kyFundHero .fund-card {
+    background: rgba(30, 58, 95, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow:
+        0 0 30px rgba(30, 58, 95, 0.4),
+        0 8px 32px rgba(59, 130, 246, 0.2),
+        inset 0 1px 0 rgba(59, 130, 246, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+#kyFundHero .fund-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle 200px at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 255, 255, 0.35),
+        rgba(59, 130, 246, 0.3) 30%,
+        rgba(30, 58, 95, 0.2) 50%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(12px);
+}
+
+#kyFundHero .fund-card:hover::before {
+    opacity: 1;
+}
+
+#kyFundHero .fund-card:hover {
+    background: rgba(30, 58, 95, 0.25);
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.8);
+    box-shadow:
+        0 0 60px rgba(59, 130, 246, 0.8),
+        0 0 100px rgba(30, 58, 95, 0.5),
+        0 12px 40px rgba(59, 130, 246, 0.4);
+}
+
+#kyFundHero .fund-card-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+}
+
+#kyFundHero .fund-card-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: #FFFFFF;
+}
+
+#kyFundHero .fund-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#kyFundHero .fund-card-desc {
+    font-size: 16px;
+    color: #93C5FD;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+#kyFundHero .fund-card-amount {
+    font-size: 24px;
+    font-weight: 700;
+    color: #3B82F6;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+}
+
+#kyFundHero .fund-card-rate {
+    font-size: 18px;
+    font-weight: 600;
+    color: #93C5FD;
+    position: relative;
+    z-index: 2;
+}
+
+/* 모바일 요약 카드 - PC에서는 숨김 */
+#kyFundHero .mobile-summary-card {
+    display: none;
+}
+
+/* 히어로 반응형 */
+@media (max-width: 968px) {
+    #kyFundHero {
+        padding: 100px 0 40px;
+    }
+
+    #kyFundHero .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 0;
+    }
+
+    #kyFundHero .hero-title {
+        font-size: 42px;
+    }
+
+    #kyFundHero .hero-buttons {
+        justify-content: center;
+    }
+
+    #kyFundHero .hero-visual {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    #kyFundHero {
+        padding: 100px 0 30px;
+        margin-top: 0;
+        margin-bottom: 0;
+        overflow: visible;
+        background: transparent;
+    }
+
+    #kyFundHero .section-container {
+        padding: 0;
+    }
+
+    #kyFundHero .hero-text {
+        padding: 0 20px;
+    }
+
+    #kyFundHero .hero-badge {
+        font-size: 12px;
+        padding: 6px 16px;
+        margin-bottom: 16px;
+    }
+
+    #kyFundHero .hero-title {
+        font-size: 26px;
+        line-height: 1.3;
+        margin-bottom: 16px;
+        word-break: keep-all;
+    }
+
+    #kyFundHero .hero-description {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+        word-break: keep-all;
+    }
+
+    #kyFundHero .hero-buttons {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    #kyFundHero .btn-primary,
+    #kyFundHero .btn-secondary {
+        font-size: 15px;
+        padding: 12px 20px;
+    }
+
+    /* 모바일 요약 카드 표시 */
+    #kyFundHero .mobile-summary-card {
+        display: block;
+        background: rgba(30, 58, 95, 0.15);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        border-radius: 16px;
+        padding: 16px;
+        margin: 0 20px 12px 20px;
+        box-shadow:
+            0 0 30px rgba(30, 58, 95, 0.4),
+            0 8px 32px rgba(59, 130, 246, 0.2);
+    }
+
+    #kyFundHero .summary-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        text-align: center;
+    }
+
+    #kyFundHero .stat-item {
+        color: #FFFFFF;
+        padding: 0 8px;
+        border-right: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    #kyFundHero .stat-item:last-child {
+        border-right: none;
+    }
+
+    #kyFundHero .stat-number {
+        font-size: 22px;
+        font-weight: 700;
+        color: #3B82F6;
+        margin-bottom: 2px;
+        text-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+    }
+
+    #kyFundHero .stat-label {
+        font-size: 11px;
+        color: #93C5FD;
+        font-weight: 500;
+    }
+
+    #kyFundHero .hero-visual {
+        margin-top: 0;
+        padding: 0 20px;
+    }
+
+    #kyFundHero .fund-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    #kyFundHero .fund-card {
+        padding: 20px 16px;
+        min-height: 160px;
+    }
+
+    #kyFundHero .fund-card-icon {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 12px;
+    }
+
+    #kyFundHero .fund-card-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    #kyFundHero .fund-card-title {
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+
+    #kyFundHero .fund-card-desc {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    #kyFundHero .fund-card-amount {
+        font-size: 17px;
+        margin-bottom: 2px;
+    }
+
+    #kyFundHero .fund-card-rate {
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   프로세스 섹션 - kyFundProcess
+   ======================================== */
+
+#kyFundProcess {
+    background: #0f172e;
+    padding: 60px 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#kyFundProcess .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+#kyFundProcess .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#kyFundProcess .section-badge {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.15);
+    color: #3B82F6;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+#kyFundProcess .section-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+#kyFundProcess .section-desc {
+    font-size: 18px;
+    color: #93C5FD;
+    line-height: 1.6;
+}
+
+#kyFundProcess .disclaimer-text {
+    font-size: 12px;
+    color: rgba(147, 197, 253, 0.6);
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+/* 프로세스 타임라인 */
+#kyFundProcess .process-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#kyFundProcess .process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.5), rgba(30, 58, 95, 0.2));
+    transform: translateX(-50%);
+}
+
+#kyFundProcess .process-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+    position: relative;
+}
+
+#kyFundProcess .process-item:last-child {
+    margin-bottom: 0;
+}
+
+#kyFundProcess .process-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+#kyFundProcess .process-content {
+    flex: 1;
+    padding: 25px;
+    position: relative;
+    z-index: 10;
+    background: rgba(30, 58, 95, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 30px rgba(30, 58, 95, 0.4), 0 8px 32px rgba(59, 130, 246, 0.2);
+    transition: all 0.3s ease;
+}
+
+#kyFundProcess .process-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #1E3A5F 0%, #3B82F6 100%);
+    border-radius: 16px 0 0 16px;
+}
+
+#kyFundProcess .process-item:nth-child(even) .process-content {
+    text-align: right;
+}
+
+#kyFundProcess .process-item:nth-child(even) .process-content::before {
+    left: auto;
+    right: 0;
+    border-radius: 0 16px 16px 0;
+}
+
+#kyFundProcess .process-content:hover {
+    border-color: rgba(59, 130, 246, 0.8);
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.5), 0 12px 40px rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+}
+
+#kyFundProcess .process-step {
+    display: inline-block;
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#kyFundProcess .process-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+#kyFundProcess .process-desc {
+    font-size: 15px;
+    color: #93C5FD;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+#kyFundProcess .process-details {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+#kyFundProcess .process-item:nth-child(even) .process-details {
+    justify-content: flex-end;
+}
+
+#kyFundProcess .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #93C5FD;
+    background: rgba(30, 58, 95, 0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+}
+
+#kyFundProcess .detail-item:hover {
+    background: rgba(30, 58, 95, 0.25);
+    border-color: rgba(59, 130, 246, 0.6);
+}
+
+#kyFundProcess .detail-icon {
+    width: 16px;
+    height: 16px;
+    fill: #3B82F6;
+}
+
+#kyFundProcess .process-icon-wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+#kyFundProcess .process-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(30, 58, 95, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(30, 58, 95, 0.4), 0 8px 32px rgba(59, 130, 246, 0.2);
+    border: 3px solid rgba(59, 130, 246, 0.5);
+    transition: all 0.3s ease;
+}
+
+#kyFundProcess .process-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: #3B82F6;
+}
+
+#kyFundProcess .process-item:hover .process-icon {
+    border-color: #3B82F6;
+    transform: scale(1.1);
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.8);
+}
+
+#kyFundProcess .process-cta {
+    text-align: center;
+    margin-top: 50px;
+    padding: 40px 35px;
+    background: rgba(30, 58, 95, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+#kyFundProcess .cta-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 14px;
+}
+
+#kyFundProcess .cta-desc {
+    font-size: 17px;
+    color: #93C5FD;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+#kyFundProcess .cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 20px rgba(30, 58, 95, 0.4), 0 0 40px rgba(59, 130, 246, 0.3);
+}
+
+#kyFundProcess .cta-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 70px rgba(59, 130, 246, 0.9), 0 12px 35px rgba(30, 58, 95, 0.5);
+}
+
+/* 프로세스 섹션 반응형 */
+@media (max-width: 968px) {
+    #kyFundProcess {
+        padding: 50px 0;
+    }
+
+    #kyFundProcess .section-title {
+        font-size: 36px;
+    }
+
+    #kyFundProcess .process-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    #kyFundProcess .process-icon svg {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    #kyFundProcess {
+        padding: 45px 0;
+    }
+
+    #kyFundProcess .section-container {
+        padding: 0 16px;
+    }
+
+    #kyFundProcess .section-header {
+        margin-bottom: 30px;
+    }
+
+    #kyFundProcess .section-badge {
+        font-size: 12px;
+        padding: 6px 16px;
+    }
+
+    #kyFundProcess .section-title {
+        font-size: 28px;
+        word-break: keep-all;
+    }
+
+    #kyFundProcess .section-desc {
+        font-size: 15px;
+    }
+
+    #kyFundProcess .process-timeline::before {
+        left: 35px;
+    }
+
+    #kyFundProcess .process-item,
+    #kyFundProcess .process-item:nth-child(even) {
+        flex-direction: row;
+        margin-bottom: 28px;
+    }
+
+    #kyFundProcess .process-icon-wrapper {
+        position: relative;
+        left: 35px;
+        transform: translateX(-50%);
+        margin-right: 25px;
+        flex-shrink: 0;
+    }
+
+    #kyFundProcess .process-icon {
+        width: 55px;
+        height: 55px;
+        border-width: 2px;
+    }
+
+    #kyFundProcess .process-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    #kyFundProcess .process-content,
+    #kyFundProcess .process-item:nth-child(even) .process-content {
+        text-align: left;
+        padding: 18px;
+    }
+
+    #kyFundProcess .process-step {
+        font-size: 11px;
+        padding: 4px 12px;
+    }
+
+    #kyFundProcess .process-title {
+        font-size: 19px;
+    }
+
+    #kyFundProcess .process-desc {
+        font-size: 13px;
+    }
+
+    #kyFundProcess .process-details,
+    #kyFundProcess .process-item:nth-child(even) .process-details {
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #kyFundProcess .detail-item {
+        font-size: 12px;
+        padding: 5px 10px;
+        width: fit-content;
+    }
+
+    #kyFundProcess .process-cta {
+        margin-top: 35px;
+        padding: 30px 22px;
+    }
+
+    #kyFundProcess .cta-title {
+        font-size: 22px;
+    }
+
+    #kyFundProcess .cta-desc {
+        font-size: 14px;
+    }
+
+    #kyFundProcess .cta-button {
+        font-size: 16px;
+        padding: 13px 30px;
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* ========================================
+   자금 상세 섹션 - kyFundDetail
+   ======================================== */
+
+#kyFundDetail {
+    background: #0f172e;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#kyFundDetail .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+#kyFundDetail .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#kyFundDetail .section-badge {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.15);
+    color: #3B82F6;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+#kyFundDetail .section-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+#kyFundDetail .section-desc {
+    font-size: clamp(14px, 3.5vw, 18px);
+    color: #93C5FD;
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+@media (max-width: 480px) {
+    #kyFundDetail .section-title {
+        font-size: 28px;
+    }
+    #kyFundDetail .section-desc {
+        font-size: 13px;
+    }
+}
+
+#kyFundDetail .disclaimer-text {
+    font-size: 12px;
+    color: rgba(147, 197, 253, 0.6);
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+/* 탭 네비게이션 */
+#kyFundDetail .fund-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+#kyFundDetail .tab-button {
+    background: rgba(30, 58, 95, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #93C5FD;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#kyFundDetail .tab-button:hover {
+    background: rgba(30, 58, 95, 0.15);
+    border-color: rgba(59, 130, 246, 0.5);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+    transform: translateY(-2px);
+}
+
+#kyFundDetail .tab-button.active {
+    background: rgba(30, 58, 95, 0.2);
+    color: #ffffff;
+    border-color: rgba(59, 130, 246, 0.8);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.9);
+}
+
+#kyFundDetail .tab-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* 탭 콘텐츠 */
+#kyFundDetail .tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+#kyFundDetail .tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 자금 상세 카드 */
+#kyFundDetail .fund-detail-card {
+    background: rgba(15, 23, 46, 0.6);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 35px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+#kyFundDetail .fund-detail-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #1E3A5F 20%, #3B82F6 50%, #1E3A5F 80%, transparent 100%);
+}
+
+#kyFundDetail .fund-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    gap: 20px;
+}
+
+#kyFundDetail .fund-title-area {
+    flex: 1;
+}
+
+#kyFundDetail .fund-name {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+#kyFundDetail .fund-summary {
+    font-size: 17px;
+    color: #93C5FD;
+}
+
+#kyFundDetail .fund-highlight {
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%);
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 18px 24px;
+    text-align: center;
+    min-width: 150px;
+    border: 1px solid #3B82F6;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+#kyFundDetail .highlight-label {
+    font-size: 13px;
+    color: #ffffff;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#kyFundDetail .highlight-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* 정보 그리드 */
+#kyFundDetail .info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+#kyFundDetail .info-item {
+    flex: 0 0 calc(25% - 12px);
+    text-align: center;
+    padding: 16px;
+    background: rgba(30, 58, 95, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    transition: all 0.3s ease;
+}
+
+#kyFundDetail .info-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(59, 130, 246, 0.6);
+    background: rgba(30, 58, 95, 0.15);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+}
+
+#kyFundDetail .info-label {
+    font-size: 14px;
+    color: #93C5FD;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+#kyFundDetail .info-value {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* 자격 요건 */
+#kyFundDetail .requirements-section {
+    margin-bottom: 28px;
+}
+
+#kyFundDetail .section-subtitle {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#kyFundDetail .section-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#kyFundDetail .section-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: #3B82F6;
+}
+
+#kyFundDetail .requirement-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+#kyFundDetail .requirement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+#kyFundDetail .check-icon {
+    width: 18px;
+    height: 18px;
+    fill: #3B82F6;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+#kyFundDetail .requirement-text {
+    font-size: 16px;
+    color: #93C5FD;
+    line-height: 1.5;
+}
+
+/* 장점 카드 */
+#kyFundDetail .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
+
+#kyFundDetail .benefit-card {
+    background: rgba(30, 58, 95, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    padding: 22px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+#kyFundDetail .benefit-card:hover {
+    background: rgba(30, 58, 95, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+    border-color: rgba(59, 130, 246, 0.6);
+}
+
+#kyFundDetail .benefit-title {
+    font-size: 19px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+#kyFundDetail .benefit-desc {
+    font-size: 15px;
+    color: #93C5FD;
+    line-height: 1.5;
+}
+
+/* 신청 버튼 */
+#kyFundDetail .apply-section {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+    margin-top: 30px;
+}
+
+#kyFundDetail .apply-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #3B82F6;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+#kyFundDetail .apply-button:hover {
+    background: linear-gradient(135deg, #3B82F6, #60A5FA);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.8), 0 10px 30px rgba(59, 130, 246, 0.5);
+}
+
+/* 자금 상세 섹션 반응형 */
+@media (max-width: 968px) {
+    #kyFundDetail .section-container {
+        padding: 60px 20px;
+    }
+
+    #kyFundDetail .section-title {
+        font-size: 36px;
+    }
+
+    #kyFundDetail .fund-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #kyFundDetail .fund-highlight {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    #kyFundDetail .requirement-list {
+        grid-template-columns: 1fr;
+    }
+
+    #kyFundDetail .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    #kyFundDetail .section-container {
+        padding: 50px 16px;
+    }
+
+    #kyFundDetail .section-title {
+        font-size: 28px;
+        word-break: keep-all;
+    }
+
+    #kyFundDetail .fund-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        width: 100%;
+    }
+
+    #kyFundDetail .tab-button {
+        padding: 12px 8px;
+        font-size: 13px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    #kyFundDetail .tab-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    #kyFundDetail .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    #kyFundDetail .info-item {
+        padding: 12px 8px;
+    }
+
+    #kyFundDetail .fund-detail-card {
+        padding: 25px 20px;
+    }
+
+    #kyFundDetail .fund-name {
+        font-size: 24px;
+    }
+
+    #kyFundDetail .fund-summary {
+        font-size: 14px;
+    }
+}
+
+/* ========================================
+   폼 섹션 스타일 (about.html과 동일)
+   ======================================== */
+
+#contact {
+    padding: 60px 0;
+    background: linear-gradient(180deg, #0F172A 0%, #1E3A5F 100%);
+}
+
+#contact .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#contact .form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: start;
+}
+
+#contact .form-info {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#contact .info-content {
+    width: 100%;
+    max-width: 350px;
+    text-align: left;
+    padding-left: 28px;
+}
+
+#contact .info-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+}
+
+#contact .info-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: baseline;
+}
+
+#contact .info-title-main {
+    white-space: nowrap;
+}
+
+#contact .info-title .gradient-text {
+    color: #ffffff;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+#contact .info-desc {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+#contact .benefit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+}
+
+#contact .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+}
+
+#contact .benefit-icon {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.2));
+    border: 2px solid rgba(59, 130, 246, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#contact .benefit-icon svg {
+    width: 14px;
+    height: 14px;
+    fill: #3B82F6;
+    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6));
+}
+
+#contact .benefit-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+#contact .contact-info {
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2);
+}
+
+#contact .contact-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+}
+
+#contact .form-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    justify-content: center;
+}
+
+#contact .form-contact-item:last-child {
+    margin-bottom: 0;
+}
+
+#contact .contact-icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
+}
+
+#contact .contact-text {
+    font-size: 16px;
+    color: white;
+}
+
+#contact .contact-text strong {
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* 폼 영역 */
+#contact .form-area {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2), 0 0 60px rgba(59, 130, 246, 0.15);
+    position: relative;
+}
+
+#contact .form-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent);
+    animation: formPulseLine 3s ease infinite;
+}
+
+@keyframes formPulseLine {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+#contact .form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#contact .form-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+#contact .form-subtitle {
+    font-size: 16px;
+    color: #64748b;
+}
+
+#contact .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+#contact .form-row.four-columns {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+#contact .form-row.full {
+    grid-template-columns: 1fr;
+    margin-bottom: 12px;
+}
+
+#contact .form-group {
+    margin-bottom: 0;
+}
+
+#contact .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+#contact .required {
+    color: #ef4444;
+}
+
+#contact .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    height: 46px;
+}
+
+#contact .form-control:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background: rgba(255, 255, 255, 1);
+}
+
+#contact select.form-control {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+#contact textarea.form-control {
+    min-height: 60px;
+    height: 60px;
+    resize: vertical;
+}
+
+#contact .fund-type-group {
+    margin-bottom: 16px;
+}
+
+#contact .fund-type-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 12px;
+    display: block;
+}
+
+#contact .fund-type-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+#contact .fund-type-option {
+    position: relative;
+}
+
+#contact .fund-type-option input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+#contact .fund-type-option label {
+    display: block;
+    padding: 12px 16px;
+    background: rgba(248, 250, 252, 0.9);
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+#contact .fund-type-option input[type="checkbox"]:checked + label {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.15));
+    border-color: #3B82F6;
+    color: #3B82F6;
+    font-weight: 600;
+}
+
+#contact .privacy-section {
+    margin: 20px 0;
+    padding: 16px;
+    background: rgba(248, 250, 252, 0.8);
+    border-radius: 8px;
+}
+
+#contact .privacy-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 12px;
+}
+
+#contact .privacy-content {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    display: none;
+}
+
+#contact .privacy-content.show {
+    display: block;
+}
+
+#contact .privacy-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+#contact .privacy-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+#contact .privacy-checkbox label {
+    font-size: 14px;
+    color: #1e293b;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+#contact .privacy-detail-link {
+    color: #3B82F6;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 4px;
+}
+
+#contact .submit-section {
+    text-align: center;
+}
+
+#contact .submit-button {
+    background: linear-gradient(135deg, #1E3A5F, #3B82F6);
+    color: white;
+    padding: 16px 48px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.2);
+}
+
+#contact .submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.5), 0 0 60px rgba(59, 130, 246, 0.3);
+}
+
+#contact .submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#contact .submit-note {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 12px;
+}
+
+#contact .message-box {
+    display: none;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#contact .message-box.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+#contact .message-box.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+#contact .message-box.active {
+    display: block;
+}
+
+/* 폼 반응형 */
+@media (max-width: 968px) {
+    #contact .form-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    #contact .form-info { position: static; }
+    #contact .info-content { max-width: 100%; text-align: center; }
+    #contact .benefit-item { justify-content: center; }
+    #contact .form-row.four-columns { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    #contact { padding: 40px 0; }
+    #contact .info-content { padding-left: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    #contact .info-title { font-size: 20px; gap: 6px; justify-content: center; }
+    #contact .info-desc { font-size: 15px; margin-bottom: 24px; text-align: center; }
+    #contact .benefit-list { margin-bottom: 24px; display: inline-flex; flex-direction: column; align-items: flex-start; }
+    #contact .benefit-item { padding: 8px 0; justify-content: flex-start; }
+    #contact .benefit-text { font-size: 14px; }
+    #contact .contact-info { padding: 16px; margin-bottom: 24px; }
+    #contact .form-area { padding: 20px 16px; }
+    #contact .form-header { margin-bottom: 20px; }
+    #contact .form-title { font-size: 20px; }
+    #contact .form-subtitle { font-size: 13px; }
+    #contact .form-row { gap: 10px; margin-bottom: 8px; }
+    #contact .form-label { font-size: 12px; margin-bottom: 4px; }
+    #contact .form-control { padding: 8px 12px; font-size: 14px; height: 38px; }
+    #contact .fund-type-option label { padding: 8px 6px; font-size: 12px; }
+    #contact .privacy-section { margin: 12px 0; padding: 12px; }
+    #contact .privacy-title { display: none; }
+    #contact .privacy-checkbox label { font-size: 12px; }
+    #contact .submit-button { width: 100%; padding: 12px 24px; font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+    #contact .info-title { font-size: 17px; gap: 5px; }
+    #contact .form-row:nth-child(3),
+    #contact .form-row:nth-child(4) { grid-template-columns: 1fr; }
+}
+
+/* ========================================
+   푸터 스타일 (about.html과 동일)
+   ======================================== */
+
+#kyFooter {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#kyFooter .footer-wrapper {
+    background: #050a14;
+    color: white;
+    padding: 60px 0 0;
+    margin: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+}
+
+#kyFooter .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#kyFooter .footer-top {
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#kyFooter .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+#kyFooter .footer-logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(to bottom, #DBEAFE 0%, #93C5FD 35%, #3B82F6 65%, #1E3A5F 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+    animation: footerLogoGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerLogoGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4)); }
+    50% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.6)); }
+}
+
+#kyFooter .footer-logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+    animation: footerLogoImgGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerLogoImgGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3)); }
+    50% { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.7)) drop-shadow(0 0 25px rgba(59, 130, 246, 0.5)); }
+}
+
+#kyFooter .footer-desc {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+#kyFooter .footer-middle {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 80px;
+    padding: 40px 0 30px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#kyFooter .footer-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #3B82F6;
+}
+
+#kyFooter .footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#kyFooter .footer-list li {
+    margin-bottom: 12px;
+}
+
+#kyFooter .footer-list a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+#kyFooter .footer-list a:hover {
+    color: #3B82F6;
+    padding-left: 5px;
+}
+
+#kyFooter .footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+
+#kyFooter .footer-contact-item svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    stroke: #3B82F6;
+}
+
+#kyFooter .disclaimer-section {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#kyFooter .disclaimer-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+}
+
+#kyFooter .disclaimer-item {
+    margin-right: 20px;
+}
+
+#kyFooter .partnership-section {
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    justify-content: flex-start;
+}
+
+#kyFooter .partnership-link {
+    text-align: left;
+}
+
+#kyFooter .partnership-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.1));
+    border: 2px solid rgba(59, 130, 246, 0.4);
+    border-radius: 12px;
+    padding: 18px 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+    animation: footerBlueGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerBlueGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); border-color: rgba(59, 130, 246, 0.4); }
+    50% { box-shadow: 0 0 50px rgba(59, 130, 246, 0.6); border-color: rgba(59, 130, 246, 0.7); }
+}
+
+#kyFooter .partnership-link a:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.6);
+}
+
+#kyFooter .partnership-icon {
+    height: 20px;
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+}
+
+#kyFooter .partnership-link span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #3B82F6;
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+}
+
+#kyFooter .footer-bottom {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#kyFooter .copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+#kyFooter .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#kyFooter .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+#kyFooter .footer-links a:hover {
+    color: #3B82F6;
+}
+
+#kyFooter .footer-links .divider {
+    color: rgba(59, 130, 246, 0.4);
+}
+
+/* 푸터 반응형 */
+@media (max-width: 968px) {
+    #kyFooter .footer-middle { grid-template-columns: 1fr; gap: 40px; }
+    #kyFooter .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+}
+
+@media (max-width: 768px) {
+    #kyFooter .footer-wrapper { padding: 40px 0 0; }
+    #kyFooter .footer-middle { grid-template-columns: 1.5fr 0.7fr; gap: 12px; }
+    #kyFooter .footer-logo-text { font-size: 22px; }
+    #kyFooter .footer-desc { font-size: 13px; }
+    #kyFooter .footer-contact-item { font-size: 11.5px; }
+    #kyFooter .footer-contact-item svg { width: 12px; height: 12px; }
+    #kyFooter .address-province { display: none; }
+    #kyFooter .partnership-section { justify-content: center; }
+    #kyFooter .partnership-link { text-align: center; }
+    #kyFooter .partnership-link a { flex-direction: row; padding: 16px 32px; gap: 14px; text-align: center; }
+    #kyFooter .partnership-icon { height: 22px; }
+    #kyFooter .partnership-link span { font-size: 13px; text-align: center; }
+    #kyFooter .footer-list a { font-size: 10.5px; }
+    #kyFooter .disclaimer-item { display: block; margin-right: 0; margin-bottom: 4px; }
+}
+
+@media (max-width: 480px) {
+    #kyFooter .footer-middle { grid-template-columns: 1.6fr 0.6fr; gap: 10px; }
+    #kyFooter .footer-logo-text { font-size: 18px; }
+    #kyFooter .footer-contact-item { font-size: 10.5px; }
+    #kyFooter .footer-list a { font-size: 9.5px; }
+    #kyFooter .partnership-link span { font-size: 11px; }
+    #kyFooter .partnership-link a { padding: 14px 24px; gap: 12px; }
+    #kyFooter .partnership-icon { height: 18px; }
+}
+
+/* Top 버튼 스타일 */
+.top-button { position: fixed; bottom: 30px; right: 30px; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%); border: 2px solid rgba(59, 130, 246, 0.5); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 9998; box-shadow: 0 4px 20px rgba(30, 58, 95, 0.4), 0 0 30px rgba(59, 130, 246, 0.2); }
+.top-button svg { width: 24px; height: 24px; stroke: #fff; transition: transform 0.3s ease; }
+.top-button:hover { background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%); border-color: rgba(59, 130, 246, 0.8); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(30, 58, 95, 0.5), 0 0 40px rgba(59, 130, 246, 0.4); }
+.top-button:hover svg { transform: translateY(-2px); }
+.top-button.visible { opacity: 1; visibility: visible; transform: translateY(0); animation: topButtonGlow 3s ease-in-out infinite; }
+.top-button:hover { animation: none; }
+@keyframes topButtonGlow { 0%, 100% { box-shadow: 0 4px 20px rgba(30, 58, 95, 0.4), 0 0 30px rgba(59, 130, 246, 0.2); } 50% { box-shadow: 0 4px 25px rgba(30, 58, 95, 0.5), 0 0 40px rgba(59, 130, 246, 0.35); } }
+@media (max-width: 768px) { .top-button { width: 46px; height: 46px; bottom: 20px; right: 20px; } .top-button svg { width: 20px; height: 20px; } }
+    </style>
+</head>
+<body>
+    <!-- ========================================
+         헤더
+         ======================================== -->
+    <div class="ky-header-wrapper" id="kyHeader">
+        <header class="ky-header-container">
+            <a href="index.html" class="ky-logo">
+                <img src="화이트로고.png" alt="KY 로고" class="ky-logo-img">
+                <span class="ky-logo-text">중소기업지원센터</span>
+            </a>
+
+            <!-- 데스크톱 네비게이션 -->
+            <nav class="ky-nav-desktop">
+                <ul class="ky-nav-list">
+                    <li><a href="index.html" class="ky-nav-link">홈</a></li>
+                    <li><a href="about.html" class="ky-nav-link">회사소개</a></li>
+                    <li><a href="process.html" class="ky-nav-link">진행과정</a></li>
+                    <li><a href="fund.html" class="ky-nav-link active">자금상담</a></li>
+                    <li><a href="pro.html" class="ky-nav-link">전문서비스</a></li>
+                    <li><a href="mkt.html" class="ky-nav-link">온라인마케팅</a></li>
+                </ul>
+                <a href="#contact" class="ky-nav-cta">상담신청</a>
+            </nav>
+
+            <!-- 모바일 햄버거 버튼 -->
+            <button class="ky-hamburger" id="kyHamburger" aria-label="메뉴 열기">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+    </div>
+
+    <!-- 모바일 메뉴 -->
+    <div class="ky-mobile-menu" id="kyMobileMenu">
+        <ul class="ky-mobile-nav-list">
+            <li class="ky-mobile-nav-item"><a href="index.html" class="ky-mobile-nav-link">홈</a></li>
+            <li class="ky-mobile-nav-item"><a href="about.html" class="ky-mobile-nav-link">회사소개</a></li>
+            <li class="ky-mobile-nav-item"><a href="process.html" class="ky-mobile-nav-link">진행과정</a></li>
+            <li class="ky-mobile-nav-item"><a href="fund.html" class="ky-mobile-nav-link active">자금상담</a></li>
+            <li class="ky-mobile-nav-item"><a href="pro.html" class="ky-mobile-nav-link">전문서비스</a></li>
+            <li class="ky-mobile-nav-item"><a href="mkt.html" class="ky-mobile-nav-link">온라인마케팅</a></li>
+        </ul>
+        <a href="#contact" class="ky-mobile-nav-cta">상담신청</a>
+    </div>
+
+    <!-- ========================================
+         히어로 섹션 - 자금상담
+         ======================================== -->
+    <section id="kyFundHero">
+        <!-- 영상 배경 -->
+        <div class="hero-video-bg">
+            <iframe
+                src="https://www.youtube.com/embed/HGrAntOmJtk?autoplay=1&mute=1&loop=1&playlist=HGrAntOmJtk&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                title="KY 중소기업지원센터 소개 영상"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <!-- 컬러 오버레이 -->
+        <div class="hero-overlay"></div>
+
+        <div class="section-container">
+            <!-- 플로팅 아이콘 배경 -->
+            <div class="floating-icons">
+                <svg class="float-icon" width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                </svg>
+                <svg class="float-icon" width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V19z"/>
+                </svg>
+                <svg class="float-icon" width="70" height="70" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                </svg>
+                <svg class="float-icon" width="75" height="75" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+                </svg>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">KY 중소기업지원센터 정책자금 성장 전략</span>
+                    <h1 class="hero-title">
+                        정책자금 조달,<br>
+                        <span class="highlight">성장 전문가와 함께</span>하면<br>
+                        확실히 다릅니다
+                    </h1>
+                    <p class="hero-description">
+                        대표님 맞춤형 자금 전략 수립부터<br class="mobile-br"> 성공적인 조달까지<br>
+                        체계적인 지원으로<br class="mobile-br"> 대표님의 성장을 지원합니다
+                    </p>
+                    <p class="disclaimer-note">
+                        ※ KY 중소기업지원센터는 정책자금 서류작성을 대행하지 않습니다. ※ 기업평가를 하지 않습니다.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-primary">
+                            <span>무료 상담 신청하기</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                            </svg>
+                        </a>
+                        <a href="tel:1555-0238" class="btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            전문가 바로 연결
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 모바일 요약 카드 -->
+                <div class="mobile-summary-card">
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">418+</div>
+                            <div class="stat-label">성공 기업</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2.8억</div>
+                            <div class="stat-label">평균 조달액</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">96%</div>
+                            <div class="stat-label">심사 통과율</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="fund-cards">
+                        <div class="fund-card">
+                            <div class="fund-card-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                </svg>
+                            </div>
+                            <h3 class="fund-card-title">정책자금</h3>
+                            <p class="fund-card-desc">창업·성장·시설자금</p>
+                            <div class="fund-card-amount">최대 30억원</div>
+                            <div class="fund-card-rate">연 2.5%~</div>
+                        </div>
+
+                        <div class="fund-card">
+                            <div class="fund-card-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                                </svg>
+                            </div>
+                            <h3 class="fund-card-title">정부지원자금</h3>
+                            <p class="fund-card-desc">2026년 정책자금</p>
+                            <div class="fund-card-amount">총 4.4조원</div>
+                            <div class="fund-card-rate">저금리</div>
+                        </div>
+
+                        <div class="fund-card">
+                            <div class="fund-card-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="fund-card-title">보증서발급</h3>
+                            <p class="fund-card-desc">신용·기술보증서</p>
+                            <div class="fund-card-amount">최대 30억원</div>
+                            <div class="fund-card-rate">보증료 0.5%~</div>
+                        </div>
+
+                        <div class="fund-card">
+                            <div class="fund-card-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V19z"/>
+                                </svg>
+                            </div>
+                            <h3 class="fund-card-title">전문 지원</h3>
+                            <p class="fund-card-desc">역량분석·전략수립</p>
+                            <div class="fund-card-amount">무료 상담</div>
+                            <div class="fund-card-rate">전문가 매칭</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         프로세스 섹션 - 자금상담
+         ======================================== -->
+    <section id="kyFundProcess">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">KY 중소기업지원센터 정책자금 성장 전략 과정</span>
+                <h2 class="section-title">전문적인 프로세스로 성공을 이끕니다</h2>
+                <p class="section-desc">
+                    성장 전문가가 대표님의 성장을 위해<br>
+                    역량 분석부터 자금 조달까지 완벽하게 지원합니다
+                </p>
+                <p class="disclaimer-text">
+                    ※ KY 중소기업지원센터는 정책자금 서류작성을 대행하지 않습니다. ※ 기업평가를 하지 않습니다.
+                </p>
+            </div>
+
+            <div class="process-timeline">
+                <!-- Step 1 -->
+                <div class="process-item">
+                    <div class="process-icon-wrapper">
+                        <div class="process-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="process-content">
+                        <span class="process-step">STEP 01</span>
+                        <h3 class="process-title">무료 상담 및 역량 분석</h3>
+                        <p class="process-desc">
+                            대표님의 재무 현황과 자금 수요를 분석하여 최적의 금융 솔루션을 제안합니다
+                        </p>
+                        <div class="process-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>재무 현황 분석</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>자금 수요 파악</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="process-item">
+                    <div class="process-icon-wrapper">
+                        <div class="process-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm2.5 2.1h-15V5h15v14.1zm0-16.1h-15c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="process-content">
+                        <span class="process-step">STEP 02</span>
+                        <h3 class="process-title">맞춤형 자금 전략 수립</h3>
+                        <p class="process-desc">
+                            정책자금, 정부지원자금 등 기업의 자금 확보를 위한 최적의 전략을 제시합니다
+                        </p>
+                        <div class="process-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>최적 조합 제시</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>금융 비용 절감</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-item">
+                    <div class="process-icon-wrapper">
+                        <div class="process-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="process-content">
+                        <span class="process-step">STEP 03</span>
+                        <h3 class="process-title">서류 정보 제공 및 심사 대비 전략</h3>
+                        <p class="process-desc">
+                            대표님이 직접 작성하실 수 있도록 서류 정보를 제공하고 심사 통과 전략을 체계적으로 제시합니다
+                        </p>
+                        <div class="process-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>서류 정보 제공</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>심사 대비 전략</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="process-item">
+                    <div class="process-icon-wrapper">
+                        <div class="process-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="process-content">
+                        <span class="process-step">STEP 04</span>
+                        <h3 class="process-title">자금 집행 및 사후 관리</h3>
+                        <p class="process-desc">
+                            자금 수령 후에도 실적 관리와 추가 자금 연계로 지속적인 성장을 지원합니다
+                        </p>
+                        <div class="process-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>실적 관리 지원</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>추가 자금 연계</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA 영역 -->
+            <div class="process-cta">
+                <h3 class="cta-title">지금 바로 시작하세요</h3>
+                <p class="cta-desc">
+                    KY 중소기업지원센터의 전문 지원으로<br>정책자금 성공률을 높이세요
+                </p>
+                <a href="#contact" class="cta-button">무료 상담 신청하기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         자금 상세 안내 섹션
+         ======================================== -->
+    <section id="kyFundDetail">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">KY 중소기업지원센터 금융 솔루션</span>
+                <h2 class="section-title">2026년 정부지원자금 안내</h2>
+                <p class="section-desc">
+                    총 4조 4,313억원 규모의 2026년 정책자금 정보 제공<br>
+                    대표님에게 최적화된 자금 전략 코칭을 제공합니다
+                </p>
+                <p class="disclaimer-text">
+                    ※ KY 중소기업지원센터는 정책자금 서류작성을 대행하지 않습니다. ※ 기업평가를 하지 않습니다.
+                </p>
+            </div>
+
+            <!-- 탭 네비게이션 -->
+            <div class="fund-tabs">
+                <button class="tab-button active" data-tab="policy">
+                    <svg class="tab-icon" viewBox="0 0 24 24">
+                        <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V19z"/>
+                    </svg>
+                    정책자금
+                </button>
+                <button class="tab-button" data-tab="loan">
+                    <svg class="tab-icon" viewBox="0 0 24 24">
+                        <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                    </svg>
+                    정부지원자금
+                </button>
+                <button class="tab-button" data-tab="guarantee">
+                    <svg class="tab-icon" viewBox="0 0 24 24">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                    </svg>
+                    보증서발급
+                </button>
+                <button class="tab-button" data-tab="consulting">
+                    <svg class="tab-icon" viewBox="0 0 24 24">
+                        <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM9 8H7v2h2V8zm0 3H7v2h2v-2zm0 3H7v2h2v-2zm4-6h-2v2h2V8zm0 3h-2v2h2v-2zm0 3h-2v2h2v-2zm4-6h-2v2h2V8zm0 3h-2v2h2v-2zm0 3h-2v2h2v-2z"/>
+                    </svg>
+                    성장 지원
+                </button>
+            </div>
+
+            <!-- 정책자금 -->
+            <div id="policy" class="tab-content active">
+                <div class="fund-detail-card">
+                    <div class="fund-header">
+                        <div class="fund-title-area">
+                            <h3 class="fund-name">정부 정책자금 신청 정보</h3>
+                            <p class="fund-summary">창업·운전·시설자금 등 대표님 성장 단계별 맞춤형 정책자금 정보</p>
+                        </div>
+                        <div class="fund-highlight">
+                            <div class="highlight-label">최대 지원</div>
+                            <div class="highlight-value">10억원</div>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">이율</div>
+                            <div class="info-value">1.5%~3.0%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">한도</div>
+                            <div class="info-value">최대 10억</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">기간</div>
+                            <div class="info-value">최장 15년</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">거치</div>
+                            <div class="info-value">5년 가능</div>
+                        </div>
+                    </div>
+
+                    <div class="requirements-section">
+                        <h4 class="section-subtitle">
+                            <div class="section-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                            </div>
+                            대상 기업
+                        </h4>
+                        <ul class="requirement-list">
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">창업·운전·시설 자금 필요 기업</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">중소·중견기업 해당 사업자</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">정상 영업활동 중인 기업</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">사업계획서 제출 가능 기업</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="requirements-section">
+                        <h4 class="section-subtitle">
+                            <div class="section-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            KY 중소기업지원센터 제공 서비스
+                        </h4>
+                        <div class="benefits-grid">
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">자금 정보 분석</h5>
+                                <p class="benefit-desc">대표님 상황별 최적 정책자금 정보</p>
+                            </div>
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">서류 작성 교육</h5>
+                                <p class="benefit-desc">사업계획서 작성 방법 교육</p>
+                            </div>
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">심사 전략 코칭</h5>
+                                <p class="benefit-desc">대표님이 직접 준비하는 전략 코칭</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="apply-section">
+                        <a href="#contact" class="apply-button">무료 상담 신청하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2026년 정부지원자금 -->
+            <div id="loan" class="tab-content">
+                <div class="fund-detail-card">
+                    <div class="fund-header">
+                        <div class="fund-title-area">
+                            <h3 class="fund-name">2026년 정부지원자금 정보</h3>
+                            <p class="fund-summary">중소벤처기업부 정책자금 4조 4,313억원 규모 운용</p>
+                        </div>
+                        <div class="fund-highlight">
+                            <div class="highlight-label">총 규모</div>
+                            <div class="highlight-value">4.4조원</div>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">융자</div>
+                            <div class="info-value">4조643억</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">이차보전</div>
+                            <div class="info-value">3,670억</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">신청시작</div>
+                            <div class="info-value">1월 5일~</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">비수도권</div>
+                            <div class="info-value">60%집중</div>
+                        </div>
+                    </div>
+
+                    <div class="requirements-section">
+                        <h4 class="section-subtitle">
+                            <div class="section-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                            </div>
+                            성장단계별 자금 종류
+                        </h4>
+                        <ul class="requirement-list">
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">혁신창업사업화자금 1.6조원 (업력 7년 미만)</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">신시장진출·신성장기반자금 1.7조원 (성장기)</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">재창업·사업전환 지원 6,125억원 (재도약기)</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">긴급경영안정자금 2,500억원 (경영애로)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="requirements-section">
+                        <h4 class="section-subtitle">
+                            <div class="section-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            2026년 신설 우대 트랙
+                        </h4>
+                        <div class="benefits-grid">
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">AX 스프린트 트랙</h5>
+                                <p class="benefit-desc">AI 기업 대상, 한도 100억, 금리 0.1%p 우대</p>
+                            </div>
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">K-뷰티론 확대</h5>
+                                <p class="benefit-desc">400억원 규모, 연간 한도 3억원</p>
+                            </div>
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">해외진출 지원</h5>
+                                <p class="benefit-desc">해외법인지원 700억, 수출기업화 한도 10억</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="apply-section">
+                        <p style="text-align: center; color: #6B7280; font-size: 0.875rem; margin-bottom: 1rem;">
+                            ※ 신청: 중소벤처기업진흥공단(www.kosmes.or.kr) | 문의: 1811-3655
+                        </p>
+                        <a href="#contact" class="apply-button">무료 상담 신청하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 보증서발급 -->
+            <div id="guarantee" class="tab-content">
+                <div class="fund-detail-card">
+                    <div class="fund-header">
+                        <div class="fund-title-area">
+                            <h3 class="fund-name">신용보증서 발급 정보</h3>
+                            <p class="fund-summary">신용보증재단·기술보증기금 등 보증기관 정보 제공</p>
+                        </div>
+                        <div class="fund-highlight">
+                            <div class="highlight-label">보증한도</div>
+                            <div class="highlight-value">15억원</div>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">보증료</div>
+                            <div class="info-value">0.5%~1.5%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">보증비율</div>
+                            <div class="info-value">85%~95%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">기간</div>
+                            <div class="info-value">최장 10년</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">심사</div>
+                            <div class="info-value">3~10일</div>
+                        </div>
+                    </div>
+
+                    <div class="requirements-section">
+                        <h4 class="section-subtitle">
+                            <div class="section-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                            </div>
+                            대상 기업
+                        </h4>
+                        <ul class="requirement-list">
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">담보 부족 중소기업</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">창업 및 성장단계 기업</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">기술력·성장성 보유 기업</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">정상 운영 중인 사업자</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="requirements-section">
+                        <h4 class="section-subtitle">
+                            <div class="section-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            KY 중소기업지원센터 제공 서비스
+                        </h4>
+                        <div class="benefits-grid">
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">보증기관 정보</h5>
+                                <p class="benefit-desc">신보·기보·지역보증 정보 제공</p>
+                            </div>
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">서류 작성 교육</h5>
+                                <p class="benefit-desc">대표님이 직접 작성하는 방법 교육</p>
+                            </div>
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">심사 전략 코칭</h5>
+                                <p class="benefit-desc">대표님이 직접 준비하는 전략 코칭</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="apply-section">
+                        <a href="#contact" class="apply-button">무료 상담 신청하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 성장 지원 -->
+            <div id="consulting" class="tab-content">
+                <div class="fund-detail-card">
+                    <div class="fund-header">
+                        <div class="fund-title-area">
+                            <h3 class="fund-name">대표님 자금전략 교육</h3>
+                            <p class="fund-summary">대표님이 직접 수립하고 실행하는 맞춤형 자금전략 교육 및 코칭</p>
+                        </div>
+                        <div class="fund-highlight">
+                            <div class="highlight-label">성공률</div>
+                            <div class="highlight-value">96%</div>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">교육비용</div>
+                            <div class="info-value">무료 상담</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">교육기간</div>
+                            <div class="info-value">1~3개월</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">교육수수료</div>
+                            <div class="info-value">자금집행 시</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">정보제공</div>
+                            <div class="info-value">지속제공</div>
+                        </div>
+                    </div>
+
+                    <div class="requirements-section">
+                        <h4 class="section-subtitle">
+                            <div class="section-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                            </div>
+                            교육 대상
+                        </h4>
+                        <ul class="requirement-list">
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">자금조달 방법을 배우고 싶은 대표님</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">신청 서류 작성 방법을 익히고 싶은 대표님</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">최적 조건을 직접 찾고 싶은 대표님</span>
+                            </li>
+                            <li class="requirement-item">
+                                <svg class="check-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span class="requirement-text">승인 확률을 직접 높이고 싶은 대표님</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="requirements-section">
+                        <h4 class="section-subtitle">
+                            <div class="section-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            KY 중소기업지원센터 제공 서비스
+                        </h4>
+                        <div class="benefits-grid">
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">역량 분석 교육</h5>
+                                <p class="benefit-desc">대표자 현황 분석·자금 전략 교육</p>
+                            </div>
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">서류 작성 교육</h5>
+                                <p class="benefit-desc">대표님이 직접 작성하는 방법 교육</p>
+                            </div>
+                            <div class="benefit-card">
+                                <h5 class="benefit-title">사후관리 정보</h5>
+                                <p class="benefit-desc">자금 집행·상환 관리 정보 제공</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="apply-section">
+                        <a href="#contact" class="apply-button">무료 상담 신청하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         상담신청 폼 섹션
+         ======================================== -->
+    <section id="contact">
+        <div class="section-container">
+            <div class="form-wrapper">
+                <div class="form-info">
+                    <div class="info-content">
+                        <span class="info-badge">중소기업 자금지원</span>
+                        <h2 class="info-title"><span class="info-title-main">정책자금의 든든한 파트너</span><span class="gradient-text">1차 무료심사</span></h2>
+                        <p class="info-desc">중소기업지원센터의 맞춤형 분석으로<br>정책자금 승인율을<br>96%까지 높여드립니다</p>
+                        <ul class="benefit-list">
+                            <li class="benefit-item"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></div><span class="benefit-text">자금승인 성공률 96%</span></li>
+                            <li class="benefit-item"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></div><span class="benefit-text">기업당 평균 2.8억 조달</span></li>
+                            <li class="benefit-item"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></div><span class="benefit-text">1:1 전담 컨설팅 제공</span></li>
+                            <li class="benefit-item"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></div><span class="benefit-text">첫 상담 비용 무료</span></li>
+                        </ul>
+                        <div class="contact-info">
+                            <h3 class="contact-title">정책자금 문의안내</h3>
+                            <div class="form-contact-item"><svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span class="contact-text">대표전화: <strong>1555-0238</strong></span></div>
+                            <div class="form-contact-item"><svg class="contact-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg><span class="contact-text">상담시간: 평일 09:00 ~ 18:00</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-area">
+                    <div class="form-header">
+                        <h3 class="form-title">정책자금의 든든한 파트너</h3>
+                        <p class="form-subtitle">1차 무료심사</p>
+                    </div>
+                    <form id="consultForm">
+                        <div class="form-row four-columns">
+                            <div class="form-group"><label class="form-label">기업명 <span class="required">*</span></label><input type="text" class="form-control" name="company" required></div>
+                            <div class="form-group"><label class="form-label">사업자번호 <span class="required">*</span></label><input type="text" class="form-control" name="bizno" placeholder="000-00-00000" required></div>
+                            <div class="form-group"><label class="form-label">대표자명 <span class="required">*</span></label><input type="text" class="form-control" name="name" required></div>
+                            <div class="form-group"><label class="form-label">연락처 <span class="required">*</span></label><input type="tel" class="form-control" name="phone" placeholder="010-0000-0000" required></div>
+                        </div>
+                        <div class="form-row four-columns">
+                            <div class="form-group"><label class="form-label">이메일 <span class="required">*</span></label><input type="email" class="form-control" name="email" required></div>
+                            <div class="form-group"><label class="form-label">업종</label><select class="form-control" name="industry"><option value="">선택하세요</option><option value="제조업">제조업</option><option value="도소매업">도소매업</option><option value="서비스업">서비스업</option><option value="건설업">건설업</option><option value="IT/소프트웨어">IT/소프트웨어</option><option value="기타">기타</option></select></div>
+                            <div class="form-group"><label class="form-label">설립연도</label><input type="text" class="form-control" name="founded" placeholder="2020"></div>
+                            <div class="form-group"><label class="form-label">통화 가능 시간 <span class="required">*</span></label><select class="form-control" name="consultTime" required><option value="">선택하세요</option><option value="09:00-10:00">오전 09:00 - 10:00</option><option value="10:00-11:00">오전 10:00 - 11:00</option><option value="11:00-12:00">오전 11:00 - 12:00</option><option value="14:00-15:00">오후 14:00 - 15:00</option><option value="15:00-16:00">오후 15:00 - 16:00</option><option value="16:00-17:00">오후 16:00 - 17:00</option><option value="17:00-18:00">오후 17:00 - 18:00</option><option value="18:00-19:00">오후 18:00 - 19:00</option><option value="언제나가능">언제나 가능</option></select></div>
+                        </div>
+                        <div class="form-row full">
+                            <div class="form-group"><label class="form-label">필요 자금 규모</label><select class="form-control" name="amount"><option value="">선택하세요</option><option value="5천만원 이하">5천만원 이하</option><option value="5천만원~1억원">5천만원 ~ 1억원</option><option value="1억원~3억원">1억원 ~ 3억원</option><option value="3억원~5억원">3억원 ~ 5억원</option><option value="5억원~10억원">5억원 ~ 10억원</option><option value="10억원 이상">10억원 이상</option></select></div>
+                        </div>
+                        <div class="fund-type-group">
+                            <label class="fund-type-label">지원받고 싶은 자금 종류 (복수 선택 가능)</label>
+                            <div class="fund-type-options">
+                                <div class="fund-type-option"><input type="checkbox" id="fund1" name="fundType" value="창업자금"><label for="fund1">창업자금</label></div>
+                                <div class="fund-type-option"><input type="checkbox" id="fund2" name="fundType" value="운전자금"><label for="fund2">운전자금</label></div>
+                                <div class="fund-type-option"><input type="checkbox" id="fund3" name="fundType" value="시설자금"><label for="fund3">시설자금</label></div>
+                                <div class="fund-type-option"><input type="checkbox" id="fund4" name="fundType" value="기타자금"><label for="fund4">기타자금</label></div>
+                            </div>
+                        </div>
+                        <div class="form-row full"><div class="form-group"><label class="form-label">문의사항</label><textarea class="form-control" name="message" placeholder="필요하신 자금의 용도나 현재 경영 상황 등을 간략히 적어주세요"></textarea></div></div>
+                        <div class="privacy-section">
+                            <h4 class="privacy-title">개인정보 수집·이용 동의</h4>
+                            <div class="privacy-checkbox"><input type="checkbox" id="privacy" name="privacy" required><label for="privacy">개인정보 수집·이용에 동의합니다 <span class="required">*</span><span class="privacy-detail-link" onclick="togglePrivacyDetail()">내용보기</span></label></div>
+                            <div class="privacy-content" id="privacyContent"><p>1. 수집항목: 기업명, 사업자번호, 대표자명, 연락처, 이메일, 문의내용</p><p>2. 수집목적: 정책자금 상담 및 지원 서비스 제공</p><p>3. 보유기간: 서비스 종료 후 3년</p><p>4. 동의 거부 시 서비스 이용이 제한될 수 있습니다.</p></div>
+                        </div>
+                        <div class="message-box success" id="successMessage">✅ 컨설팅 신청이 성공적으로 완료되었습니다!</div>
+                        <div class="message-box error" id="errorMessage">❌ 신청 처리 중 문제가 발생했습니다. 다시 시도해주세요.</div>
+                        <div class="submit-section"><button type="submit" class="submit-button" id="submitButton">무료 상담 신청하기</button><p class="submit-note">접수 완료 후 담당 컨설턴트가 1영업일 내 안내드립니다</p></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top 버튼 -->
+    <button id="topButton" class="top-button" aria-label="맨 위로 이동" title="맨 위로">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <!-- ========================================
+         푸터
+         ======================================== -->
+    <footer id="kyFooter">
+        <div class="footer-wrapper">
+            <div class="footer-container">
+                <div class="footer-top">
+                    <div class="footer-info">
+                        <div class="footer-logo"><img src="화이트로고.png" alt="KY 로고" class="footer-logo-img"><span class="footer-logo-text">중소기업지원센터</span></div>
+                        <p class="footer-desc">중소기업 정책자금 전문 | 맞춤형 자금조달 컨설팅</p>
+                    </div>
+                </div>
+                <div class="footer-middle">
+                    <div class="footer-contact">
+                        <h4 class="footer-title">Contact</h4>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 12h-3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3v7z"/></svg><span>대표자: 최승균</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>사업자등록번호: 837-05-02123</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>대표전화: 1555-0238</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M12 12l8-5H4l8 5z"/></svg><span>이메일: jmfood12@naver.com</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>주소: <span class="address-province">전북특별자치도</span>익산시 평동로3길 32, 1층(인화동1가)</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>상담시간: 평일 09:00-18:00</span></div>
+                    </div>
+                    <div class="footer-menu">
+                        <h4 class="footer-title">Menu</h4>
+                        <ul class="footer-list">
+                            <li><a href="index.html">홈</a></li>
+                            <li><a href="about.html">회사소개</a></li>
+                            <li><a href="process.html">진행과정</a></li>
+                            <li><a href="fund.html">자금상담</a></li>
+                            <li><a href="pro.html">전문서비스</a></li>
+                            <li><a href="mkt.html">온라인마케팅</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="disclaimer-section">
+                    <p class="disclaimer-text"><span class="disclaimer-item">※ KY 중소기업지원센터는 정책자금 서류작성을 대행하지 않습니다.</span><span class="disclaimer-item">※ 기업평가를 하지 않습니다.</span></p>
+                </div>
+                <div class="partnership-section">
+                    <div class="partnership-link">
+                        <a href="http://jjk-biz.com/" target="_blank">
+                            <img src="https://cdn.imweb.me/upload/S2025072970f03c9c7eca7/ac036acf8a029.png" alt="업무협약 아이콘" class="partnership-icon">
+                            <span>정책자금지원센터 | 업무협약 KY 중소기업지원센터</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright">© 2025 케이와이. All rights reserved.</p>
+                    <div class="footer-links"><a href="policy.html">이용약관</a><span class="divider">|</span><a href="privacy.html">개인정보처리방침</a></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    /* ========================================
+       메인 스크립트
+       ======================================== */
+    (function() {
+        'use strict';
+
+        // 헤더 & 네비게이션
+        const header = document.getElementById('kyHeader');
+        const hamburger = document.getElementById('kyHamburger');
+        const mobileMenu = document.getElementById('kyMobileMenu');
+        const mobileMenuLinks = document.querySelectorAll('.ky-mobile-nav-link, .ky-mobile-nav-cta');
+        let isMenuOpen = false;
+
+        function toggleMenu(forceClose = false) {
+            if (forceClose || isMenuOpen) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                isMenuOpen = false;
+            } else {
+                hamburger.classList.add('active');
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                isMenuOpen = true;
+            }
+        }
+
+        if (hamburger) {
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu();
+            });
+        }
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                setTimeout(() => toggleMenu(true), 100);
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMenuOpen) {
+                toggleMenu(true);
+            }
+        });
+
+        function handleScroll() {
+            if (header) {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        // 상담신청 버튼 클릭 시 폼으로 스크롤
+        document.querySelectorAll('a[href="#contact"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const formSection = document.getElementById('contact');
+                if (formSection) {
+                    formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // 히어로 카드 스포트라이트 효과 (데스크톱)
+        if (window.innerWidth > 768) {
+            const fundCards = document.querySelectorAll('#kyFundHero .fund-card');
+            const ctaButtons = document.querySelectorAll('#kyFundHero .btn-primary');
+
+            fundCards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    this.style.setProperty('--mx', x + 'px');
+                    this.style.setProperty('--my', y + 'px');
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.setProperty('--mx', '50%');
+                    this.style.setProperty('--my', '50%');
+                });
+            });
+
+            ctaButtons.forEach(btn => {
+                btn.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    this.style.setProperty('--mx', x + 'px');
+                    this.style.setProperty('--my', y + 'px');
+                });
+
+                btn.addEventListener('mouseleave', function() {
+                    this.style.setProperty('--mx', '50%');
+                    this.style.setProperty('--my', '50%');
+                });
+            });
+        }
+
+        console.log('KY Fund Page initialized');
+    })();
+
+    /* ========================================
+       폼 스크립트
+       ======================================== */
+    function togglePrivacyDetail() {
+        const content = document.getElementById('privacyContent');
+        content.classList.toggle('show');
+    }
+
+    (function() {
+        'use strict';
+
+        const form = document.getElementById('consultForm');
+        const submitButton = document.getElementById('submitButton');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        if (!form) return;
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                if (key === 'fundType') {
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
+
+            if (data.fundType) {
+                data.fundType = data.fundType.join(', ');
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = '신청 중...';
+
+            try {
+                const response = await fetch('https://ky-form.chltmdrbs7.workers.dev/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    if (successMessage) successMessage.classList.add('active');
+                    form.reset();
+                    setTimeout(() => {
+                        if (successMessage) successMessage.classList.remove('active');
+                    }, 5000);
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (error) {
+                if (errorMessage) errorMessage.classList.add('active');
+                setTimeout(() => {
+                    if (errorMessage) errorMessage.classList.remove('active');
+                }, 5000);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = '무료 상담 신청하기';
+            }
+        });
+    })();
+    </script>
+
+    <!-- 자금 상세 섹션 탭 기능 -->
+    <script>
+    (function() {
+        'use strict';
+
+        function initFundDetailTabs() {
+            const tabButtons = document.querySelectorAll('#kyFundDetail .tab-button');
+            const tabContents = document.querySelectorAll('#kyFundDetail .tab-content');
+
+            if (!tabButtons.length || !tabContents.length) return;
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+
+                    // 모든 탭 버튼에서 active 제거
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // 클릭된 버튼에 active 추가
+                    this.classList.add('active');
+
+                    // 모든 탭 콘텐츠 숨기기
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    // 해당 탭 콘텐츠 표시
+                    const targetContent = document.getElementById(tabName);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+
+                    // 모바일에서 탭 콘텐츠로 스크롤
+                    if (window.innerWidth <= 768 && targetContent) {
+                        setTimeout(() => {
+                            targetContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 100);
+                    }
+                });
+            });
+        }
+
+        // DOM 로드 시 초기화
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFundDetailTabs);
+        } else {
+            initFundDetailTabs();
+        }
+    })();
+    </script>
+
+    <!-- 숫자 카운팅 효과 -->
+    <script>
+    (function() {
+        'use strict';
+
+        // 숫자 파싱 함수
+        function parseNumber(text) {
+            // 조 단위 처리
+            if (text.includes('조')) {
+                const match = text.match(/([\d.]+)조/);
+                if (match) return parseFloat(match[1]) * 10000;
+            }
+            // 억 단위 처리
+            if (text.includes('억')) {
+                const match = text.match(/([\d,]+)억/);
+                if (match) return parseFloat(match[1].replace(/,/g, ''));
+            }
+            // % 단위 처리
+            if (text.includes('%')) {
+                const match = text.match(/([\d.]+)%/);
+                if (match) return parseFloat(match[1]);
+            }
+            // 일반 숫자 처리
+            const numMatch = text.match(/([\d,]+)/);
+            if (numMatch) return parseFloat(numMatch[1].replace(/,/g, ''));
+            return 0;
+        }
+
+        // 숫자 포맷 함수
+        function formatNumber(num, originalText) {
+            if (originalText.includes('조')) {
+                const jo = num / 10000;
+                return jo.toFixed(1) + '조원';
+            }
+            if (originalText.includes('억')) {
+                return Math.round(num).toLocaleString() + '억원';
+            }
+            if (originalText.includes('%')) {
+                return Math.round(num) + '%';
+            }
+            return Math.round(num).toLocaleString();
+        }
+
+        // 카운팅 애니메이션
+        function animateCount(element, originalText) {
+            const targetNum = parseNumber(originalText);
+            if (targetNum === 0) return;
+
+            const duration = 1500;
+            const steps = 60;
+            const stepTime = duration / steps;
+            let currentStep = 0;
+
+            element.style.opacity = '1';
+
+            const timer = setInterval(() => {
+                currentStep++;
+                const progress = currentStep / steps;
+                const easeProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                const currentNum = targetNum * easeProgress;
+
+                element.textContent = formatNumber(currentNum, originalText);
+
+                if (currentStep >= steps) {
+                    clearInterval(timer);
+                    element.textContent = originalText;
+                }
+            }, stepTime);
+        }
+
+        // Intersection Observer로 뷰포트 진입 감지
+        function initCountAnimation() {
+            const countElements = document.querySelectorAll('.highlight-value, .fund-card-amount, .info-value');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.dataset.counted) {
+                        const originalText = entry.target.textContent;
+                        if (parseNumber(originalText) > 0) {
+                            entry.target.dataset.counted = 'true';
+                            entry.target.textContent = '0';
+                            setTimeout(() => {
+                                animateCount(entry.target, originalText);
+                            }, 200);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            countElements.forEach(el => observer.observe(el));
+        }
+
+        // DOM 로드 시 초기화
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCountAnimation);
+        } else {
+            initCountAnimation();
+        }
+    })();
+
+    // Top 버튼 기능
+    (function() {
+        const topButton = document.getElementById('topButton');
+        if (!topButton) return;
+        let ticking = false;
+        function updateTopButton() { if (window.scrollY > 400) { topButton.classList.add('visible'); } else { topButton.classList.remove('visible'); } ticking = false; }
+        window.addEventListener('scroll', function() { if (!ticking) { requestAnimationFrame(updateTopButton); ticking = true; } }, { passive: true });
+        topButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    })();
+    </script>
+</body>
+</html>

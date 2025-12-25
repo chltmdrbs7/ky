@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 - KY 중소기업지원센터</title>
+    <meta name="description" content="KY 중소기업지원센터 공지사항 및 정책자금 소식">
+
+    <!-- Pretendard 폰트 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+    <style>
+        /* ========================================
+           기본 스타일 초기화
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            color: #93C5FD;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 50%, #0F172A 100%);
+        }
+
+        /* ========================================
+           헤더 섹션
+           ======================================== */
+        .ky-header-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ky-header-wrapper.scrolled {
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .ky-header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .ky-logo {
+            z-index: 10001;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .ky-logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .ky-logo:hover .ky-logo-img {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        .ky-logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+            background: linear-gradient(to bottom, #DBEAFE 0%, #93C5FD 35%, #3B82F6 65%, #1E3A5F 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ky-nav-desktop {
+            display: none;
+        }
+
+        .ky-nav-list {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .ky-nav-link {
+            display: inline-block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #93C5FD;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .ky-nav-link:hover {
+            color: #FFFFFF;
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        .ky-nav-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #3B82F6, #1E3A5F);
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .ky-nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .ky-hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 10001;
+            padding: 10px;
+        }
+
+        .ky-hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #93C5FD;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .ky-hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .ky-hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .ky-hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .ky-mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            transform: translateY(-120%);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .ky-mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .ky-mobile-nav-list {
+            list-style: none;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .ky-mobile-nav-item {
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .ky-mobile-nav-link {
+            display: block;
+            padding: 20px 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #93C5FD;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ky-mobile-nav-link:hover {
+            color: #FFFFFF;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .ky-mobile-nav-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 50px;
+            background: linear-gradient(135deg, #3B82F6, #1E3A5F);
+            color: #FFFFFF;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 30px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        @media (min-width: 1024px) {
+            .ky-nav-desktop {
+                display: flex;
+                align-items: center;
+            }
+            .ky-hamburger {
+                display: none;
+            }
+            .ky-mobile-menu {
+                display: none;
+            }
+        }
+
+        /* ========================================
+           게시글 상세 섹션
+           ======================================== */
+        .post-section {
+            padding: 120px 20px 80px;
+            min-height: 100vh;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #60A5FA;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .post-back:hover {
+            color: #93C5FD;
+        }
+
+        .post-back svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .post-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .post-thumbnail {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 40px;
+        }
+
+        .post-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #60A5FA;
+            margin-bottom: 16px;
+        }
+
+        .post-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 20px;
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .post-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .post-meta-item svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .post-body {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.9;
+            white-space: pre-wrap;
+        }
+
+        .post-body p {
+            margin-bottom: 16px;
+        }
+
+        .post-loading, .post-error {
+            text-align: center;
+            padding: 80px 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .post-loading .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-top-color: #60A5FA;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .post-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .post-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 30px;
+            background: transparent;
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            border-radius: 30px;
+            color: #60A5FA;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .post-nav-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .post-content {
+                padding: 24px;
+            }
+            .post-title {
+                font-size: 22px;
+            }
+            .post-meta {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+        }
+
+        /* ========================================
+           푸터 섹션
+           ======================================== */
+        #kyFooter { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; }
+        #kyFooter .footer-wrapper { background: #050a14; color: white; padding: 60px 0 0; margin: 0; width: 100vw; position: relative; left: 50%; margin-left: -50vw; }
+        #kyFooter .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        #kyFooter .footer-top { padding-bottom: 30px; border-bottom: 1px solid rgba(59, 130, 246, 0.2); }
+        #kyFooter .footer-logo { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+        #kyFooter .footer-logo-text { font-size: 20px; font-weight: 700; background: linear-gradient(to bottom, #DBEAFE 0%, #93C5FD 35%, #3B82F6 65%, #1E3A5F 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        #kyFooter .footer-logo-img { height: 40px; width: auto; object-fit: contain; }
+        #kyFooter .footer-desc { color: rgba(255, 255, 255, 0.9); line-height: 1.8; font-size: 15px; }
+        #kyFooter .footer-middle { display: grid; grid-template-columns: 2.5fr 1fr; gap: 80px; padding: 40px 0 30px; border-bottom: 1px solid rgba(59, 130, 246, 0.2); }
+        #kyFooter .footer-title { font-size: 18px; font-weight: 600; margin-bottom: 20px; color: #3B82F6; }
+        #kyFooter .footer-list { list-style: none; padding: 0; margin: 0; }
+        #kyFooter .footer-list li { margin-bottom: 12px; }
+        #kyFooter .footer-list a { color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: all 0.3s ease; font-size: 15px; }
+        #kyFooter .footer-list a:hover { color: #3B82F6; padding-left: 5px; }
+        #kyFooter .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; color: rgba(255, 255, 255, 0.9); margin-bottom: 14px; font-size: 15px; }
+        #kyFooter .footer-contact-item svg { width: 16px; height: 16px; flex-shrink: 0; stroke: #3B82F6; }
+        #kyFooter .disclaimer-section { padding: 20px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.2); }
+        #kyFooter .disclaimer-text { font-size: 11px; color: rgba(255, 255, 255, 0.6); line-height: 1.6; }
+        #kyFooter .disclaimer-item { margin-right: 20px; }
+        #kyFooter .partnership-section { padding: 30px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.2); }
+        #kyFooter .partnership-link a { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: rgba(255, 255, 255, 0.9); background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.1)); border: 2px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 25px; transition: all 0.3s ease; }
+        #kyFooter .partnership-link a:hover { transform: translateY(-3px); box-shadow: 0 0 60px rgba(59, 130, 246, 0.6); }
+        #kyFooter .partnership-icon { width: 40px; height: 40px; object-fit: contain; }
+        #kyFooter .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 25px 0; gap: 15px; }
+        #kyFooter .copyright { font-size: 14px; color: rgba(255, 255, 255, 0.6); }
+        #kyFooter .footer-links { display: flex; gap: 15px; }
+        #kyFooter .footer-links a { font-size: 13px; color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 0.3s; }
+        #kyFooter .footer-links a:hover { color: #3B82F6; }
+        #kyFooter .footer-links .divider { color: rgba(255, 255, 255, 0.3); }
+        @media (max-width: 768px) {
+            #kyFooter .footer-middle { grid-template-columns: 1fr; gap: 40px; }
+            #kyFooter .footer-bottom { flex-direction: column; text-align: center; }
+        }
+        /* Top 버튼 스타일 */
+        .top-button { position: fixed; bottom: 30px; right: 30px; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%); border: 2px solid rgba(59, 130, 246, 0.5); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 9998; box-shadow: 0 4px 20px rgba(30, 58, 95, 0.4), 0 0 30px rgba(59, 130, 246, 0.2); }
+        .top-button svg { width: 24px; height: 24px; stroke: #fff; transition: transform 0.3s ease; }
+        .top-button:hover { background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%); border-color: rgba(59, 130, 246, 0.8); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(30, 58, 95, 0.5), 0 0 40px rgba(59, 130, 246, 0.4); }
+        .top-button.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        @media (max-width: 768px) { .top-button { width: 46px; height: 46px; bottom: 20px; right: 20px; } .top-button svg { width: 20px; height: 20px; } }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <div class="ky-header-wrapper" id="kyHeader">
+        <header class="ky-header-container">
+            <a href="index.html" class="ky-logo">
+                <img src="화이트로고.png" alt="KY 로고" class="ky-logo-img">
+                <span class="ky-logo-text">중소기업지원센터</span>
+            </a>
+            <nav class="ky-nav-desktop">
+                <ul class="ky-nav-list">
+                    <li><a href="index.html" class="ky-nav-link">홈</a></li>
+                    <li><a href="index.html#company" class="ky-nav-link">회사소개</a></li>
+                    <li><a href="index.html#process" class="ky-nav-link">진행과정</a></li>
+                    <li><a href="index.html#fund" class="ky-nav-link">자금상담</a></li>
+                    <li><a href="index.html#service" class="ky-nav-link">전문서비스</a></li>
+                    <li><a href="index.html#marketing" class="ky-nav-link">온라인마케팅</a></li>
+                </ul>
+                <a href="index.html#contact" class="ky-nav-cta">상담신청</a>
+            </nav>
+            <button class="ky-hamburger" id="kyHamburger" aria-label="메뉴 열기">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+    </div>
+
+    <!-- 모바일 메뉴 -->
+    <div class="ky-mobile-menu" id="kyMobileMenu">
+        <ul class="ky-mobile-nav-list">
+            <li class="ky-mobile-nav-item"><a href="index.html" class="ky-mobile-nav-link">홈</a></li>
+            <li class="ky-mobile-nav-item"><a href="index.html#company" class="ky-mobile-nav-link">회사소개</a></li>
+            <li class="ky-mobile-nav-item"><a href="index.html#process" class="ky-mobile-nav-link">진행과정</a></li>
+            <li class="ky-mobile-nav-item"><a href="index.html#fund" class="ky-mobile-nav-link">자금상담</a></li>
+            <li class="ky-mobile-nav-item"><a href="index.html#service" class="ky-mobile-nav-link">전문서비스</a></li>
+            <li class="ky-mobile-nav-item"><a href="index.html#marketing" class="ky-mobile-nav-link">온라인마케팅</a></li>
+        </ul>
+        <a href="index.html#contact" class="ky-mobile-nav-cta">상담신청</a>
+    </div>
+
+    <!-- 게시글 상세 -->
+    <section class="post-section">
+        <div class="post-container">
+            <a href="index.html#kyBoardSection" class="post-back">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                목록으로 돌아가기
+            </a>
+
+            <!-- 로딩 상태 -->
+            <div class="post-loading" id="post-loading">
+                <div class="spinner"></div>
+                <p>게시글을 불러오는 중...</p>
+            </div>
+
+            <!-- 에러 상태 -->
+            <div class="post-error" id="post-error" style="display: none;">
+                <p>게시글을 찾을 수 없습니다.</p>
+                <a href="index.html" class="post-nav-btn" style="margin-top: 20px;">홈으로 이동</a>
+            </div>
+
+            <!-- 게시글 내용 -->
+            <article class="post-card" id="post-card" style="display: none;">
+                <img class="post-thumbnail" id="post-thumbnail" src="" alt="">
+                <div class="post-content">
+                    <span class="post-category" id="post-category"></span>
+                    <h1 class="post-title" id="post-title"></h1>
+                    <div class="post-meta">
+                        <span class="post-meta-item" id="post-date">
+                            <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                            <span></span>
+                        </span>
+                        <span class="post-meta-item" id="post-views">
+                            <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div class="post-body" id="post-body"></div>
+                </div>
+            </article>
+
+            <div class="post-nav" id="post-nav" style="display: none;">
+                <a href="index.html#kyBoardSection" class="post-nav-btn">
+                    <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+                    목록으로
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top 버튼 -->
+    <button id="topButton" class="top-button" aria-label="맨 위로 이동" title="맨 위로">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <!-- 푸터 -->
+    <footer id="kyFooter">
+        <div class="footer-wrapper">
+            <div class="footer-container">
+                <div class="footer-top">
+                    <div class="footer-logo">
+                        <img src="화이트로고.png" alt="KY 로고" class="footer-logo-img">
+                        <span class="footer-logo-text">KY 중소기업지원센터</span>
+                    </div>
+                    <p class="footer-desc">중소기업의 성장과 발전을 위한 맞춤형 정책자금 컨설팅 서비스를 제공합니다.</p>
+                </div>
+                <div class="footer-middle">
+                    <div class="footer-contact">
+                        <h4 class="footer-title">Contact</h4>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>대표전화: 1555-0238</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M12 12l8-5H4l8 5z"/></svg><span>이메일: jmfood12@naver.com</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>주소: 전북특별자치도 익산시 평동로3길 32, 1층(인화동1가)</span></div>
+                        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>상담시간: 평일 09:00-18:00</span></div>
+                    </div>
+                    <div class="footer-menu">
+                        <h4 class="footer-title">Menu</h4>
+                        <ul class="footer-list">
+                            <li><a href="index.html">홈</a></li>
+                            <li><a href="index.html#company">회사소개</a></li>
+                            <li><a href="index.html#process">진행과정</a></li>
+                            <li><a href="index.html#fund">자금상담</a></li>
+                            <li><a href="index.html#service">전문서비스</a></li>
+                            <li><a href="index.html#marketing">온라인마케팅</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="disclaimer-section">
+                    <p class="disclaimer-text"><span class="disclaimer-item">※ KY 중소기업지원센터는 정책자금 서류작성을 대행하지 않습니다.</span><span class="disclaimer-item">※ 기업평가를 하지 않습니다.</span></p>
+                </div>
+                <div class="partnership-section">
+                    <div class="partnership-link">
+                        <a href="http://jjk-biz.com/" target="_blank">
+                            <img src="https://cdn.imweb.me/upload/S2025072970f03c9c7eca7/ac036acf8a029.png" alt="업무협약 아이콘" class="partnership-icon">
+                            <span>정책자금지원센터 | 업무협약 KY 중소기업지원센터</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright">© 2025 케이와이. All rights reserved.</p>
+                    <div class="footer-links"><a href="#">이용약관</a><span class="divider">|</span><a href="#">개인정보처리방침</a></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        'use strict';
+
+        const API_URL = 'https://ky-form.chltmdrbs7.workers.dev';
+
+        // URL에서 게시글 ID 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+
+        const loadingEl = document.getElementById('post-loading');
+        const errorEl = document.getElementById('post-error');
+        const cardEl = document.getElementById('post-card');
+        const navEl = document.getElementById('post-nav');
+
+        if (!postId) {
+            showError();
+            return;
+        }
+
+        // 게시글 로드
+        async function loadPost() {
+            try {
+                const response = await fetch(`${API_URL}/posts/${postId}`);
+                const data = await response.json();
+
+                if (!data.post) {
+                    showError();
+                    return;
+                }
+
+                // 게시글 표시
+                showPost(data.post);
+
+            } catch (error) {
+                console.error('게시글 로드 오류:', error);
+                showError();
+            }
+        }
+
+        function showPost(post) {
+            loadingEl.style.display = 'none';
+            errorEl.style.display = 'none';
+            cardEl.style.display = 'block';
+            navEl.style.display = 'flex';
+
+            // 제목 업데이트
+            document.title = `${post.title} - KY 중소기업지원센터`;
+
+            // 썸네일
+            const thumbnailEl = document.getElementById('post-thumbnail');
+            if (post.thumbnail) {
+                thumbnailEl.src = post.thumbnail;
+                thumbnailEl.style.display = 'block';
+            } else {
+                thumbnailEl.style.display = 'none';
+            }
+
+            // 내용 채우기
+            document.getElementById('post-category').textContent = post.category;
+            document.getElementById('post-title').textContent = post.title;
+            document.getElementById('post-date').querySelector('span').textContent = post.date;
+            document.getElementById('post-views').querySelector('span').textContent = `조회 ${post.views}`;
+
+            // 내용 파싱 (마크다운 → HTML)
+            const contentHtml = parseContent(post.content);
+            document.getElementById('post-body').innerHTML = contentHtml;
+
+            // 조회수 증가 (비동기)
+            incrementViews(postId, post.views);
+        }
+
+        // 조회수 증가 함수
+        async function incrementViews(id, currentViews) {
+            try {
+                await fetch(`${API_URL}/board/${id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 조회수: (currentViews || 0) + 1 })
+                });
+                // UI 업데이트
+                document.getElementById('post-views').querySelector('span').textContent = `조회 ${(currentViews || 0) + 1}`;
+            } catch (error) {
+                console.error('조회수 증가 오류:', error);
+            }
+        }
+
+        // 내용 파싱 함수
+        function parseContent(content) {
+            if (!content) return '';
+
+            let html = content
+                // 헤딩
+                .replace(/^### (.+)$/gm, '<h3 style="margin: 20px 0 10px; color: #60A5FA;">$1</h3>')
+                .replace(/^## (.+)$/gm, '<h2 style="margin: 24px 0 12px; color: #93C5FD;">$1</h2>')
+                // 굵은 글씨
+                .replace(/\*\*(.+?)\*\*/g, '<strong style="color: #FFFFFF;">$1</strong>')
+                // 링크
+                .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" style="color: #60A5FA;">$1</a>')
+                // 인용
+                .replace(/^> (.+)$/gm, '<blockquote style="border-left: 3px solid #3B82F6; padding-left: 15px; margin: 16px 0; color: rgba(255,255,255,0.7);">$1</blockquote>')
+                // 리스트
+                .replace(/^[-•] (.+)$/gm, '<li style="margin-left: 20px;">$1</li>')
+                .replace(/^\d+\. (.+)$/gm, '<li style="margin-left: 20px;">$1</li>')
+                // 줄바꿈
+                .replace(/\n\n/g, '</p><p style="margin-bottom: 16px;">')
+                .replace(/\n/g, '<br>');
+
+            return '<p style="margin-bottom: 16px;">' + html + '</p>';
+        }
+
+        function showError() {
+            loadingEl.style.display = 'none';
+            errorEl.style.display = 'block';
+            cardEl.style.display = 'none';
+            navEl.style.display = 'none';
+        }
+
+        // 헤더 스크롤 효과
+        const header = document.getElementById('kyHeader');
+        const hamburger = document.getElementById('kyHamburger');
+        const mobileMenu = document.getElementById('kyMobileMenu');
+        let isMenuOpen = false;
+
+        function toggleMenu(forceClose = false) {
+            if (forceClose || isMenuOpen) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                isMenuOpen = false;
+            } else {
+                hamburger.classList.add('active');
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                isMenuOpen = true;
+            }
+        }
+
+        hamburger.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMenu();
+        });
+
+        document.querySelectorAll('.ky-mobile-nav-link, .ky-mobile-nav-cta').forEach(link => {
+            link.addEventListener('click', () => setTimeout(() => toggleMenu(true), 100));
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 초기 로드
+        loadPost();
+    })();
+
+    // Top 버튼 기능
+    (function() {
+        const topButton = document.getElementById('topButton');
+        if (!topButton) return;
+        let ticking = false;
+        function updateTopButton() { if (window.scrollY > 400) { topButton.classList.add('visible'); } else { topButton.classList.remove('visible'); } ticking = false; }
+        window.addEventListener('scroll', function() { if (!ticking) { requestAnimationFrame(updateTopButton); ticking = true; } }, { passive: true });
+        topButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    })();
+    </script>
+</body>
+</html>

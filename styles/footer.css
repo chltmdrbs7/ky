@@ -1,0 +1,320 @@
+/* ========================================
+   KY 중소기업지원센터 - 푸터 스타일
+   ======================================== */
+
+#kyFooter {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#kyFooter .footer-wrapper {
+    background: #050a14;
+    color: white;
+    padding: 60px 0 0;
+    margin: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+}
+
+#kyFooter .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#kyFooter .footer-top {
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* 푸터 로고 */
+#kyFooter .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+#kyFooter .footer-logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(to bottom, #DBEAFE 0%, #93C5FD 35%, #3B82F6 65%, #1E3A5F 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+    animation: footerLogoGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerLogoGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4)); }
+    50% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.6)); }
+}
+
+#kyFooter .footer-logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+    animation: footerLogoImgGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerLogoImgGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.3)); }
+    50% { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.7)) drop-shadow(0 0 25px rgba(59, 130, 246, 0.5)); }
+}
+
+#kyFooter .footer-desc {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+/* 푸터 중간 섹션 */
+#kyFooter .footer-middle {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 80px;
+    padding: 40px 0 30px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#kyFooter .footer-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #3B82F6;
+}
+
+#kyFooter .footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#kyFooter .footer-list li {
+    margin-bottom: 12px;
+}
+
+#kyFooter .footer-list a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+#kyFooter .footer-list a:hover {
+    color: #3B82F6;
+    padding-left: 5px;
+}
+
+/* 연락처 정보 */
+#kyFooter .footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+
+#kyFooter .footer-contact-item svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    stroke: #3B82F6;
+}
+
+/* 면책 섹션 */
+#kyFooter .disclaimer-section {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#kyFooter .disclaimer-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+}
+
+#kyFooter .disclaimer-item {
+    margin-right: 20px;
+}
+
+/* 파트너십 섹션 */
+#kyFooter .partnership-section {
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#kyFooter .partnership-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.1));
+    border: 2px solid rgba(59, 130, 246, 0.4);
+    border-radius: 10px;
+    padding: 14px 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+    animation: footerBlueGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerBlueGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); border-color: rgba(59, 130, 246, 0.4); }
+    50% { box-shadow: 0 0 50px rgba(59, 130, 246, 0.6); border-color: rgba(59, 130, 246, 0.7); }
+}
+
+#kyFooter .partnership-link a:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.6);
+}
+
+#kyFooter .partnership-icon {
+    height: 24px;
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+}
+
+#kyFooter .partnership-link span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3B82F6;
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+}
+
+/* 푸터 하단 */
+#kyFooter .footer-bottom {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#kyFooter .copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+#kyFooter .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#kyFooter .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+#kyFooter .footer-links a:hover {
+    color: #3B82F6;
+}
+
+#kyFooter .footer-links .divider {
+    color: rgba(59, 130, 246, 0.4);
+}
+
+/* 푸터 반응형 - 태블릿 */
+@media (max-width: 968px) {
+    #kyFooter .footer-middle {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    #kyFooter .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+/* 푸터 반응형 - 모바일 */
+@media (max-width: 768px) {
+    #kyFooter .footer-wrapper {
+        padding: 40px 0 0;
+    }
+
+    #kyFooter .footer-middle {
+        grid-template-columns: 1.5fr 0.7fr;
+        gap: 12px;
+    }
+
+    #kyFooter .footer-logo-text {
+        font-size: 22px;
+    }
+
+    #kyFooter .footer-desc {
+        font-size: 13px;
+    }
+
+    #kyFooter .footer-contact-item {
+        font-size: 11.5px;
+    }
+
+    #kyFooter .footer-contact-item svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    #kyFooter .address-province {
+        display: none;
+    }
+
+    #kyFooter .partnership-section {
+        justify-content: center;
+    }
+
+    #kyFooter .partnership-link a {
+        flex-direction: column;
+        padding: 8px;
+        gap: 6px;
+    }
+
+    #kyFooter .partnership-icon {
+        height: 16px;
+    }
+
+    #kyFooter .partnership-link span {
+        font-size: 10px;
+    }
+
+    #kyFooter .footer-list a {
+        font-size: 10.5px;
+    }
+
+    #kyFooter .disclaimer-item {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 4px;
+    }
+}
+
+/* 푸터 반응형 - 작은 모바일 */
+@media (max-width: 480px) {
+    #kyFooter .footer-middle {
+        grid-template-columns: 1.6fr 0.6fr;
+        gap: 10px;
+    }
+
+    #kyFooter .footer-logo-text {
+        font-size: 18px;
+    }
+
+    #kyFooter .footer-contact-item {
+        font-size: 10.5px;
+    }
+
+    #kyFooter .footer-list a {
+        font-size: 9.5px;
+    }
+
+    #kyFooter .partnership-link span {
+        font-size: 9px;
+    }
+}

@@ -1,0 +1,29 @@
+{
+  "brand": {
+    "name": "KY 중소기업지원센터",
+    "shortName": "KY",
+    "domain": "kybiz.co.kr",
+    "url": "https://kybiz.co.kr"
+  },
+  "contact": {
+    "phone": "1555-0238",
+    "mobile": "010-4141-2468",
+    "email": "jmfood12@naver.com"
+  },
+  "company": {
+    "name": "케이와이",
+    "representative": "최승균",
+    "businessNumber": "837-05-02123",
+    "address": "전북특별자치도 익산시 평동로3길 32, 1층(인화동1가)"
+  },
+  "design": {
+    "primaryColor": "#1E3A5F",
+    "accentColor": "#3B82F6",
+    "concept": "노멀/차분한 블루톤 - 신뢰, 안정, 전문성"
+  },
+  "seo": {
+    "title": "KY 중소기업지원센터 | 중소기업 정책자금 전문 컨설팅",
+    "description": "정책자금, 기업인증, 경영컨설팅 전문. 중소기업 성장을 위한 맞춤형 지원 서비스를 제공합니다.",
+    "keywords": ["중소기업지원", "정책자금", "기업인증", "경영컨설팅", "익산", "전북"]
+  }
+}

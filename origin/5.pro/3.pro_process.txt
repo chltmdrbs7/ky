@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자금치유연구소 전문서비스 프로세스</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      /* 섹션 전체 배경 - 다크 블루 + 네온 골드 */
+      #s2025101722cf7e1a99bd1 {
+          width: 100vw !important;
+          margin-left: calc(-50vw + 50%) !important;
+          background: #0f172e !important;
+          position: relative !important;
+          overflow: visible !important;
+          z-index: 3 !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .process-section {
+          width: 100% !important;
+          background: #0f172e !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow: visible !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .section-wrapper {
+          width: 100% !important;
+          padding: 60px 0 !important;
+          background: #0f172e !important;
+          position: relative !important;
+          overflow: visible !important;
+      }
+
+      /* 네온 골드 파티클 애니메이션 배경 */
+      #s2025101722cf7e1a99bd1 .section-wrapper::before {
+          content: '' !important;
+          position: absolute !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          background: radial-gradient(circle at 20% 50%, rgba\(212, 175, 55, 0.08) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba\(139, 111, 63, 0.06) 0%, transparent 50%),
+                      radial-gradient(circle at 50% 20%, rgba\(212, 175, 55, 0.05) 0%, transparent 40%) !important;
+          z-index: 0 !important;
+          pointer-events: none !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .container {
+          max-width: 1200px !important;
+          margin: 0 auto !important;
+          padding: 0 20px !important;
+          position: relative !important;
+          z-index: 1 !important;
+          overflow: visible !important;
+      }
+
+      /* 헤더 영역 */
+      #s2025101722cf7e1a99bd1 .section-header {
+          text-align: center !important;
+          margin-bottom: 50px !important;
+          overflow: visible !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .section-title {
+          font-size: 48px !important;
+          font-weight: 700 !important;
+          color: #faf8f3 !important;
+          margin-bottom: 20px !important;
+          line-height: 1.2 !important;
+          text-shadow:
+              0 0 10px rgba(250, 248, 243, 0.5),
+              0 0 20px rgba\(212, 175, 55, 0.5),
+              0 0 30px rgba\(212, 175, 55, 0.3) !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .section-subtitle {
+          font-size: 20px !important;
+          font-weight: 400 !important;
+          color: #e8d4a8 !important;
+          line-height: 1.6 !important;
+          text-shadow:
+              0 0 5px rgba\(232, 212, 168, 0.5),
+              0 1px 2px rgba(0, 0, 0, 0.3) !important;
+      }
+
+      /* 프로세스 컨테이너 */
+      #s2025101722cf7e1a99bd1 .process-container {
+          position: relative !important;
+          margin-bottom: 60px !important;
+          margin-top: 0px !important;
+          padding-top: 0px !important;
+          overflow: visible !important;
+      }
+
+      /* 프로세스 라인 - 네온 골드 */
+      #s2025101722cf7e1a99bd1 .process-line {
+          position: absolute !important;
+          top: 120px !important;
+          left: 10% !important;
+          right: 10% !important;
+          height: 2px !important;
+          background: linear-gradient(90deg, #8b6f3f 0%, #d4af37 50%, #e8d4a8 100%) !important;
+          box-shadow: 0 0 10px rgba\(212, 175, 55, 0.5) !important;
+          z-index: 1 !important;
+      }
+
+      /* 프로세스 스텝 */
+      #s2025101722cf7e1a99bd1 .process-steps {
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: flex-start !important;
+          position: relative !important;
+          z-index: 2 !important;
+          padding-top: 80px !important;
+          overflow: visible !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .process-step {
+          flex: 1 !important;
+          text-align: center !important;
+          padding: 0 10px !important;
+          position: relative !important;
+          display: flex !important;
+          flex-direction: column !important;
+          opacity: 1 !important;
+          overflow: visible !important;
+      }
+
+      /* 스텝 번호 - 네온 골드 */
+      #s2025101722cf7e1a99bd1 .step-number {
+          width: 80px !important;
+          height: 80px !important;
+          background: linear-gradient(135deg, #8b6f3f 0%, #d4af37 100%) !important;
+          border-radius: 50% !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          margin: 0 auto 15px !important;
+          position: relative !important;
+          box-shadow: 0 0 30px rgba\(212, 175, 55, 0.6),
+                      inset 0 0 20px rgba\(250, 248, 243, 0.3) !important;
+          transition: all 0.3s ease !important;
+          border: 1px solid #e8d4a8 !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .step-number:hover {
+          transform: scale(1.1) !important;
+          background: linear-gradient(135deg, #d4af37 0%, #e8d4a8 100%) !important;
+          box-shadow: 0 0 40px rgba\(212, 175, 55, 0.8),
+                      inset 0 0 30px rgba\(250, 248, 243, 0.4) !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .step-number span {
+          font-size: 14px !important;
+          font-weight: 700 !important;
+          color: #faf8f3 !important;
+          text-shadow: 0 0 10px rgba(250, 248, 243, 0.8) !important;
+      }
+
+      /* 스텝 콘텐츠 - 스포트라이트 효과 추가 */
+      #s2025101722cf7e1a99bd1 .step-content {
+          background: rgba(30, 60, 120, 0.4) !important;
+          backdrop-filter: blur(15px) !important;
+          border: 1px solid rgba\(212, 175, 55, 0.5) !important;
+          border-radius: 12px !important;
+          padding: 24px 18px !important;
+          transition: all 0.3s ease !important;
+          min-height: 220px !important;
+          position: relative !important;
+          overflow: hidden !important;
+      }
+
+      /* 스포트라이트 효과 */
+      #s2025101722cf7e1a99bd1 .step-content::after {
+          content: '' !important;
+          position: absolute !important;
+          inset: 0 !important;
+          background: radial-gradient(
+              circle 150px at var(--mx, 50%) var(--my, 50%),
+              rgba(255, 255, 255, 0.3),
+              rgba\(232, 212, 168, 0.25) 40%,
+              rgba\(212, 175, 55, 0.15) 60%,
+              transparent 100%
+          ) !important;
+          opacity: 0 !important;
+          transition: opacity 0.3s ease !important;
+          pointer-events: none !important;
+          z-index: 0 !important;
+          filter: blur(10px) !important;
+          border-radius: inherit !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .step-content:hover::after {
+          opacity: 1 !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .step-content::before {
+          content: '' !important;
+          position: absolute !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: 4px !important;
+          height: 100% !important;
+          background: linear-gradient(180deg, #8b6f3f 0%, #d4af37 100%) !important;
+          box-shadow: 0 0 10px rgba\(212, 175, 55, 0.8) !important;
+          z-index: 1 !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .step-content:hover {
+          background: rgba(40, 80, 140, 0.5) !important;
+          border-color: #d4af37 !important;
+          transform: translateY(-5px) !important;
+          box-shadow: 0 10px 30px rgba\(212, 175, 55, 0.5) !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .step-title {
+          font-size: 20px !important;
+          font-weight: 700 !important;
+          color: #d4af37 !important;
+          margin-bottom: 16px !important;
+          position: relative !important;
+          z-index: 1 !important;
+          text-shadow: 0 0 10px rgba\(212, 175, 55, 0.5) !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .step-description {
+          list-style: none !important;
+          padding: 0 !important;
+          position: relative !important;
+          z-index: 1 !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .step-description li {
+          font-size: 15px !important;
+          color: rgba(255, 255, 255, 0.85) !important;
+          line-height: 1.8 !important;
+          margin-bottom: 8px !important;
+          position: relative !important;
+          padding-left: 24px !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .step-description li::before {
+          content: '✓' !important;
+          position: absolute !important;
+          left: 0 !important;
+          color: #d4af37 !important;
+          font-weight: 700 !important;
+          text-shadow: 0 0 5px rgba\(212, 175, 55, 0.8) !important;
+      }
+
+      /* 스텝 아이콘 */
+      #s2025101722cf7e1a99bd1 .step-icon {
+          width: 40px !important;
+          height: 40px !important;
+          margin: 0 auto 16px !important;
+          fill: #d4af37 !important;
+          filter: drop-shadow(0 0 10px rgba\(212, 175, 55, 0.5)) !important;
+          position: relative !important;
+          z-index: 1 !important;
+      }
+
+      /* Trust Banner 영역 */
+      #s2025101722cf7e1a99bd1 .trust-section {
+          margin-top: 60px !important;
+          margin-bottom: 40px !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .trust-banner {
+          padding: 40px !important;
+          background: rgba\(30, 80, 140, 0.25) !important;
+          border: 1px solid rgba\(212, 175, 55, 0.4) !important;
+          border-radius: 16px !important;
+          text-align: center !important;
+          position: relative !important;
+          overflow: hidden !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .trust-banner::before {
+          content: '' !important;
+          position: absolute !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          background: radial-gradient(circle at 50% 50%, rgba\(212, 175, 55, 0.05) 0%, transparent 70%) !important;
+          pointer-events: none !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .trust-title {
+          font-size: 28px !important;
+          font-weight: 700 !important;
+          color: #d4af37 !important;
+          text-align: center !important;
+          margin-bottom: 30px !important;
+          text-shadow: 0 0 10px rgba\(212, 175, 55, 0.5) !important;
+          position: relative !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .trust-grid {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr) !important;
+          gap: 20px !important;
+          position: relative !important;
+          max-width: 100% !important;
+          margin: 0 auto !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .trust-item {
+          font-size: 16px !important;
+          color: rgba(255, 255, 255, 0.9) !important;
+          padding: 20px 20px !important;
+          position: relative !important;
+          text-align: center !important;
+          background: rgba(30, 80, 140, 0.35) !important;
+          border: 1px solid rgba\(212, 175, 55, 0.5) !important;
+          border-radius: 10px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 12px !important;
+          transition: all 0.3s ease !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .trust-item:hover {
+          background: rgba(40, 100, 160, 0.45) !important;
+          border-color: #d4af37 !important;
+          transform: translateY(-3px) !important;
+          box-shadow: 0 5px 20px rgba\(212, 175, 55, 0.3) !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .trust-item::before {
+          content: '✓' !important;
+          position: static !important;
+          flex-shrink: 0 !important;
+          color: #d4af37 !important;
+          font-weight: 700 !important;
+          font-size: 20px !important;
+      }
+
+      /* CTA 영역 */
+      #s2025101722cf7e1a99bd1 .cta-area {
+          text-align: center !important;
+          margin-top: 50px !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .cta-description {
+          font-size: 18px !important;
+          color: #e8d4a8 !important;
+          margin-bottom: 30px !important;
+          line-height: 1.8 !important;
+          text-shadow: 0 0 5px rgba\(232, 212, 168, 0.5) !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .cta-buttons {
+          display: flex !important;
+          gap: 20px !important;
+          justify-content: center !important;
+          flex-wrap: wrap !important;
+      }
+
+      /* CTA 버튼 - 스포트라이트 효과 */
+      #s2025101722cf7e1a99bd1 .cta-button-primary {
+          display: inline-block !important;
+          background: linear-gradient(135deg, #8b6f3f 0%, #d4af37 100%) !important;
+          color: #faf8f3 !important;
+          font-size: 17px !important;
+          font-weight: 700 !important;
+          padding: 16px 50px !important;
+          border-radius: 50px !important;
+          text-decoration: none !important;
+          transition: all 0.3s ease !important;
+          border: 1px solid #e8d4a8 !important;
+          text-shadow: 0 0 10px rgba(250, 248, 243, 0.8) !important;
+          box-shadow:
+              0 0 30px rgba\(212, 175, 55, 0.8),
+              inset 0 0 20px rgba\(250, 248, 243, 0.3) !important;
+          position: relative !important;
+          overflow: hidden !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .cta-button-primary::after {
+          content: '' !important;
+          position: absolute !important;
+          inset: 0 !important;
+          background: radial-gradient(
+              circle 80px at var(--mx, 50%) var(--my, 50%),
+              rgba(255, 255, 255, 0.4),
+              rgba\(232, 212, 168, 0.3) 40%,
+              rgba\(212, 175, 55, 0.2) 60%,
+              transparent 100%
+          ) !important;
+          opacity: 1 !important;
+          pointer-events: none !important;
+          z-index: 0 !important;
+          filter: blur(8px) !important;
+          border-radius: inherit !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .cta-button-primary > * {
+          position: relative !important;
+          z-index: 1 !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .cta-button-primary:hover {
+          background: linear-gradient(135deg, #d4af37 0%, #e8d4a8 100%) !important;
+          transform: translateY(-3px) scale(1.05) !important;
+          box-shadow:
+              0 0 40px rgba\(212, 175, 55, 1),
+              0 10px 30px rgba\(212, 175, 55, 0.5),
+              inset 0 0 30px rgba\(250, 248, 243, 0.4) !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .cta-button-secondary {
+          display: inline-block !important;
+          background: transparent !important;
+          color: #d4af37 !important;
+          font-size: 17px !important;
+          font-weight: 700 !important;
+          padding: 16px 50px !important;
+          border: 2px solid #d4af37 !important;
+          border-radius: 50px !important;
+          text-decoration: none !important;
+          transition: all 0.3s ease !important;
+          text-shadow: 0 0 5px rgba\(212, 175, 55, 0.5) !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .cta-button-secondary:hover {
+          background: linear-gradient(135deg, #8b6f3f 0%, #d4af37 100%) !important;
+          color: #faf8f3 !important;
+          transform: translateY(-3px) !important;
+          border-color: #e8d4a8 !important;
+          box-shadow: 0 0 30px rgba\(212, 175, 55, 0.6) !important;
+      }
+
+      /* 모바일 탭 버튼 */
+      #s2025101722cf7e1a99bd1 .process-tabs {
+          display: none !important;
+          grid-template-columns: repeat(4, 1fr) !important;
+          gap: 10px !important;
+          margin-bottom: 30px !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .process-tab {
+          background: rgba(15, 23, 42, 0.5) !important;
+          border: 1px solid rgba\(212, 175, 55, 0.4) !important;
+          color: rgba(255, 255, 255, 0.7) !important;
+          padding: 12px 10px !important;
+          border-radius: 10px !important;
+          font-size: 13px !important;
+          font-weight: 600 !important;
+          cursor: pointer !important;
+          transition: all 0.3s ease !important;
+          text-align: center !important;
+      }
+
+      #s2025101722cf7e1a99bd1 .process-tab.active {
+          background: linear-gradient(135deg, #8b6f3f 0%, #d4af37 100%) !important;
+          border-color: transparent !important;
+          color: #faf8f3 !important;
+          box-shadow: 0 0 20px rgba\(212, 175, 55, 0.5) !important;
+      }
+
+      /* 모바일 스와이프 컨테이너 */
+      #s2025101722cf7e1a99bd1 .swipe-wrapper {
+          overflow: hidden !important;
+          position: relative !important;
+          width: 100% !important;
+      }
+
+      /* 반응형 디자인 */
+      @media (max-width: 1024px) {
+          #s2025101722cf7e1a99bd1 .section-title {
+              font-size: 36px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .section-subtitle {
+              font-size: 16px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .process-steps {
+              display: grid !important;
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 20px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .process-line {
+              display: none !important;
+          }
+
+          /* PC 카드 텍스트 줄바꿈 방지 - 폰트 크기 축소 */
+          #s2025101722cf7e1a99bd1 .step-title {
+              font-size: 17px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .step-description li {
+              font-size: 13px !important;
+              line-height: 1.7 !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .trust-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+          }
+      }
+
+      @media (min-width: 769px) and (max-width: 900px) {
+          /* 좁은 태블릿 - 더 작은 폰트 */
+          #s2025101722cf7e1a99bd1 .step-title {
+              font-size: 16px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .step-description li {
+              font-size: 12px !important;
+              line-height: 1.6 !important;
+          }
+      }
+
+      @media (max-width: 768px) {
+          #s2025101722cf7e1a99bd1 .section-title {
+              font-size: 26px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .section-subtitle {
+              font-size: 15px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .section-wrapper {
+              padding: 50px 0 !important;
+          }
+
+          /* 모바일 탭 표시 */
+          #s2025101722cf7e1a99bd1 .process-tabs {
+              display: grid !important;
+          }
+
+          /* 모바일 스와이프 구조 */
+          #s2025101722cf7e1a99bd1 .swipe-wrapper {
+              width: 100% !important;
+              position: relative !important;
+              overflow: hidden !important;
+              min-height: 240px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .process-steps {
+              position: relative !important;
+              width: 100% !important;
+              height: 100% !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .process-step {
+              position: absolute !important;
+              top: 0 !important;
+              left: 0 !important;
+              width: 100% !important;
+              padding: 0 10px !important;
+              display: none !important;
+              flex-direction: column !important;
+              align-items: center !important;
+              justify-content: center !important;
+              box-sizing: border-box !important;
+              opacity: 0 !important;
+              transition: opacity 0.3s ease !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .process-step.active {
+              display: flex !important;
+              opacity: 1 !important;
+          }
+
+          /* 모바일 아이콘 숨김 */
+          #s2025101722cf7e1a99bd1 .step-icon {
+              display: none !important;
+          }
+
+          /* 모바일 스텝 번호 숨김 */
+          #s2025101722cf7e1a99bd1 .step-number {
+              display: none !important;
+          }
+
+          /* 모바일 콤팩트 카드 */
+          #s2025101722cf7e1a99bd1 .step-content {
+              width: 100% !important;
+              max-width: 100% !important;
+              min-height: auto !important;
+              padding: 18px 16px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .step-content::before {
+              width: 3px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .step-title {
+              font-size: 17px !important;
+              margin-bottom: 12px !important;
+              text-align: center !important;
+          }
+
+          /* 모바일 체크리스트 중앙 정렬 */
+          #s2025101722cf7e1a99bd1 .step-description {
+              display: inline-block !important;
+              text-align: left !important;
+              margin: 0 auto !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .step-content {
+              text-align: center !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .step-description li {
+              font-size: 13px !important;
+              line-height: 1.6 !important;
+              margin-bottom: 6px !important;
+              padding-left: 20px !important;
+              white-space: nowrap !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .step-description li::before {
+              font-size: 12px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .trust-grid {
+              grid-template-columns: 1fr !important;
+              gap: 12px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .trust-title {
+              font-size: 22px !important;
+              margin-bottom: 24px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .trust-banner {
+              padding: 30px 20px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .trust-item {
+              font-size: 14px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .cta-buttons {
+              flex-direction: column !important;
+              align-items: center !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .cta-button-primary,
+          #s2025101722cf7e1a99bd1 .cta-button-secondary {
+              width: 100% !important;
+              max-width: 320px !important;
+              font-size: 15px !important;
+              padding: 14px 40px !important;
+          }
+      }
+
+      @media (max-width: 480px) {
+          #s2025101722cf7e1a99bd1 .section-title {
+              font-size: 22px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .section-subtitle {
+              font-size: 13px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .process-tabs {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 8px !important;
+          }
+
+          #s2025101722cf7e1a99bd1 .process-tab {
+              font-size: 11px !important;
+              padding: 10px 8px !important;
+          }
+      }
+  </style>
+</head>
+<body>
+  <section id="s2025101722cf7e1a99bd1" class="process-section">
+      <div class="section-wrapper">
+          <div class="container">
+              <!-- 섹션 헤더 -->
+              <div class="section-header">
+                  <h2 class="section-title">자금치유연구소<br>전문서비스 프로세스</h2>
+                  <p class="section-subtitle">자금 조달 성공률을 높이는<br>4단계 전문가 코칭 프로세스</p>
+                  <p style="font-size: 14px; color: rgba(232, 212, 168, 0.8); margin-top: 15px; line-height: 1.6;">
+                      ※ 자금치유연구소는 기업 평가·진단, 컨설팅·자문, 서류작성 대행을 제공하지 않습니다.<br>
+                      대표님의 역량 강화를 위한 정보 제공 및 코칭 서비스를 제공합니다.
+                  </p>
+              </div>
+
+              <!-- 모바일 탭 버튼 -->
+              <div class="process-tabs">
+                  <button class="process-tab active" data-step="0">STEP 1</button>
+                  <button class="process-tab" data-step="1">STEP 2</button>
+                  <button class="process-tab" data-step="2">STEP 3</button>
+                  <button class="process-tab" data-step="3">STEP 4</button>
+              </div>
+
+              <!-- 프로세스 컨테이너 -->
+              <div class="process-container">
+                  <div class="process-line"></div>
+                  <div class="swipe-wrapper">
+                      <div class="process-steps">
+                          <!-- Step 1: 기업 역량 분석 -->
+                          <div class="process-step active" data-step="0">
+                              <div class="step-number">
+                                  <span>STEP 1</span>
+                              </div>
+                              <div class="step-content">
+                                  <svg class="step-icon" viewBox="0 0 24 24" fill="currentColor">
+                                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                  </svg>
+                                  <h3 class="step-title">기업 역량 분석</h3>
+                                  <ul class="step-description">
+                                      <li>신청 자격 및 조건 검토</li>
+                                      <li>기업의 강점 및 개선점 분석</li>
+                                      <li>필요한 전문 서비스 영역 파악</li>
+                                      <li>개선 목표 및 일정 수립</li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                          <!-- Step 2: 전문가 매칭 -->
+                          <div class="process-step" data-step="1">
+                              <div class="step-number">
+                                  <span>STEP 2</span>
+                              </div>
+                              <div class="step-content">
+                                  <svg class="step-icon" viewBox="0 0 24 24" fill="currentColor">
+                                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                                  </svg>
+                                  <h3 class="step-title">전문가 매칭</h3>
+                                  <ul class="step-description">
+                                      <li>법무, 세무, 회계, 노무 등 전문가</li>
+                                      <li>기업 맞춤형 코치 구성</li>
+                                      <li>역량강화 커리큘럼 개발</li>
+                                      <li>서비스 범위 및 일정 확정</li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                          <!-- Step 3: 역량강화 실행 -->
+                          <div class="process-step" data-step="2">
+                              <div class="step-number">
+                                  <span>STEP 3</span>
+                              </div>
+                              <div class="step-content">
+                                  <svg class="step-icon" viewBox="0 0 24 24" fill="currentColor">
+                                      <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                                  </svg>
+                                  <h3 class="step-title">역량강화 실행</h3>
+                                  <ul class="step-description">
+                                      <li>맞춤형 코칭 시행</li>
+                                      <li>통합 코디네이션 관리</li>
+                                      <li>주간/월간 진행상황 점검</li>
+                                      <li>실시간 이슈 처리 및 개선</li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                          <!-- Step 4: 완성 및 사후관리 -->
+                          <div class="process-step" data-step="3">
+                              <div class="step-number">
+                                  <span>STEP 4</span>
+                              </div>
+                              <div class="step-content">
+                                  <svg class="step-icon" viewBox="0 0 24 24" fill="currentColor">
+                                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                  </svg>
+                                  <h3 class="step-title">완성 및 사후관리</h3>
+                                  <ul class="step-description">
+                                      <li>최종 역량 평가 및 결과 검증</li>
+                                      <li>신청 준비 완료 확인</li>
+                                      <li>지속적 지원 체계 구축</li>
+                                      <li>성공 후 사후관리 및 피드백</li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Trust Banner 영역 -->
+              <div class="trust-section">
+                  <div class="trust-banner">
+                      <h3 class="trust-title">자금치유연구소의 약속</h3>
+                      <div class="trust-grid">
+                          <div class="trust-item">418+ 성공 기업 수</div>
+                          <div class="trust-item">전문가 맞춤 매칭</div>
+                          <div class="trust-item">체계적인 프로세스</div>
+                          <div class="trust-item">투명한 비용 체계</div>
+                          <div class="trust-item">성공 후 사후관리</div>
+                          <div class="trust-item">기업정보 철저 보안</div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- CTA 영역 -->
+              <div class="cta-area">
+                  <p class="cta-description">
+                      자금 조달, 전문가와 함께 시작하세요<br>
+                      성공적인 조달을 위한 완벽한 준비<br>
+                      자금치유연구소의 전문서비스 프로세스로 시작하세요
+                  </p>
+                  <div class="cta-buttons">
+                      <a href="#s20251017b5820c727e09d" class="cta-button-primary">전문가 매칭 신청</a>
+                      <a href="tel:1533-9510" class="cta-button-secondary">전화 상담</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <script>
+  // 스포트라이트 마우스 트래킹
+  document.addEventListener('DOMContentLoaded', function() {
+      const sectionElement = document.querySelector('#s2025101722cf7e1a99bd1');
+      if (!sectionElement) return;
+
+      // 스텝 콘텐츠 스포트라이트
+      const stepContents = sectionElement.querySelectorAll('.step-content');
+      stepContents.forEach(content => {
+          content.addEventListener('mousemove', function(e) {
+              const rect = this.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              this.style.setProperty('--mx', x + 'px');
+              this.style.setProperty('--my', y + 'px');
+          });
+
+          content.addEventListener('mouseleave', function() {
+              this.style.removeProperty('--mx');
+              this.style.removeProperty('--my');
+          });
+      });
+
+      // CTA 버튼 스포트라이트
+      const ctaButtons = sectionElement.querySelectorAll('.cta-button-primary');
+      ctaButtons.forEach(button => {
+          button.addEventListener('mousemove', function(e) {
+              const rect = this.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              this.style.setProperty('--mx', x + 'px');
+              this.style.setProperty('--my', y + 'px');
+          });
+
+          button.addEventListener('mouseleave', function() {
+              this.style.removeProperty('--mx');
+              this.style.removeProperty('--my');
+          });
+      });
+
+      // 모바일 탭 + 스와이프 기능
+      const tabs = sectionElement.querySelectorAll('.process-tab');
+      const wrapper = sectionElement.querySelector('.swipe-wrapper');
+      const steps = sectionElement.querySelectorAll('.process-step');
+
+      if (!wrapper || steps.length === 0) return;
+
+      let currentStep = 0;
+      let startX = 0;
+      let isDragging = false;
+
+      // 탭 클릭 이벤트
+      tabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+              const stepIndex = parseInt(this.getAttribute('data-step'));
+              goToStep(stepIndex);
+          });
+      });
+
+      // 스텝 이동 함수
+      function goToStep(index) {
+          if (index < 0 || index >= steps.length) return;
+
+          currentStep = index;
+
+          // 모바일에서만 active 클래스 적용
+          if (window.innerWidth <= 768) {
+              // 모든 스텝 숨김
+              steps.forEach(step => step.classList.remove('active'));
+              // 선택된 스텝만 표시
+              steps[index].classList.add('active');
+          }
+
+          // 탭 활성화
+          tabs.forEach(tab => tab.classList.remove('active'));
+          tabs[index].classList.add('active');
+      }
+
+      // 터치 스와이프 이벤트
+      if (window.innerWidth <= 768) {
+          wrapper.addEventListener('touchstart', function(e) {
+              startX = e.touches[0].clientX;
+              isDragging = true;
+          });
+
+          wrapper.addEventListener('touchmove', function(e) {
+              if (!isDragging) return;
+              e.preventDefault();
+          }, { passive: false });
+
+          wrapper.addEventListener('touchend', function(e) {
+              if (!isDragging) return;
+              isDragging = false;
+
+              const endX = e.changedTouches[0].clientX;
+              const diff = startX - endX;
+
+              // 50px 이상 스와이프 시 페이지 전환
+              if (Math.abs(diff) > 50) {
+                  if (diff > 0 && currentStep < steps.length - 1) {
+                      // 왼쪽 스와이프 - 다음
+                      goToStep(currentStep + 1);
+                  } else if (diff < 0 && currentStep > 0) {
+                      // 오른쪽 스와이프 - 이전
+                      goToStep(currentStep - 1);
+                  }
+              }
+          });
+      }
+
+      // 화면 크기 변경 시 처리
+      let resizeTimer;
+      window.addEventListener('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() {
+              if (window.innerWidth > 768) {
+                  // PC에서는 모든 스텝 표시
+                  steps.forEach(step => step.classList.remove('active'));
+              } else {
+                  // 모바일에서는 현재 스텝만 표시
+                  goToStep(currentStep);
+              }
+          }, 100);
+      });
+
+      // 초기 로드 시 위치 설정
+      if (window.innerWidth <= 768) {
+          goToStep(0);
+      }
+  });
+  </script>
+</body>
+</html>
+

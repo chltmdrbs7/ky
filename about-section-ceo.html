@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대표 소개 섹션 - KY Blue</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 대표 소개 섹션 - KY Blue 테마 */
+        #kyCompanyCeo {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            background: #0F172A !important;
+            padding: 60px 0 !important;
+            width: 100vw !important;
+            position: relative !important;
+            overflow: hidden !important;
+            margin-left: calc(-50vw + 50%) !important;
+            left: 0 !important;
+        }
+
+        /* 배경 KY Blue 파티클 효과 */
+        #kyCompanyCeo::before {
+            content: '' !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.10) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%) !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+        }
+
+        #kyCompanyCeo .section-container {
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+            padding: 0 20px !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+
+        #kyCompanyCeo .section-title {
+            text-align: center !important;
+            margin-bottom: 40px !important;
+        }
+
+        #kyCompanyCeo .section-title h2 {
+            font-size: 36px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 16px !important;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3) !important;
+        }
+
+        #kyCompanyCeo .section-title p {
+            font-size: 18px !important;
+            color: rgba(224, 242, 241, 0.8) !important;
+        }
+
+        /* 대표 소개 컨테이너 - 가로 레이아웃 - KY Blue 글래스모피즘 */
+        #kyCompanyCeo .ceo-intro-container {
+            background: rgba(59, 130, 246, 0.12) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            padding: 40px !important;
+            border-radius: 20px !important;
+            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15),
+                        0 0 60px rgba(59, 130, 246, 0.1),
+                        inset 0 0 40px rgba(59, 130, 246, 0.05) !important;
+            border: 1px solid rgba(59, 130, 246, 0.3) !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            gap: 50px !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        /* 프리미엄 스포트라이트 효과 - 데스크탑 전용 */
+        #kyCompanyCeo .ceo-intro-container::before {
+            content: '' !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: radial-gradient(
+                circle 200px at var(--mx, 50%) var(--my, 50%),
+                rgba(147, 197, 253, 0.4),
+                rgba(59, 130, 246, 0.3) 30%,
+                rgba(30, 58, 95, 0.15) 50%,
+                transparent 100%
+            ) !important;
+            opacity: 0 !important;
+            transition: opacity 0.4s ease !important;
+            pointer-events: none !important;
+            z-index: 1 !important;
+            filter: blur(10px) !important;
+        }
+
+        #kyCompanyCeo .ceo-intro-container:hover::before {
+            opacity: 1 !important;
+        }
+
+        /* 배경 네온 글로우 */
+        #kyCompanyCeo .ceo-intro-container::after {
+            content: '' !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: radial-gradient(
+                ellipse 600px 400px at 50% 50%,
+                rgba(59, 130, 246, 0.12),
+                rgba(59, 130, 246, 0.06) 40%,
+                transparent 70%
+            ) !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+            animation: pulseGlow 4s ease-in-out infinite !important;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        /* 왼쪽 사진 영역 */
+        #kyCompanyCeo .ceo-photo-section {
+            flex: 0 0 320px !important;
+            text-align: center !important;
+            position: relative !important;
+            z-index: 2 !important;
+        }
+
+        #kyCompanyCeo .ceo-card {
+            background: #ffffff !important;
+            padding: 20px !important;
+            border-radius: 16px !important;
+            border: 3px solid rgba(59, 130, 246, 0.5) !important;
+            box-shadow:
+                0 0 30px rgba(59, 130, 246, 0.3),
+                0 0 60px rgba(59, 130, 246, 0.15),
+                0 4px 20px rgba(0, 0, 0, 0.1) !important;
+            position: relative !important;
+            overflow: visible !important;
+            display: inline-block !important;
+            margin-bottom: 0 !important;
+            transition: all 0.4s ease !important;
+        }
+
+        #kyCompanyCeo .ceo-card:hover {
+            box-shadow:
+                0 0 40px rgba(59, 130, 246, 0.5),
+                0 0 80px rgba(59, 130, 246, 0.3),
+                0 8px 30px rgba(0, 0, 0, 0.15) !important;
+            transform: translateY(-4px) !important;
+        }
+
+        /* 대표 카드 리본 - KY Blue */
+        #kyCompanyCeo .ceo-card::before {
+            content: '대표' !important;
+            position: absolute !important;
+            top: 15px !important;
+            right: -25px !important;
+            background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%) !important;
+            color: #ffffff !important;
+            padding: 5px 30px !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            transform: rotate(45deg) !important;
+            box-shadow: 0 2px 15px rgba(59, 130, 246, 0.5) !important;
+        }
+
+        #kyCompanyCeo .member-image {
+            width: 280px !important;
+            height: 360px !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            background: #f8fafc !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        #kyCompanyCeo .member-image img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center top !important;
+        }
+
+        /* 이름과 직함 - 박스 밖에 배치 */
+        #kyCompanyCeo .member-info {
+            text-align: center !important;
+            margin-top: 20px !important;
+        }
+
+        #kyCompanyCeo .member-name {
+            font-size: 28px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 8px !important;
+            letter-spacing: 2px !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        #kyCompanyCeo .member-title {
+            font-size: 18px !important;
+            color: #3B82F6 !important;
+            font-weight: 600 !important;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.6) !important;
+            animation: titleGlow 3s ease-in-out infinite !important;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(59, 130, 246, 0.9);
+            }
+        }
+
+        /* 자격사항 섹션 */
+        #kyCompanyCeo .qualifications-section {
+            margin-top: 30px !important;
+            max-width: 800px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            padding: 0 20px !important;
+        }
+
+        /* 자격사항 그리드 - KY Blue */
+        #kyCompanyCeo .qualifications-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 15px !important;
+        }
+
+        #kyCompanyCeo .qual-item {
+            background: rgba(59, 130, 246, 0.15) !important;
+            border: 1px solid rgba(59, 130, 246, 0.4) !important;
+            border-radius: 8px !important;
+            padding: 14px 20px !important;
+            font-size: 14px !important;
+            color: #3B82F6 !important;
+            text-align: center !important;
+            position: relative !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+
+        #kyCompanyCeo .qual-item:hover {
+            background: rgba(59, 130, 246, 0.25) !important;
+            border-color: #3B82F6 !important;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5),
+                        0 0 60px rgba(59, 130, 246, 0.3),
+                        inset 0 0 25px rgba(59, 130, 246, 0.15) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        #kyCompanyCeo .qual-item::before {
+            content: '✓' !important;
+            color: #3B82F6 !important;
+            font-weight: bold !important;
+            margin-right: 8px !important;
+            font-size: 14px !important;
+        }
+
+        /* 오른쪽 인사말 영역 */
+        #kyCompanyCeo .greeting-section {
+            flex: 1 !important;
+            position: relative !important;
+            z-index: 2 !important;
+        }
+
+        #kyCompanyCeo .greeting-section h3 {
+            font-size: 28px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 30px !important;
+            position: relative !important;
+            display: inline-block !important;
+            line-height: 1.4 !important;
+        }
+
+        /* 강조 텍스트 - 화이트 */
+        #kyCompanyCeo .highlight-amount {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.4) !important;
+        }
+
+        #kyCompanyCeo .highlight-rate {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.4) !important;
+        }
+
+        /* 제목 아래 KY Blue 라인 */
+        #kyCompanyCeo .greeting-section h3::after {
+            content: '' !important;
+            position: absolute !important;
+            bottom: -12px !important;
+            left: 0 !important;
+            width: 60px !important;
+            height: 3px !important;
+            background: linear-gradient(90deg, #1E3A5F 0%, #3B82F6 100%) !important;
+            border-radius: 2px !important;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.6) !important;
+        }
+
+        #kyCompanyCeo .greeting-text p {
+            font-size: 17px !important;
+            color: rgba(224, 242, 241, 0.9) !important;
+            line-height: 1.8 !important;
+            margin-bottom: 24px !important;
+        }
+
+        #kyCompanyCeo .greeting-text p:first-of-type {
+            font-size: 18px !important;
+            color: rgba(224, 242, 241, 0.95) !important;
+            font-weight: 500 !important;
+            margin-bottom: 28px !important;
+        }
+
+        #kyCompanyCeo .greeting-text p:last-of-type {
+            margin-bottom: 0 !important;
+        }
+
+        /* 강조 문구 - KY Blue */
+        #kyCompanyCeo .emphasis {
+            color: #3B82F6 !important;
+            font-weight: 700 !important;
+        }
+
+        /* 모바일 전용 띄어쓰기 처리 */
+        #kyCompanyCeo .mobile-br {
+            display: none !important;
+        }
+
+        /* 태블릿 반응형 */
+        @media (max-width: 1024px) {
+            #kyCompanyCeo .ceo-intro-container {
+                gap: 40px !important;
+                padding: 40px !important;
+            }
+
+            #kyCompanyCeo .ceo-photo-section {
+                flex: 0 0 300px !important;
+            }
+
+            #kyCompanyCeo .member-image {
+                width: 260px !important;
+                height: 340px !important;
+            }
+
+            #kyCompanyCeo .member-name {
+                font-size: 26px !important;
+            }
+
+            #kyCompanyCeo .member-title {
+                font-size: 17px !important;
+            }
+        }
+
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            #kyCompanyCeo {
+                padding: 40px 0 !important;
+            }
+
+            #kyCompanyCeo .section-title {
+                margin-bottom: 30px !important;
+            }
+
+            #kyCompanyCeo .section-title h2 {
+                font-size: 28px !important;
+            }
+
+            #kyCompanyCeo .ceo-intro-container {
+                flex-direction: column !important;
+                padding: 30px 20px !important;
+                gap: 40px !important;
+            }
+
+            #kyCompanyCeo .ceo-photo-section {
+                flex: none !important;
+                width: 100% !important;
+                max-width: 350px !important;
+                margin: 0 auto !important;
+            }
+
+            #kyCompanyCeo .greeting-section h3 {
+                font-size: 24px !important;
+                word-break: keep-all !important;
+            }
+
+            #kyCompanyCeo .greeting-text p {
+                font-size: 16px !important;
+                word-break: keep-all !important;
+            }
+
+            #kyCompanyCeo .member-image {
+                width: 220px !important;
+                height: 280px !important;
+            }
+
+            #kyCompanyCeo .member-name {
+                font-size: 24px !important;
+            }
+
+            #kyCompanyCeo .member-title {
+                font-size: 16px !important;
+            }
+
+            #kyCompanyCeo .qualifications-grid {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+
+            /* 모바일에서만 띄어쓰기 표시 */
+            #kyCompanyCeo .mobile-br {
+                display: inline !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #kyCompanyCeo .greeting-section h3 {
+                font-size: 20px !important;
+            }
+
+            #kyCompanyCeo .greeting-text p {
+                font-size: 15px !important;
+                line-height: 1.8 !important;
+            }
+
+            #kyCompanyCeo .member-image {
+                width: 180px !important;
+                height: 240px !important;
+            }
+
+            #kyCompanyCeo .member-name {
+                font-size: 22px !important;
+            }
+
+            #kyCompanyCeo .member-title {
+                font-size: 15px !important;
+            }
+
+            #kyCompanyCeo .qual-item {
+                font-size: 11px !important;
+                padding: 8px 10px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 대표 소개 섹션 -->
+    <div id="kyCompanyCeo">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>대표 소개</h2>
+                <p>정책자금 전문 컨설팅, KY 중소기업지원센터</p>
+            </div>
+
+            <!-- 대표 소개 - 가로 레이아웃 -->
+            <div class="ceo-intro-container">
+                <!-- 왼쪽: 대표 사진 카드 -->
+                <div class="ceo-photo-section">
+                    <div class="ceo-card">
+                        <div class="member-image">
+                            <img src="프로필사진.jpg" alt="최승균 대표">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">최 승 균</div>
+                        <div class="member-title">대표</div>
+                    </div>
+                </div>
+
+                <!-- 오른쪽: 인사말 -->
+                <div class="greeting-section">
+                    <h3>중소기업의 성장을 함께하고<br><span class="highlight-rate">최적의 자금조달</span>을 실현하는 파트너</h3>
+                    <div class="greeting-text">
+                        <p>
+                            안녕하십니까, KY 중소기업지원센터 대표 최승균입니다.
+                        </p>
+                        <p>
+                            정책자금 확보는 <span class="emphasis">전문가와의 협업이 핵심</span>입니다.<br class="mobile-br">
+                            저희는 중소기업 맞춤형 컨설팅을 통해 대표님의 사업 상황을 면밀히 분석하고<br class="mobile-br">
+                            최적의 정책자금 조달 방안을 제시합니다.
+                        </p>
+                        <p>
+                            복잡한 정책자금 절차와 서류 준비에서<br class="mobile-br">
+                            어려움을 겪고 계신 대표님들께<br class="mobile-br">
+                            <span class="emphasis">전문적이고 체계적인 지원을 약속드립니다.</span>
+                        </p>
+                        <p>
+                            귀사의 성장이 저희의 보람입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 자격사항 그리드 - 별도 섹션 -->
+            <div class="qualifications-section">
+                <div class="qualifications-grid">
+                    <div class="qual-item">정책자금 전문 컨설팅</div>
+                    <div class="qual-item">중소기업 맞춤 지원</div>
+                    <div class="qual-item">자금조달 전략 수립</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 마우스 트래킹 스포트라이트 효과 (데스크탑 전용)
+        if (window.innerWidth > 768) {
+            const container = document.querySelector('#kyCompanyCeo .ceo-intro-container');
+
+            if (container) {
+                container.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    this.style.setProperty('--mx', `${x}px`);
+                    this.style.setProperty('--my', `${y}px`);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
