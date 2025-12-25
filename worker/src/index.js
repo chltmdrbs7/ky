@@ -1,7 +1,7 @@
 // ================================================
 // KY 중소기업지원센터 - 통합 Workers API
 // 작성일: 2024-12-24
-// 기능: Airtable + Resend + Telegram 통합 + 관리자 API
+// 기능: Airtable + Resend + Telegram 통합 + 관리자 API + GA4 Analytics
 // 배포: Cloudflare Workers
 // URL: https://ky-form.chltmdrbs7.workers.dev/
 //
@@ -13,6 +13,8 @@
 //   - TELEGRAM_BOT_TOKEN: Telegram Bot Token
 //   - TELEGRAM_CHAT_ID: Telegram Chat ID
 //   - ADMIN_PASSWORD: 관리자 비밀번호
+//   - GOOGLE_SERVICE_ACCOUNT_JSON: Google 서비스 계정 JSON (전체)
+//   - GA_PROPERTY_ID: Google Analytics 4 속성 ID
 // ================================================
 
 export default {
@@ -37,6 +39,20 @@ export default {
       // ================================================
       if (path === '/auth') {
         return await handleAuthAPI(request, env, corsHeaders);
+      }
+
+      // ================================================
+      // Google Analytics 4 API (/analytics)
+      // ================================================
+      if (path.startsWith('/analytics')) {
+        return await handleAnalyticsAPI(request, env, corsHeaders, path, url);
+      }
+
+      // ================================================
+      // 히스토리 API (/history)
+      // ================================================
+      if (path.startsWith('/history')) {
+        return await handleHistoryAPI(request, env, corsHeaders, path, url);
       }
 
       // ================================================
@@ -1171,4 +1187,533 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
+}
+
+// ================================================
+// Google Analytics 4 API 핸들러
+// ================================================
+async function handleAnalyticsAPI(request, env, corsHeaders, path, url) {
+  if (request.method !== 'GET') {
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
+
+  try {
+    // 환경변수 확인
+    if (!env.GOOGLE_SERVICE_ACCOUNT_JSON || !env.GA_PROPERTY_ID) {
+      return new Response(JSON.stringify({
+        error: 'GA4 API not configured',
+        message: 'GOOGLE_SERVICE_ACCOUNT_JSON and GA_PROPERTY_ID environment variables are required'
+      }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    const period = url.searchParams.get('period') || 'daily';
+    const accessToken = await getGoogleAccessToken(env);
+
+    // /analytics/all - 전체 데이터
+    if (path === '/analytics/all') {
+      const [overview, trend, traffic, devices, pages, geography, referrers] = await Promise.all([
+        fetchGA4Overview(env, accessToken, period),
+        fetchGA4Trend(env, accessToken, period),
+        fetchGA4Traffic(env, accessToken, period),
+        fetchGA4Devices(env, accessToken, period),
+        fetchGA4Pages(env, accessToken, period),
+        fetchGA4Geography(env, accessToken, period),
+        fetchGA4Referrers(env, accessToken, period)
+      ]);
+
+      return new Response(JSON.stringify({
+        overview,
+        trend,
+        traffic,
+        devices,
+        pages,
+        geography,
+        referrers
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // /analytics/overview - 개요 통계
+    if (path === '/analytics/overview') {
+      const overview = await fetchGA4Overview(env, accessToken, period);
+      return new Response(JSON.stringify(overview), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // /analytics/trend - 추이 데이터
+    if (path === '/analytics/trend') {
+      const trend = await fetchGA4Trend(env, accessToken, period);
+      return new Response(JSON.stringify(trend), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    return new Response(JSON.stringify({ error: 'Endpoint not found' }), {
+      status: 404,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+
+  } catch (error) {
+    console.error('Analytics API error:', error);
+    return new Response(JSON.stringify({
+      error: error.message,
+      stack: error.stack
+    }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
+}
+
+// ================================================
+// 히스토리 API 핸들러 (Airtable 저장 데이터)
+// ================================================
+async function handleHistoryAPI(request, env, corsHeaders, path, url) {
+  if (request.method !== 'GET') {
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
+
+  try {
+    const days = parseInt(url.searchParams.get('days')) || 7;
+
+    // Airtable에서 히스토리 데이터 조회
+    const HISTORY_TABLE = 'analytics_history';
+    const filterDate = new Date();
+    filterDate.setDate(filterDate.getDate() - days);
+    const filterDateStr = filterDate.toISOString().split('T')[0];
+
+    const filterFormula = encodeURIComponent(`IS_AFTER({date}, '${filterDateStr}')`);
+    const sortField = encodeURIComponent('date');
+
+    const airtableResponse = await fetch(
+      `https://api.airtable.com/v0/${env.AIRTABLE_BASE_ID}/${HISTORY_TABLE}?filterByFormula=${filterFormula}&sort[0][field]=${sortField}&sort[0][direction]=desc`,
+      {
+        headers: { 'Authorization': `Bearer ${env.AIRTABLE_TOKEN}` }
+      }
+    );
+
+    if (!airtableResponse.ok) {
+      // 테이블이 없거나 에러시 빈 배열 반환
+      return new Response(JSON.stringify({ data: [] }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    const result = await airtableResponse.json();
+    const data = result.records.map(r => ({
+      date: r.fields.date,
+      visitors: r.fields.visitors || 0,
+      pageviews: r.fields.pageviews || 0,
+      avg_duration: r.fields.avg_duration || 0,
+      bounce_rate: r.fields.bounce_rate || 0
+    }));
+
+    return new Response(JSON.stringify({ data }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+
+  } catch (error) {
+    console.error('History API error:', error);
+    return new Response(JSON.stringify({ data: [], error: error.message }), {
+      status: 200,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
+}
+
+// ================================================
+// Google 서비스 계정 Access Token 발급
+// ================================================
+async function getGoogleAccessToken(env) {
+  const serviceAccount = JSON.parse(env.GOOGLE_SERVICE_ACCOUNT_JSON);
+
+  // JWT 생성
+  const header = { alg: 'RS256', typ: 'JWT' };
+  const now = Math.floor(Date.now() / 1000);
+  const payload = {
+    iss: serviceAccount.client_email,
+    scope: 'https://www.googleapis.com/auth/analytics.readonly',
+    aud: 'https://oauth2.googleapis.com/token',
+    exp: now + 3600,
+    iat: now
+  };
+
+  const encodedHeader = base64urlEncode(JSON.stringify(header));
+  const encodedPayload = base64urlEncode(JSON.stringify(payload));
+  const signatureInput = `${encodedHeader}.${encodedPayload}`;
+
+  // RSA-SHA256 서명
+  const privateKey = serviceAccount.private_key;
+  const signature = await signRS256(signatureInput, privateKey);
+  const jwt = `${signatureInput}.${signature}`;
+
+  // Access Token 요청
+  const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`
+  });
+
+  const tokenData = await tokenResponse.json();
+  if (!tokenData.access_token) {
+    throw new Error('Failed to get access token: ' + JSON.stringify(tokenData));
+  }
+
+  return tokenData.access_token;
+}
+
+// Base64URL 인코딩
+function base64urlEncode(str) {
+  const base64 = btoa(str);
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+}
+
+// RSA-SHA256 서명
+async function signRS256(input, privateKeyPem) {
+  // PEM에서 키 추출
+  const pemContents = privateKeyPem
+    .replace('-----BEGIN PRIVATE KEY-----', '')
+    .replace('-----END PRIVATE KEY-----', '')
+    .replace(/\s/g, '');
+
+  const binaryKey = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
+
+  const cryptoKey = await crypto.subtle.importKey(
+    'pkcs8',
+    binaryKey,
+    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+
+  const encoder = new TextEncoder();
+  const signature = await crypto.subtle.sign(
+    'RSASSA-PKCS1-v1_5',
+    cryptoKey,
+    encoder.encode(input)
+  );
+
+  const signatureArray = new Uint8Array(signature);
+  let binary = '';
+  signatureArray.forEach(byte => binary += String.fromCharCode(byte));
+  return base64urlEncode(binary);
+}
+
+// ================================================
+// GA4 Data API - 개요 통계
+// ================================================
+async function fetchGA4Overview(env, accessToken, period) {
+  const { startDate, endDate, prevStartDate, prevEndDate } = getDateRange(period);
+
+  // 현재 기간 데이터
+  const currentData = await runGA4Report(env, accessToken, {
+    dateRanges: [{ startDate, endDate }],
+    metrics: [
+      { name: 'activeUsers' },
+      { name: 'screenPageViews' },
+      { name: 'averageSessionDuration' },
+      { name: 'bounceRate' }
+    ]
+  });
+
+  // 이전 기간 데이터
+  const prevData = await runGA4Report(env, accessToken, {
+    dateRanges: [{ startDate: prevStartDate, endDate: prevEndDate }],
+    metrics: [
+      { name: 'activeUsers' },
+      { name: 'screenPageViews' },
+      { name: 'averageSessionDuration' },
+      { name: 'bounceRate' }
+    ]
+  });
+
+  const current = currentData.rows?.[0]?.metricValues || [];
+  const prev = prevData.rows?.[0]?.metricValues || [];
+
+  const visitors = parseInt(current[0]?.value || 0);
+  const prevVisitors = parseInt(prev[0]?.value || 0);
+  const pageviews = parseInt(current[1]?.value || 0);
+  const prevPageviews = parseInt(prev[1]?.value || 0);
+  const duration = parseFloat(current[2]?.value || 0);
+  const prevDuration = parseFloat(prev[2]?.value || 0);
+  const bounceRate = parseFloat(current[3]?.value || 0) * 100;
+  const prevBounceRate = parseFloat(prev[3]?.value || 0) * 100;
+
+  return {
+    period: { startDate, endDate },
+    visitors: {
+      value: visitors,
+      change: calcChange(visitors, prevVisitors)
+    },
+    pageviews: {
+      value: pageviews,
+      change: calcChange(pageviews, prevPageviews)
+    },
+    duration: {
+      value: formatDuration(duration),
+      change: calcChange(duration, prevDuration)
+    },
+    bounceRate: {
+      value: Math.round(bounceRate),
+      change: calcChange(bounceRate, prevBounceRate)
+    }
+  };
+}
+
+// ================================================
+// GA4 Data API - 추이 데이터
+// ================================================
+async function fetchGA4Trend(env, accessToken, period) {
+  const { startDate, endDate } = getDateRange(period);
+
+  const data = await runGA4Report(env, accessToken, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: 'date' }],
+    metrics: [
+      { name: 'activeUsers' },
+      { name: 'screenPageViews' }
+    ],
+    orderBys: [{ dimension: { dimensionName: 'date' } }]
+  });
+
+  const trend = (data.rows || []).map(row => ({
+    date: row.dimensionValues[0].value,
+    visitors: parseInt(row.metricValues[0].value || 0),
+    pageviews: parseInt(row.metricValues[1].value || 0)
+  }));
+
+  return { trend };
+}
+
+// ================================================
+// GA4 Data API - 트래픽 소스
+// ================================================
+async function fetchGA4Traffic(env, accessToken, period) {
+  const { startDate, endDate } = getDateRange(period);
+
+  const data = await runGA4Report(env, accessToken, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: 'sessionDefaultChannelGroup' }],
+    metrics: [{ name: 'sessions' }],
+    orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+    limit: 10
+  });
+
+  const total = (data.rows || []).reduce((sum, row) => sum + parseInt(row.metricValues[0].value || 0), 0);
+
+  const sources = (data.rows || []).map(row => ({
+    source: row.dimensionValues[0].value,
+    sessions: parseInt(row.metricValues[0].value || 0),
+    percentage: total > 0 ? Math.round((parseInt(row.metricValues[0].value || 0) / total) * 100) : 0
+  }));
+
+  return { sources };
+}
+
+// ================================================
+// GA4 Data API - 기기별
+// ================================================
+async function fetchGA4Devices(env, accessToken, period) {
+  const { startDate, endDate } = getDateRange(period);
+
+  const data = await runGA4Report(env, accessToken, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: 'deviceCategory' }],
+    metrics: [{ name: 'activeUsers' }],
+    orderBys: [{ metric: { metricName: 'activeUsers' }, desc: true }]
+  });
+
+  const total = (data.rows || []).reduce((sum, row) => sum + parseInt(row.metricValues[0].value || 0), 0);
+
+  const devices = (data.rows || []).map(row => ({
+    device: row.dimensionValues[0].value,
+    users: parseInt(row.metricValues[0].value || 0),
+    percentage: total > 0 ? Math.round((parseInt(row.metricValues[0].value || 0) / total) * 100) : 0
+  }));
+
+  return { devices };
+}
+
+// ================================================
+// GA4 Data API - 인기 페이지
+// ================================================
+async function fetchGA4Pages(env, accessToken, period) {
+  const { startDate, endDate } = getDateRange(period);
+
+  const data = await runGA4Report(env, accessToken, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: 'pagePath' }],
+    metrics: [{ name: 'screenPageViews' }],
+    orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
+    limit: 10
+  });
+
+  const pages = (data.rows || []).map(row => ({
+    path: row.dimensionValues[0].value,
+    views: parseInt(row.metricValues[0].value || 0)
+  }));
+
+  return { pages };
+}
+
+// ================================================
+// GA4 Data API - 지역별
+// ================================================
+async function fetchGA4Geography(env, accessToken, period) {
+  const { startDate, endDate } = getDateRange(period);
+
+  const data = await runGA4Report(env, accessToken, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: 'city' }],
+    metrics: [{ name: 'activeUsers' }],
+    orderBys: [{ metric: { metricName: 'activeUsers' }, desc: true }],
+    limit: 10
+  });
+
+  const regions = (data.rows || []).map(row => ({
+    city: row.dimensionValues[0].value,
+    users: parseInt(row.metricValues[0].value || 0)
+  }));
+
+  return { regions };
+}
+
+// ================================================
+// GA4 Data API - 유입 경로
+// ================================================
+async function fetchGA4Referrers(env, accessToken, period) {
+  const { startDate, endDate } = getDateRange(period);
+
+  const data = await runGA4Report(env, accessToken, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [
+      { name: 'sessionSource' },
+      { name: 'sessionMedium' }
+    ],
+    metrics: [{ name: 'sessions' }],
+    orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+    limit: 10
+  });
+
+  const total = (data.rows || []).reduce((sum, row) => sum + parseInt(row.metricValues[0].value || 0), 0);
+
+  const referrers = (data.rows || []).map(row => ({
+    source: row.dimensionValues[0].value,
+    medium: row.dimensionValues[1].value,
+    sessions: parseInt(row.metricValues[0].value || 0),
+    percentage: total > 0 ? Math.round((parseInt(row.metricValues[0].value || 0) / total) * 100) : 0
+  }));
+
+  return { referrers };
+}
+
+// ================================================
+// GA4 Report API 호출
+// ================================================
+async function runGA4Report(env, accessToken, reportRequest) {
+  const propertyId = env.GA_PROPERTY_ID;
+
+  const response = await fetch(
+    `https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(reportRequest)
+    }
+  );
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(`GA4 API Error: ${JSON.stringify(error)}`);
+  }
+
+  return await response.json();
+}
+
+// ================================================
+// 날짜 범위 계산
+// ================================================
+function getDateRange(period) {
+  const now = new Date();
+  const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+  const today = kst.toISOString().split('T')[0];
+
+  let startDate, endDate, prevStartDate, prevEndDate;
+
+  if (period === 'daily') {
+    // 오늘 vs 어제
+    endDate = today;
+    startDate = today;
+    const yesterday = new Date(kst);
+    yesterday.setDate(yesterday.getDate() - 1);
+    prevEndDate = yesterday.toISOString().split('T')[0];
+    prevStartDate = prevEndDate;
+  } else if (period === 'weekly') {
+    // 이번 주 vs 지난 주
+    const dayOfWeek = kst.getDay();
+    const startOfWeek = new Date(kst);
+    startOfWeek.setDate(kst.getDate() - dayOfWeek);
+    startDate = startOfWeek.toISOString().split('T')[0];
+    endDate = today;
+
+    const prevEndOfWeek = new Date(startOfWeek);
+    prevEndOfWeek.setDate(prevEndOfWeek.getDate() - 1);
+    const prevStartOfWeek = new Date(prevEndOfWeek);
+    prevStartOfWeek.setDate(prevStartOfWeek.getDate() - 6);
+    prevStartDate = prevStartOfWeek.toISOString().split('T')[0];
+    prevEndDate = prevEndOfWeek.toISOString().split('T')[0];
+  } else if (period === 'monthly') {
+    // 이번 달 vs 지난 달
+    const startOfMonth = new Date(kst.getFullYear(), kst.getMonth(), 1);
+    startDate = startOfMonth.toISOString().split('T')[0];
+    endDate = today;
+
+    const prevEndOfMonth = new Date(startOfMonth);
+    prevEndOfMonth.setDate(prevEndOfMonth.getDate() - 1);
+    const prevStartOfMonth = new Date(prevEndOfMonth.getFullYear(), prevEndOfMonth.getMonth(), 1);
+    prevStartDate = prevStartOfMonth.toISOString().split('T')[0];
+    prevEndDate = prevEndOfMonth.toISOString().split('T')[0];
+  } else {
+    // 기본값: 최근 7일
+    const weekAgo = new Date(kst);
+    weekAgo.setDate(weekAgo.getDate() - 6);
+    startDate = weekAgo.toISOString().split('T')[0];
+    endDate = today;
+
+    const twoWeeksAgo = new Date(weekAgo);
+    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 7);
+    const oneWeekAgo = new Date(weekAgo);
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 1);
+    prevStartDate = twoWeeksAgo.toISOString().split('T')[0];
+    prevEndDate = oneWeekAgo.toISOString().split('T')[0];
+  }
+
+  return { startDate, endDate, prevStartDate, prevEndDate };
+}
+
+// 변화율 계산
+function calcChange(current, previous) {
+  if (previous === 0) return current > 0 ? 100 : 0;
+  return Math.round(((current - previous) / previous) * 100);
+}
+
+// 체류시간 포맷
+function formatDuration(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.round(seconds % 60);
+  return `${mins}분 ${secs}초`;
 }
